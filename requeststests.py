@@ -4,16 +4,17 @@ from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
 auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
 # Get all cards in the 'To Do' list.
 
-def get_items2():
-    todo_cards = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/cards', params = auth_params).json()
+def get_items():
     
+    cards = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/cards', params = auth_params).json()
     lists = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/lists', params = auth_params).json()
 
+    # Retrieve relevant info on all to do items
     items = []
-    todo_cards = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/cards', params = auth_params).json()
-    for card in todo_cards:
+    for card in cards:
         for list in lists:
             if card['idList'] == list['id']:
+                # The 'status' of the card is the name of the list it's in.
                 status = list['name']
                 break
         item = {'id': card['id'], 'title': card['name'], 'status': status}
