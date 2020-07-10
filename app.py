@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import session_items as session
 from session_items import add_item
-from requeststests import get_items
+from trello_functions import get_items
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
