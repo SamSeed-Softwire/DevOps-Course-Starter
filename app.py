@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import session_items as session
 from session_items import get_items, add_item
+from requeststests import get_items2
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
 
 @app.route('/')
 def index():
-    items = get_items()
+    items = get_items2()
     return render_template('index.html', items = items)
 
 @app.route('/add-item', methods = ['POST'])
