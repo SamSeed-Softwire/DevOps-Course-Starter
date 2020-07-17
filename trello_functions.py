@@ -35,14 +35,4 @@ params2 = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333f
 move_card_base_url = 'https://api.trello.com/1/cards/'
 move_card_url = move_card_base_url + card_to_move
 #requests.put(move_card_url, params = params2)
-
-
-fields = ['name']
-request_params = {'key' : 'b7ff82f3970592f40825cfb7c771881c', 'token' : 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'fields' : fields}
-
-r = requests.get('https://api.trello.com/1/members/me/boards/', params = request_params)
-
-print()
-print(type(r.json()))
-print(r.json())
 '''
