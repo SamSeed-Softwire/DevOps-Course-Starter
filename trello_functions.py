@@ -24,8 +24,8 @@ def get_items():
     return items
 
 def add_item(name, idList):
-    add_card_params = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'name': name, 'idList': idList}
-    requests.post('https://api.trello.com/1/cards/', params = add_card_params)
+    add_item_params = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'name': name, 'idList': idList}
+    requests.post('https://api.trello.com/1/cards/', params = add_item_params)
 
 
 '''
