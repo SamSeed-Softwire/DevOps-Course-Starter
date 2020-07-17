@@ -23,12 +23,12 @@ def get_items():
 
     return items
 
+def add_item(name, idList):
+    add_card_params = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'name': name, 'idList': idList}
+    requests.post('https://api.trello.com/1/cards/', params = add_card_params)
 
-new_card = 'Call Safrina'
-todo_list_id = '5efc77d5ce13a25c8b6bf9c1'
-params1 = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'idList': todo_list_id, 'name': new_card}
-#requests.post('https://api.trello.com/1/cards/', params = params1)
 
+'''
 card_to_move = '5f04caf38d48873dda953ee0'
 list_to_move_to = '5efc77d85e465d1006d941b5'
 params2 = {'key': 'b7ff82f3970592f40825cfb7c771881c', 'token': 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'idList': list_to_move_to}
@@ -36,7 +36,7 @@ move_card_base_url = 'https://api.trello.com/1/cards/'
 move_card_url = move_card_base_url + card_to_move
 #requests.put(move_card_url, params = params2)
 
-'''
+
 fields = ['name']
 request_params = {'key' : 'b7ff82f3970592f40825cfb7c771881c', 'token' : 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62', 'fields' : fields}
 
