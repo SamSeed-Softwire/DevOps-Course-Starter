@@ -1,12 +1,14 @@
 import requests
 
 auth_params = {'key' : 'b7ff82f3970592f40825cfb7c771881c', 'token' : 'b3918107d6c9333fcc87a9b0a362b1801db711b71559f152a724b63d5b070b62'}
+board_id = '5efc773fd08d053db4ef3c18'
+
 # Get all cards in the 'To Do' list.
 
 def get_items():
-    
-    cards = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/cards', params = auth_params).json()
-    lists = requests.get('https://api.trello.com/1/boards/5efc773fd08d053db4ef3c18/lists', params = auth_params).json()
+
+    cards = requests.get(f'https://api.trello.com/1/boards/{board_id}/cards', params = auth_params).json()
+    lists = requests.get(f'https://api.trello.com/1/boards/{board_id}/lists', params = auth_params).json()
 
     # Retrieve relevant info on all to do items
     items = []
