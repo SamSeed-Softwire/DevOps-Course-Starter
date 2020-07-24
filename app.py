@@ -16,11 +16,9 @@ def add_item():
     add_item_to_list(item, '5efc77d5ce13a25c8b6bf9c1')
     return redirect('/') 
 
-@app.route('/move-item-to-done', methods = ['POST'])
-def move_item_to_done():
-    item = request.form.get('item_id')
-    move_to_done(item)
-    return redirect('/')
+@app.route('/complete-item/<item_id>', methods = ['POST'])
+def complete_item(item_id):
+    move_to_done(item_id)
     return redirect('/')
 
 if __name__ == '__main__':
