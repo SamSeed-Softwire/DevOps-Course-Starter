@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import session_items as session
-from trello_functions import get_items, add_item, move_item_to_done
+from trello_functions import get_items, add_item_to_list, move_to_done
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
@@ -11,15 +11,16 @@ def index():
     return render_template('index.html', items = items)
 
 @app.route('/add-item', methods = ['POST'])
-def add_item_to_list():
+def add_item():
     item = request.form.get('item_name')
-    add_item(item, '5efc77d5ce13a25c8b6bf9c1')
-    return redirect('/')
+    add_item_to_list(item, '5efc77d5ce13a25c8b6bf9c1')
+    return redirect('/') 
 
 @app.route('/move-item-to-done', methods = ['POST'])
-def move_item_to_done2():
+def move_item_to_done():
     item = request.form.get('item_id')
-    move_item_to_done(item)
+    move_to_done(item)
+    return redirect('/')
     return redirect('/')
 
 if __name__ == '__main__':
