@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import session_items as session
 from trello_functions import get_items, add_item_to_list, move_to_done
+from viewModel import ViewModel
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
@@ -8,7 +9,8 @@ app.config.from_object('flask_config.Config')
 @app.route('/')
 def index():
     items = get_items()
-    return render_template('index.html', items = items)
+    item_view_model = ViewModel(items)
+    return render_template('index.html', view_model = item_view_model)
 
 @app.route('/add-item', methods = ['POST'])
 def add_item():
