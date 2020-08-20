@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
 import session_items as session
+from flask import Flask, render_template, request, redirect, url_for
 from trello_functions import get_items, add_item_to_list, move_to_done
 from viewModel import ViewModel
 
