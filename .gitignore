@@ -114,3 +114,4 @@ env/
 
 ### Configuration files ###
 .env
+trello_config.py
