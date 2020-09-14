@@ -1,5 +1,6 @@
 import requests
 from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
+from item import Item
 
 auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
 board_id = '5efc773fd08d053db4ef3c18'
@@ -19,7 +20,7 @@ def get_items():
                 # The 'status' of the card is the name of the list it's in.
                 status = list['name']
                 break
-        item = {'id': card['id'], 'title': card['name'], 'status': status}
+        item = Item(card['id'], card['name'], status)
         items.append(item)
 
     return items
