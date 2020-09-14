@@ -35,14 +35,4 @@ params2 = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': list_to
 move_card_base_url = 'https://api.trello.com/1/cards/'
 move_card_url = move_card_base_url + card_to_move
 #requests.put(move_card_url, params = params2)
-
-
-fields = ['name']
-request_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN, 'fields' : fields}
-
-r = requests.get('https://api.trello.com/1/members/me/boards/', params = request_params)
-
-print()
-print(type(r.json()))
-print(r.json())
 '''
