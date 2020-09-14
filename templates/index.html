@@ -31,4 +31,15 @@
     
   </form>
 
+  <form action="/move-item-to-done" method="post">
+    
+    <label for="item_id">ID of item:</label>
+    <input type="text" id="item_id" name="item_id" required size="20">
+    
+    <button
+      type="submit">
+        Mark item as 'Done'
+    </button>
+    
+  </form>
 {% endblock %}
