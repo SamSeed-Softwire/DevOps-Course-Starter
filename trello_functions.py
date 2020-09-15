@@ -25,8 +25,8 @@ def get_items():
     return items
 
 def add_item(name, idList):
-    add_card_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'name': name, 'idList': idList}
-    requests.post('https://api.trello.com/1/cards/', params = add_card_params)
+    add_item_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'name': name, 'idList': idList}
+    requests.post('https://api.trello.com/1/cards/', params = add_item_params)
 
 '''
 card_to_move = '5f04caf38d48873dda953ee0'
