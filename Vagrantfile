@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.profile
+    
+    # Install the desired version of python and set that version as the default version
+    sudo pyenv install 3.8.2
+    sudo pyenv global 3.8.2
 
   SHELL
 
