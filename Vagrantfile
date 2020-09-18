@@ -21,6 +21,9 @@ Vagrant.configure("2") do |config|
     # Install the desired version of python and set that version as the default version
     sudo pyenv install 3.8.2
     sudo pyenv global 3.8.2
+    
+    # Install poetry
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
   SHELL
 
