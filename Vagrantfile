@@ -17,7 +17,13 @@ Vagrant.configure("2") do |config|
     sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.profile
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(sudo pyenv init -)"\nfi' >> ~/.profile
+    cd .pyenv
+    sudo mkdir shims
+    sudo chmod 0777 shims
+    sudo mkdir versions
+    sudo chmod 0777 versions
+    . ~/.profile
     
     # Install the desired version of python and set that version as the default version
     sudo pyenv install 3.8.5
