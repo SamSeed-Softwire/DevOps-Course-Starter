@@ -1,6 +1,6 @@
 {
     "http.proxyAuthorization": null,
-    "python.pythonPath": "C:\\Work\\DevOps Apprenticeship\\Project\\DevOps-Course-Starter\\env\\Scripts\\python.exe",
+    "python.pythonPath": "c:\\Work\\DevOps Apprenticeship\\Project\\DevOps-Course-Starter\\.venv\\Scripts\\python.exe",
     "python.terminal.activateEnvironment": true,
     
 }
