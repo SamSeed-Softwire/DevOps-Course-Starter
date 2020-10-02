@@ -1,5 +1,8 @@
 """Flask configuration class."""
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     """Base configuration variables."""
