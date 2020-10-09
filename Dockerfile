@@ -25,3 +25,5 @@ COPY \
 
 # Install application dependencies.
 RUN poetry install
+
+EXPOSE 5000
