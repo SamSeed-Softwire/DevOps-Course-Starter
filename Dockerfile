@@ -29,4 +29,4 @@ RUN poetry install
 EXPOSE 5000
 
 # Define commands to be run when container is started.
-CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
+CMD [ "gunicorn", "--bind=0.0.0.0:5000", "app:app" ]
