@@ -22,3 +22,6 @@ COPY \
     pyproject.toml \
     # Copy them to the application folder.
     ./
+
+# Install application dependencies.
+RUN poetry install
