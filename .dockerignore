@@ -1,0 +1,20 @@
+### Python caches ###
+__pycache__
+.pytest_cache
+
+### Compiled python scripts ###
+*.pyc
+
+### VS Code ###
+.vscode
+
+### Git ###
+.git
+.gitignore
+
+### Docker ###
+Dockerfile
+
+### Environment variables ###
+.env
+.env.template
