@@ -109,12 +109,5 @@ dmypy.json
 ### macOS ###
 .DS_Store
 
-### Virtual environment ###
-.venv/
-
 ### Configuration files ###
 .env
-trello_config.py
-
-### Vagrant ###
-.vagrant
