@@ -1,6 +1,12 @@
 import requests
-from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
 from item import Item
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
+AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
 
 auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
 board_id = '5efc773fd08d053db4ef3c18'
