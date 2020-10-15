@@ -1,4 +1,7 @@
-FROM python:3.8.6-buster
+#### Base image ####
+
+# A base image from which other images can be built.
+FROM python:3.8.6-buster as base
 
 # Install Poetry.
 RUN pip3 install poetry==1.1.2
@@ -27,6 +30,21 @@ COPY \
 RUN poetry install
 
 EXPOSE 5000
+
+
+#### Local development image ####
+
+# Create an image used for local development.
+FROM base AS dev
+
+# Define commands to be run when container is started.
+CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
+
+
+#### Production image ####
+
+# Create an image used for running the app in a production environment.
+FROM base as prod
 
 # Define commands to be run when container is started.
 CMD [ "gunicorn", "--bind=0.0.0.0:5000", "app:app" ]
