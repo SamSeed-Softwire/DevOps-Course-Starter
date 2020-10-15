@@ -29,6 +29,7 @@ COPY \
 # Install application dependencies.
 RUN poetry install
 
+# Document what port should be exposed by the container when running.
 EXPOSE 5000
 
 
