@@ -10,15 +10,8 @@ RUN pip3 install poetry==1.1.2
 RUN mkdir /app/
 WORKDIR /app/
 
-COPY templates/ templates/
+COPY ./app/ ./app/
 COPY \
-    # Application scripts.
-    app.py \
-    flask_config.py \
-    item.py \
-    session_items.py \
-    trello_functions.py \
-    viewModel.py \
     # Dependency configuration files.
     poetry.lock \
     poetry.toml \
@@ -48,4 +41,4 @@ CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
 FROM base as prod
 
 # Define commands to be run when container is started.
-CMD [ "gunicorn", "--bind=0.0.0.0:5000", "app:app" ]
+CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./app", "app:app" ]
