@@ -10,15 +10,8 @@ RUN pip3 install poetry==1.1.2
 RUN mkdir /app/
 WORKDIR /app/
 
-COPY templates/ templates/
+COPY ./app/ ./app/
 COPY \
-    # Application scripts.
-    app.py \
-    flask_config.py \
-    item.py \
-    session_items.py \
-    trello_functions.py \
-    viewModel.py \
     # Dependency configuration files.
     poetry.lock \
     poetry.toml \
@@ -31,6 +24,8 @@ RUN poetry install
 
 # Document what port should be exposed by the container when running.
 EXPOSE 5000
+
+WORKDIR /app/app/
 
 
 #### Local development image ####
