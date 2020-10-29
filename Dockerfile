@@ -6,10 +6,11 @@ FROM python:3.8.6-buster as base
 # Install Poetry.
 RUN pip3 install poetry==1.1.2
 
-# Copy necessary files from host system into a dedicated application folder.
+# Create dedicated application folder in image and move into it.
 RUN mkdir /app/
 WORKDIR /app/
 
+# Copy dependency congiguration files from host system into a dedicated application folder.
 COPY \
     # Dependency configuration files.
     poetry.lock \
@@ -21,8 +22,10 @@ COPY \
 # Install application dependencies.
 RUN poetry install
 
+# Copy source code files from host system into a dedicated application folder.
 COPY ./app/ ./app/
 
+# Set the folder containing the source code files as the working directory.
 WORKDIR /app/app/
 
 # Document what port should be exposed by the container when running.
