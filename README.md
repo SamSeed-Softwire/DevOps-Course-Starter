@@ -30,6 +30,7 @@ There is also a shell script `buildAndRun.sh` stored in the root of this reposit
 
 The commands:
 
+- Remove all images: `docker image rm $(docker images -aq)`<br>
 - Stop all running containers: `docker stop $(docker container ls -aq)`<br>
 - Remove all stopped containers: `docker rm $(docker container ls -aq)`<br>
 - Build the local dev image: `docker build --target dev --tag=todo-app:dev .`<br>
