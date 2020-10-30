@@ -28,9 +28,6 @@ COPY ./app/ ./app/
 # Set the folder containing the source code files as the working directory.
 WORKDIR /app/app/
 
-# Document what port should be exposed by the container when running.
-EXPOSE 5000
-
 
 #### Local development image ####
 
