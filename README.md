@@ -6,7 +6,7 @@ This application is a web-browser-based to-do app, written in Python utilising t
 
 ## Config
 
-Environment variables are read in from the `.env` file by Docker at runtime (using the --env-file option). This file is not copied to the container, nor is it committed to the git repo, so you will need to create it if it doesn't exist. You can use `.env.template` as a template.
+Environment variables are read in from the `.env` file by Docker at runtime. This file is not copied to the container, nor is it committed to the git repo, so you will need to create it if it doesn't exist. You can use `.env.template` as a template.
 
 Environment variables include:
 - Flask server configuration variables.
@@ -16,7 +16,7 @@ Environment variables include:
 
 ## Running the application
 
-This application is containerised using Docker. There are 2 Docker images (each of which has a corresponding build command and run command):
+This application is containerised using Docker. There are 2 Docker images:
 
 - One image is for local development ('dev'). This runs the app using a Flask development server, which can be hot-reloaded (i.e. changes to the application code will feed through to the running application without needing to rebuild the Docker image).<br>
 - One image is for production ('prod'). This runs the app using a Gunicorn production-ready server, which cannot be hot-reloaded.<br>
@@ -24,30 +24,23 @@ This application is containerised using Docker. There are 2 Docker images (each 
 Below are some useful commands you can run to:
 
 - Manage Docker containers (e.g. if you want to quickly remove all containers).<br>
-- Build Docker images and use them to create containers which run your application. 
+- Use Docker Compose to build and run Docker images/containers (i.e. to run the application).
 
-There is also a shell script `buildAndRun.sh` stored in the root of this repository. This contains many of the commands seen below. You can comment out particular lines if you don't want to run certain containers. You can run this shell script from a bash terminal (e.g. Git Bash) using the command `source buildAndRun.sh`.
-
-The commands:
+Cleaning up:
 
 - Remove all images: `docker image rm $(docker images -aq)`<br>
 - Stop all running containers: `docker stop $(docker container ls -aq)`<br>
 - Remove all stopped containers: `docker rm $(docker container ls -aq)`<br>
-- Build the local dev image: `docker build --target dev --tag=todo-app:dev .`<br>
-- Build the production image: `docker build --target prod --tag=todo-app:prod .`<br>
-- Run the local dev container from the built image: `docker run -d -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev`<br>
-- Run the production container from the built image: `docker run -d -p 5000:5000 --env-file .env todo-app:prod`<br>
-
-You can chain these together into one line using a semicolon:
-
 - Clean up (remove all containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq)`<br>
-- Clean up, build and run local dev container: `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker build --target dev --tag=todo-app:dev .; docker run -d -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev`<br>
-- Clean up, build and run production container: `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker build --target prod --tag=todo-app:prod .; docker run -d -p 5000:5000 --env-file .env todo-app:prod`<br>
+- Super clean up (remove all images and containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker image rm $(docker images -aq)`<br>
 
-You can also run the container in an interactive shell mode:
+Running the app:
 
-- Run local dev container in interactive mode: `docker run -it -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev /bin/bash`<br>
-- Run production container in interactive mode: `docker run -it -p 5000:5000 --env-file .env todo-app:prod /bin/bash`<br>
+- Build and run the dev version of the app: `docker-compose up --detach --remove-orphans todo-app-dev`<br>
+- Build and run the prod version of the app: `docker-compose up --detach --remove-orphans todo-app-prod`<br>
+- Build and run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --rm todo-app-dev /bin/bash`<br>
 
+Once a container is running your application successfully you can view in your web browser at:
 
-Once a container is running your application successfully you can view in your web browser at [`http://localhost:5000/`](http://localhost:5000/).
+- dev: [`http://localhost:5000/`](http://localhost:5000/)
+- prod: [`http://localhost:5050/`](http://localhost:5050/)
