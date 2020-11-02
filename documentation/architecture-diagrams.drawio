@@ -1,1 +1,191 @@
-<mxfile host="app.diagrams.net" modified="2020-10-30T16:46:21.155Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="01VPWUzDGvieXwtBrNXz" version="13.8.8" type="device" pages="2"><diagram id="yqcj8nUwRWWZ-B5CO6ML" name="Context diagram">zVfbctowEP0aHsn4ggk8hmun004zJW3KU0dYwlYiJI8sbvn6rmwJ2xhiQieTvID2aFeWd88eyS1/uNpNJUri7wIT1vIcvGv5o5bn9fp9+NXAPgcCJ8iBSFKcQ24BzOgLMaBj0DXFJK04KiGYokkVDAXnJFQVDEkptlW3pWDVpyYoIjVgFiJWRx8pVrF5rcAp8C+ERrF9suuYmRWyzgZIY4TFtgT545Y/lEKofLTaDQnTubN5yeMmZ2YPG5OEq0sCJrNgMH/yJtN+snsO58lg4DvtTr7KBrG1eeExpipt6bW6DNYdLCSMIj1Soo0FzDCaqhvzTmpvE0U4vtP5BitkKE1pCCGxWjEAXBiSHVV/YOzceIEx56WpkSaMY429NbiS+3KUtuflySIus2xgPTkmXwRX6m1SNSViRSAeHLZFlW2R41KBLSYJQ4puqixBhmzRYbnDE+4FhZ14jumLjqWJaYuO5btdIhVrGRITVa5q00K9o4UUkhFRtYVgUHrtAspIc5pAP/nLo99Z+m7/7/T+92KwG3zdtL0agSxxYtcSZyi4Iju9aUxRJNEqa0SZtXJOKZQkNgx2UURaENPNMVTwshRZ8TsiaLaFCiVTJcUzGQoGe/FHXHDwHCwpY0dQmqCQ8giAoLAeRAJA29Ns28ZUkRng+lFb0EHAxIbIJcv6IaYYEw6YFGuOCTYcjXSbNPEVVoGNv8pYO1slgjVLfO75Jwjtes558lbY8lZqBDVqjJBCuvZMy7LXRSudKL5Ik5N1XUqhmaJr0OgrFk9a/TWjmp0RFyom8u0a9tlVpds74kD3SlXpdRoWemdVuT2rKgtbxF8p0QoilmdlZPGKZASDeyJTwVvB6LygFMidLnseALWMRXa+czj79UmJSjvQZyP8rVOtFwDHpLq9OueqmnBKSS4h4OUy4XerpfW9ulAcyl3maP+9dKJfK/ZDJZtN7YxpmjC0hxw2ump1gOKc7H1o4ZkxhVSxiARHbFygR+pd+HwT2VGg6/NElNqbSyxaw9POXIFuy1egw62n6Qp0W7kCuddegXIReKUgvdwv7/HmLm0Uv4tV7b9o1GvWjIcrdGImlmoLSdSJ26eKrC6VDJafcpk8rHOxUoVwnNCNz6cNh8vkh2mD6zZX9Yc5+98m/Fr2JvB7bX1HRCHK0o8v2vGh/456DmbxvZqf9cVHvz/+Bw==</diagram><diagram id="IEaKKJ3snsvo8BNWifGJ" name="Container diagram">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</diagram></mxfile>
+<mxfile host="65bd71144e" modified="2020-11-02T16:13:14.156Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="hzbl63whqFkKqZJz25m4" version="13.6.5" pages="3">
+    <diagram id="yqcj8nUwRWWZ-B5CO6ML" name="Context diagram">
+        <mxGraphModel dx="1530" dy="744" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="FS5BYj2FG9pxkcYpBB30-4" value="Edits &lt;br&gt;to-do list." style="endArrow=classic;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="410" as="sourcePoint"/>
+                        <mxPoint x="400" y="480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-2" value="&lt;h1&gt;Context diagram for to-do app&lt;/h1&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;glass=0;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="10" width="830" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-5" value="Data flows&amp;nbsp;&lt;br&gt;from one&amp;nbsp;&lt;br&gt;object to&amp;nbsp;&lt;br&gt;another." style="endArrow=classic;html=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="160" as="sourcePoint"/>
+                        <mxPoint x="840" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-7" value="&lt;b&gt;User of to-do app&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;A person who manages a to-do list using the to-do app." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="320" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-9" value="To-do list&amp;nbsp;&lt;br&gt;displayed&amp;nbsp;&lt;br&gt;to user." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="RnzW34f319_GPVbBxBJv-8" target="RnzW34f319_GPVbBxBJv-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-8" value="&lt;b&gt;To-do app&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;&lt;br&gt;Allows a user to manage a to-do list." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="480" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="RnzW34f319_GPVbBxBJv-11" value="&lt;b&gt;Object&lt;/b&gt;&lt;br&gt;[Person / Software system]&lt;br&gt;&lt;br&gt;Details." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="20" width="160" height="90" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="IEaKKJ3snsvo8BNWifGJ" name="Container diagram">
+        <mxGraphModel dx="1530" dy="744" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-0"/>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-1" parent="ai50oJ2eKlGh9fC3mw8e-0"/>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-2" value="&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;span style=&quot;font-size: 18px&quot;&gt;To-do app&lt;/span&gt;&lt;font&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;[Software system]&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;textDirection=ltr;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="310" y="285" width="528" height="415" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-3" value="Edits the Trello board." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;horizontal=1;verticalAlign=top;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-5" target="ai50oJ2eKlGh9fC3mw8e-8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-4" value="Renders the&amp;nbsp;&lt;br&gt;website." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-5" target="ai50oJ2eKlGh9fC3mw8e-10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-5" value="&lt;b&gt;Web app&lt;/b&gt;&lt;br&gt;[Container]&lt;br&gt;[Python, Flask, Gunicorn, HTML]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Determines what the website looks like, what it can do and how the user interacts with it.&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="340" y="520" width="158" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-6" value="&lt;h1&gt;Container diagram for to-do app&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;glass=0;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="10" y="10" width="830" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-7" value="Reads from the Trello board." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;verticalAlign=top;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-8" target="ai50oJ2eKlGh9fC3mw8e-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-8" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Container]&lt;br&gt;[Trello]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Stores the to-do items in a Trello board as cards in a collection of lists.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="660" y="520" width="158" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-9" value="Actions in GUI &lt;br&gt;trigger web-app &lt;br&gt;functions." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;verticalAlign=middle;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-10" target="ai50oJ2eKlGh9fC3mw8e-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-10" value="&lt;b&gt;Website&lt;br&gt;&lt;/b&gt;[Container]&lt;br&gt;[HTML]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;A HTML-rendered GUI. The user interacts with this in order to interact with the web app.&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="340" y="320" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-10" target="ai50oJ2eKlGh9fC3mw8e-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-12" value="Website &lt;br&gt;rendered &lt;br&gt;to user." style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ai50oJ2eKlGh9fC3mw8e-11" vertex="1" connectable="0">
+                    <mxGeometry x="0.1721" relative="1" as="geometry">
+                        <mxPoint y="10.34" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-13" value="User&amp;nbsp;interacts&amp;nbsp;&lt;br&gt;with website." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-14" target="ai50oJ2eKlGh9fC3mw8e-10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="460" y="200" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-14" value="&lt;b&gt;User of to-do app&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;A person who manages a to-do list using the to-do app." style="rounded=0;whiteSpace=wrap;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="340" y="110" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-15" value="Data flows&amp;nbsp;&lt;br&gt;from one&amp;nbsp;&lt;br&gt;object to&amp;nbsp;&lt;br&gt;another." style="endArrow=classic;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="160" as="sourcePoint"/>
+                        <mxPoint x="840" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-16" value="&lt;b&gt;Object&lt;/b&gt;&lt;br&gt;[Container / Person / Software system]&lt;br&gt;&lt;br&gt;Details." style="rounded=0;whiteSpace=wrap;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                    <mxGeometry x="680" y="20" width="160" height="90" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="Component diagram" id="4hymAHN9xPVzdoO_Fok_">
+        <mxGraphModel dx="1530" dy="744" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-0"/>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-1" parent="KUwH55LyA8Eynn2fVLHC-0"/>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-2" value="&lt;span style=&quot;font-size: 18px&quot;&gt;Web app&lt;br&gt;&lt;/span&gt;&lt;font&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;[Container]&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="300" y="530" width="528" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-3" value="Edits the &lt;br&gt;Trello board." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;horizontal=1;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="KUwH55LyA8Eynn2fVLHC-8" edge="1">
+                    <mxGeometry x="0.3333" relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="496" y="350" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-4" value="Renders the&amp;nbsp;&lt;br&gt;website." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-1" target="KUwH55LyA8Eynn2fVLHC-10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="381.5" y="520" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-6" value="&lt;h1&gt;Component diagram for to-do app&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;glass=0;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="10" y="10" width="830" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-7" value="Reads from the &lt;br&gt;Trello board." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" source="KUwH55LyA8Eynn2fVLHC-8" target="gWGYl7FvViBcPDyTm5Ov-2" edge="1">
+                    <mxGeometry x="-0.3333" relative="1" as="geometry">
+                        <mxPoint x="496" y="410" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-8" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Container]&lt;br&gt;[Trello]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Stores the to-do items in a Trello board as cards in a collection of lists.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="658" y="320" width="158" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-9" value="Actions in GUI &lt;br&gt;trigger web-app &lt;br&gt;functions." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;verticalAlign=middle;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" source="KUwH55LyA8Eynn2fVLHC-10" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="458.5" y="520" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-10" value="&lt;b&gt;Website&lt;br&gt;&lt;/b&gt;[Container]&lt;br&gt;[HTML]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;A HTML-rendered GUI. The user interacts with this in order to interact with the web app.&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="340" y="320" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="KUwH55LyA8Eynn2fVLHC-10" target="KUwH55LyA8Eynn2fVLHC-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-12" value="Website &lt;br&gt;rendered &lt;br&gt;to user." style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="KUwH55LyA8Eynn2fVLHC-11" vertex="1" connectable="0">
+                    <mxGeometry x="0.1721" relative="1" as="geometry">
+                        <mxPoint y="10.34" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-13" value="User&amp;nbsp;interacts&amp;nbsp;&lt;br&gt;with website." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="KUwH55LyA8Eynn2fVLHC-14" target="KUwH55LyA8Eynn2fVLHC-10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="460" y="200" as="sourcePoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-14" value="&lt;b&gt;User of to-do app&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;A person who manages a to-do list using the to-do app." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="340" y="110" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-15" value="Data flows&amp;nbsp;&lt;br&gt;from one&amp;nbsp;&lt;br&gt;object to&amp;nbsp;&lt;br&gt;another." style="endArrow=classic;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="160" as="sourcePoint"/>
+                        <mxPoint x="840" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-16" value="&lt;b&gt;Object&lt;/b&gt;&lt;br&gt;[Component / Container / Person / Software system]&lt;br&gt;&lt;br&gt;Details." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="680" y="20" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-7" value="Passes Flask config&amp;nbsp;&lt;br&gt;data to app." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-0" target="gWGYl7FvViBcPDyTm5Ov-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-0" value="&lt;b&gt;Flask config&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Python]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;Configuration for running Flask.&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="KUwH55LyA8Eynn2fVLHC-1">
+                    <mxGeometry x="341" y="790" width="158" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-4" value="Invokes functions&amp;nbsp;&lt;br&gt;with specified&amp;nbsp;&lt;br&gt;arguments." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-1" target="gWGYl7FvViBcPDyTm5Ov-2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-1" value="&lt;b&gt;Flask webapp behaviour&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Flask, Python]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: justify&quot;&gt;Python modules (using Flask ) determine what different actions cause what behaviour (in the webapp).&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="KUwH55LyA8Eynn2fVLHC-1">
+                    <mxGeometry x="340" y="560" width="158" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-6" value="Passes data&amp;nbsp;&lt;br&gt;received from Trello&amp;nbsp;&lt;br&gt;(after processing it)." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="gWGYl7FvViBcPDyTm5Ov-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-2" value="&lt;b&gt;Trello API requests&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Python]&lt;br&gt;&lt;br&gt;A Python module desribing the HTTP requests that can be made to the Trello API (in order to interact with the Trello board)." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="KUwH55LyA8Eynn2fVLHC-1">
+                    <mxGeometry x="658" y="560" width="158" height="140" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
