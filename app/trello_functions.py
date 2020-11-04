@@ -1,9 +1,6 @@
 import requests
 from item import Item
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
 AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
