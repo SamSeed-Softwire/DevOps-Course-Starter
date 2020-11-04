@@ -4,7 +4,6 @@ from trello_functions import get_items, add_item_to_list, move_to_done
 from viewModel import ViewModel
 
 app = Flask(__name__)
-app.config.from_object('flask_config.Config')
 
 @app.route('/')
 def index():
