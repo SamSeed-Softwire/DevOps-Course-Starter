@@ -10,7 +10,6 @@ Environment variables are read in from the `.env` file by Docker at runtime. Thi
 
 Environment variables include:
 - Flask server configuration variables.
-- A secret key, necessary for using the `session` object in Flask. A good secret key can easily be generated using the following Python command: `python -c 'import os; print(os.urandom(16))'`. Unsurprisngly this key should be kept secret!
 - Trello authorisation parameters
 <br><br>
 
