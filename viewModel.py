@@ -19,3 +19,8 @@ class ViewModel:
                 else:
                     continue
             
+    def __eq__(self, other):
+        """Overrides the default implementation."""
+        if type(self) == type(other):
+            return self.items == other.items
+        return False
