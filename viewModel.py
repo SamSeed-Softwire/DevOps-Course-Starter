@@ -30,3 +30,17 @@ class ViewModel:
                 return True
             return False
         return list(filter(is_status_todo, self.items))
+
+    def get_doing_items(self):
+        def is_status_doing(item: Item):
+            if item.status == 'Doing':
+                return True
+            return False
+        return list(filter(is_status_doing, self.items))
+
+    def get_done_items(self):
+        def is_status_done(item: Item):
+            if item.status == 'Done':
+                return True
+            return False
+        return list(filter(is_status_done, self.items))
