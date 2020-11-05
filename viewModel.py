@@ -17,17 +17,16 @@ class ViewModel:
             if type(item) != Item:
                 raise TypeError(items_type_error_message)
         self._items = items
-    
-    def get_to_do_items(self):
-        to_do_items = []
-        for item in self.items:
-                if self.items.status == "To Do":
-                    to_do_items.append(item)
-                else:
-                    continue
-            
+
     def __eq__(self, other):
         """Overrides the default implementation."""
         if type(self) == type(other):
             return self.items == other.items
         return False
+
+    def get_todo_items(self):
+        def is_status_todo(item: Item):
+            if item.status == 'To Do':
+                return True
+            return False
+        return list(filter(is_status_todo, self.items))
