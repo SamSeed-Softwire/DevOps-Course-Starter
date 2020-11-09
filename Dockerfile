@@ -66,5 +66,19 @@ CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./applicat
 # Create an image used for running the app in a production environment.
 FROM base-with-app-code as test
 
+# Install Chrome
+RUN \
+    curl -sSL https://dl.google.com/linux/direct/google-chromestable_current_amd64.deb -o chrome.deb &&\
+    apt-get install ./chrome.deb -y &&\
+    rm ./chrome.deb
+
+# Install Chromium WebDriver
+RUN \
+    LATEST=`curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE` &&\
+    echo "Installing chromium webdriver version ${LATEST}" &&\
+    curl -sSL https://chromedriver.storage.googleapis.com/${LATEST}/chromedriver_linux64.zip -o chromedriver_linux64.zip &&\
+    apt-get install unzip -y &&\
+    unzip ./chromedriver_linux64.zip
+
 # Define commands to be run when container is started.
 ENTRYPOINT ["poetry", "run", "pytest"]
