@@ -10,7 +10,6 @@ RUN pip3 install poetry==1.1.2
 RUN mkdir /app/
 WORKDIR /app/
 
-COPY ./app/ ./app/
 COPY \
     # Dependency configuration files.
     poetry.lock \
@@ -21,6 +20,8 @@ COPY \
 
 # Install application dependencies.
 RUN poetry install
+
+COPY ./app/ ./app/
 
 # Document what port should be exposed by the container when running.
 EXPOSE 5000
