@@ -9,10 +9,42 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
-      <h2>Items</h2>
+    <div class="col-md-4">
+      <h2>To Do</h2>
       <ul class="list-group mb-4">
-        {% for item in view_model.items %}
+        {% for item in view_model.get_todo_items() %}
+
+          <li>
+
+            <form action="/start-item/{{item.id}}" method="post">
+              <label for="id_card">{{item.id}} - {{item.title}} - {{item.status}}</label>
+              <input type="submit" value="Start">
+            </form> 
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Doing</h2>
+      <ul class="list-group mb-4">
+        {% for item in view_model.get_doing_items() %}
+
+          <li>
+
+            <form action="/complete-item/{{item.id}}" method="post">
+              <label for="id_card">{{item.id}} - {{item.title}} - {{item.status}}</label>
+              <input type="submit" value="Complete">
+            </form> 
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Done</h2>
+      <ul class="list-group mb-4">
+        {% for item in view_model.get_done_items() %}
 
           <li>
 
