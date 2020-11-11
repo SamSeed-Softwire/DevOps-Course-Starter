@@ -1,6 +1,8 @@
 import requests
 from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
 from item import Item
+import os
+from datetime import datetime
 
 auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
 board_id = '5efc773fd08d053db4ef3c18'
@@ -20,7 +22,8 @@ def get_items():
                 # The 'status' of the card is the name of the list it's in.
                 status = list['name']
                 break
-        item = Item(card['id'], card['name'], status)
+        last_modified = datetime.strptime(card['dateLastActivity'][:-1] + '000', '%Y-%m-%dT%H:%M:%S.%f')
+        item = Item(card['id'], card['name'], status, last_modified)
         items.append(item)
 
     return items
