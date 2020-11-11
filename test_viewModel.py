@@ -1,19 +1,24 @@
+from datetime import datetime
 from viewModel import ViewModel
 from item import Item
 
+dummy_id = 'id'
+dummy_title = 'title'
+dummy_status = 'status'
+dummy_last_modified = datetime(1, 1, 1)
 
 def test_get_todo_items():
     
     items = [
-         Item('id', 'title', 'To Do')
-        ,Item('id', 'title', 'Status is not "To Do"')
-        ,Item('id', 'title', 'To Do')
+         Item(dummy_id, dummy_title, 'To Do', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Status is not "To Do"', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'To Do', dummy_last_modified)
     ]
     item_view_model = ViewModel(items)
     todo_items = item_view_model.get_todo_items()
     assert todo_items == [
-         Item('id', 'title', 'To Do')
-        ,Item('id', 'title', 'To Do')
+         Item(dummy_id, dummy_title, 'To Do', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'To Do', dummy_last_modified)
     ]
 
     empty_items = []
@@ -24,15 +29,15 @@ def test_get_todo_items():
 def test_get_doing_items():
     
     items = [
-         Item('id', 'title', 'Doing')
-        ,Item('id', 'title', 'Status is not "Doing"')
-        ,Item('id', 'title', 'Doing')
+         Item(dummy_id, dummy_title, 'Doing', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Status is not "Doing"', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Doing', dummy_last_modified)
     ]
     item_view_model = ViewModel(items)
     doing_items = item_view_model.get_doing_items()
     assert doing_items == [
-         Item('id', 'title', 'Doing')
-        ,Item('id', 'title', 'Doing')
+         Item(dummy_id, dummy_title, 'Doing', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Doing', dummy_last_modified)
     ]
 
     empty_items = []
@@ -44,15 +49,15 @@ def test_get_doing_items():
 def test_get_done_items():
     
     items = [
-         Item('id', 'title', 'Done')
-        ,Item('id', 'title', 'Status is not "Done"')
-        ,Item('id', 'title', 'Done')
+         Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Status is not "Done"', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
     ]
     item_view_model = ViewModel(items)
     done_items = item_view_model.get_done_items()
     assert done_items == [
-         Item('id', 'title', 'Done')
-        ,Item('id', 'title', 'Done')
+         Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
     ]
 
     empty_items = []
