@@ -64,3 +64,25 @@ def test_get_done_items():
     empty_item_view_model = ViewModel(empty_items)
     empty_done_items = empty_item_view_model.get_done_items()
     assert empty_done_items == []
+
+
+def test_show_all_done_items_flag():
+
+    items_x4 = [
+         Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)        
+    ]
+    item_view_model_x4 = ViewModel(items_x4)
+    assert item_view_model_x4.show_all_done_items_flag() == True
+
+    items_x5 = [
+         Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)        
+        ,Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
+    ]
+    item_view_model_x5 = ViewModel(items_x5)
+    assert item_view_model_x5.show_all_done_items_flag() == False
