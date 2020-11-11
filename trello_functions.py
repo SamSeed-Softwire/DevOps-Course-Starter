@@ -29,6 +29,11 @@ def add_item_to_list(name, idList):
     add_item_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'name': name, 'idList': idList}
     requests.post('https://api.trello.com/1/cards/', params = add_item_params)
 
+def move_to_doing(idCard):
+    idList_doing = '5efc77d79bdbfe8a63d420c2'
+    move_item_to_doing_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_doing}
+    requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_doing_params)
+
 def move_to_done(idCard):
     idList_done = '5efc77d85e465d1006d941b5'
     move_item_to_done_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_done}
