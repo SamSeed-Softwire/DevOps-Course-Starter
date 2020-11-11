@@ -9,8 +9,8 @@ app.config.from_object('flask_config.Config')
 @app.route('/')
 def index():
     items = get_items()
-    item_view_model = ViewModel(items)
-    return render_template('index.html', view_model = item_view_model)
+    view_model = ViewModel(items)
+    return render_template('index.html', view_model = view_model)
 
 @app.route('/add-item', methods = ['POST'])
 def add_item():
