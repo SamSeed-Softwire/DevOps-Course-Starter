@@ -57,3 +57,14 @@ FROM base-with-app-code as prod
 
 # Define commands to be run when container is started.
 CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./application", "app:create_app()" ]
+
+
+####################
+#### Test image ####
+####################
+
+# Create an image used for running the app in a production environment.
+FROM base-with-app-code as test
+
+# Define commands to be run when container is started.
+ENTRYPOINT ["poetry", "run", "pytest"]

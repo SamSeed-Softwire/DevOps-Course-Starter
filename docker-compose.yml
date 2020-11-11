@@ -22,3 +22,12 @@ services:
           - published: 5050
             target: 5000
         env_file: .env
+    todo-app-test:
+        image: todo-app:test
+        build:
+            context: .
+            target: test
+        ports:
+          - published: 5555
+            target: 5000
+        env_file: .env
