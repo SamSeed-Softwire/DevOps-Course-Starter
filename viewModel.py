@@ -24,6 +24,7 @@ class ViewModel:
             return self.items == other.items
         return False
 
+
     def get_todo_items(self):
         def is_status_todo(item: Item):
             if item.status == 'To Do':
@@ -44,3 +45,10 @@ class ViewModel:
                 return True
             return False
         return list(filter(is_status_done, self.items))
+
+    def show_all_done_items_flag(self):
+        done_items = self.get_done_items()
+        done_items_count = len(done_items)
+        if done_items_count <= 4:
+            return True
+        return False
