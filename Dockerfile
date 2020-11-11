@@ -25,9 +25,6 @@ RUN poetry install
 # Copy source code files from host system into a dedicated application folder.
 COPY ./app/ ./app/
 
-# Document what port should be exposed by the container when running.
-EXPOSE 5000
-
 
 #### Local development image ####
 
