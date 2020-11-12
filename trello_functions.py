@@ -1,18 +1,24 @@
 import requests
 from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
 from item import Item
+from trelloData import TrelloData
 import os
 from datetime import datetime
 
-auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
-board_id = '5efc773fd08d053db4ef3c18'
+AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
+AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
+board_id = os.environ.get('BOARD_ID')
 
 # Get all cards in the 'To Do' list.
 
+idList_todo = TrelloData(board_id).idList_todo
+idList_doing = TrelloData(board_id).idList_doing
+idList_done = TrelloData(board_id).idList_done
+
 def get_items():
-    
-    cards = requests.get(f'https://api.trello.com/1/boards/{board_id}/cards', params = auth_params).json()
-    lists = requests.get(f'https://api.trello.com/1/boards/{board_id}/lists', params = auth_params).json()
+
+    cards = TrelloData(board_id).cards
+    lists = TrelloData(board_id).lists
 
     # Retrieve relevant info on all to do items
     items = []
@@ -33,11 +39,9 @@ def add_item_to_list(name, idList):
     requests.post('https://api.trello.com/1/cards/', params = add_item_params)
 
 def move_to_doing(idCard):
-    idList_doing = '5efc77d79bdbfe8a63d420c2'
     move_item_to_doing_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_doing}
     requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_doing_params)
 
 def move_to_done(idCard):
-    idList_done = '5efc77d85e465d1006d941b5'
     move_item_to_done_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_done}
     requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_done_params)
