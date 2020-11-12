@@ -45,3 +45,13 @@ def move_to_doing(idCard):
 def move_to_done(idCard):
     move_item_to_done_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_done}
     requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_done_params)
+
+def delete(idCard):
+    delete_item_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN}
+    requests.delete(f'https://api.trello.com/1/cards/{idCard}/', params = delete_item_params)
+
+def delete_all_items():
+    trello_data = TrelloData(board_id)
+    cards = trello_data.cards
+    for card in cards:
+        delete(card['id'])
