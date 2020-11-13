@@ -1,5 +1,5 @@
 from datetime import datetime
-from viewModel import ViewModel
+from view_model import ViewModel
 from item import Item
 
 dummy_id = 'id'
