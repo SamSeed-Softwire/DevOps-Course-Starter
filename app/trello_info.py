@@ -14,7 +14,16 @@ class TrelloData:
         self.idList_done = get_idList(board_id, "Done")
         self.lists = get_lists(board_id)
         self.cards = get_cards(board_id)
+
+
+class TrelloIDs:
+
+    def __init__(self, board_id: str):
+    
         self.board_id = board_id
+        self.idList_todo = get_idList(board_id, "To Do")
+        self.idList_doing = get_idList(board_id, "Doing")
+        self.idList_done = get_idList(board_id, "Done")
 
 
 def get_lists(board_id: str):
