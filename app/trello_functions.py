@@ -5,8 +5,8 @@ from trello_info import TrelloData, TrelloIDs
 import os
 from datetime import datetime
 
-AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
-AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
+auth_params_key = os.environ.get('AUTH_PARAMS_KEY')
+auth_params_token = os.environ.get('AUTH_PARAMS_TOKEN')
 board_id = os.environ.get('BOARD_ID')
 
 trello_ids = TrelloIDs(board_id)
@@ -36,19 +36,19 @@ def get_items():
     return items
 
 def add_item_to_list(name, idList):
-    add_item_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'name': name, 'idList': idList}
+    add_item_params = {'key': auth_params_key, 'token': auth_params_token, 'name': name, 'idList': idList}
     requests.post('https://api.trello.com/1/cards/', params = add_item_params)
 
 def move_to_doing(idCard):
-    move_item_to_doing_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_doing}
+    move_item_to_doing_params = {'key': auth_params_key, 'token': auth_params_token, 'idList': idList_doing}
     requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_doing_params)
 
 def move_to_done(idCard):
-    move_item_to_done_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN, 'idList': idList_done}
+    move_item_to_done_params = {'key': auth_params_key, 'token': auth_params_token, 'idList': idList_done}
     requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_done_params)
 
 def delete(idCard):
-    delete_item_params = {'key': AUTH_PARAMS_KEY, 'token': AUTH_PARAMS_TOKEN}
+    delete_item_params = {'key': auth_params_key, 'token': auth_params_token}
     requests.delete(f'https://api.trello.com/1/cards/{idCard}/', params = delete_item_params)
 
 def delete_all_items():
