@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from trello_functions import get_items, add_item_to_list, move_to_doing, move_to_done, delete_all_items
 from view_model import ViewModel
 from trello_info import TrelloIDs
