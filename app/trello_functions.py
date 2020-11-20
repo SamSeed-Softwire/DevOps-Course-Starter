@@ -1,7 +1,7 @@
 import requests
 from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
 from item import Item
-from trello_info import TrelloData
+from trello_info import TrelloData, TrelloIDs
 import os
 from datetime import datetime
 
@@ -9,11 +9,12 @@ AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
 AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
 board_id = os.environ.get('BOARD_ID')
 
-# Get all cards in the 'To Do' list.
+trello_ids = TrelloIDs(board_id)
+idList_todo = trello_ids.idList_todo
+idList_doing = trello_ids.idList_doing
+idList_done = trello_ids.idList_done
 
-idList_todo = TrelloData(board_id).idList_todo
-idList_doing = TrelloData(board_id).idList_doing
-idList_done = TrelloData(board_id).idList_done
+# Get all cards in the 'To Do' list.
 
 def get_items():
 
