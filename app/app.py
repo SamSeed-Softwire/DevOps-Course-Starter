@@ -1,7 +1,13 @@
-import session_items as session
+import os
 from flask import Flask, render_template, request, redirect, url_for
 from trello_functions import get_items, add_item_to_list, move_to_doing, move_to_done
 from view_model import ViewModel
+from trello_info import TrelloIDs
+
+board_id = os.environ.get('BOARD_ID')
+
+trello_ids = TrelloIDs(board_id)
+idList_todo = trello_ids.idList_todo
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
@@ -15,7 +21,7 @@ def index():
 @app.route('/add-item', methods = ['POST'])
 def add_item():
     item = request.form.get('item_name')
-    add_item_to_list(item, '5efc77d5ce13a25c8b6bf9c1')
+    add_item_to_list(item, idList_todo)
     return redirect('/') 
 
 @app.route('/start-item/<item_id>', methods = ['POST'])
