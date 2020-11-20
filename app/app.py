@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
-from trello_functions import get_items, add_item_to_list, move_to_doing, move_to_done
+from trello_functions import get_items, add_item_to_list, move_to_doing, move_to_done, delete_all_items
 from view_model import ViewModel
 from trello_info import TrelloIDs
 
@@ -32,6 +32,11 @@ def start_item(item_id):
 @app.route('/complete-item/<item_id>', methods = ['POST'])
 def complete_item(item_id):
     move_to_done(item_id)
+    return redirect('/')
+
+@app.route('/delete-all-items', methods = ['POST'])
+def delete_items():
+    delete_all_items()
     return redirect('/')
 
 if __name__ == '__main__':
