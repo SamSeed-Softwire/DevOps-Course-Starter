@@ -1,9 +1,10 @@
 import requests
 import os
 
-AUTH_PARAMS_KEY = os.environ.get('AUTH_PARAMS_KEY')
-AUTH_PARAMS_TOKEN = os.environ.get('AUTH_PARAMS_TOKEN')
-auth_params = {'key' : AUTH_PARAMS_KEY, 'token' : AUTH_PARAMS_TOKEN}
+auth_params_key = os.environ.get('AUTH_PARAMS_KEY')
+auth_params_token = os.environ.get('AUTH_PARAMS_TOKEN')
+auth_params = {'key' : auth_params_key, 'token' : auth_params_token}
+
 
 class TrelloData:
 
