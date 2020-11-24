@@ -44,12 +44,16 @@ class ViewModel:
     def done_items(self, done_items):
         check_type(done_items)
         self._done_items = done_items
+
+    # Overriding the default class equivalence implementation
+
     def __eq__(self, other):
         """Overrides the default implementation."""
         if type(self) == type(other):
             return self.items == other.items
         return False
 
+    # Useful methods
 
     def get_todo_items(self):
         def is_status_todo(item: Item):
