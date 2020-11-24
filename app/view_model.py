@@ -3,6 +3,11 @@ class ViewModel:
 
     def __init__(self, items):
         self.items = items
+        self.todo_items = self.get_todo_items()
+        self.doing_items = self.get_doing_items()
+        self.done_items = self.get_done_items()
+
+    # Properties
 
     @property
     def items(self):
@@ -13,6 +18,32 @@ class ViewModel:
         check_type(items)
         self._items = items
 
+    @property
+    def todo_items(self):
+        return self._todo_items
+
+    @todo_items.setter
+    def todo_items(self, todo_items):
+        check_type(todo_items)
+        self._todo_items = todo_items
+
+    @property
+    def doing_items(self):
+        return self._doing_items
+
+    @doing_items.setter
+    def doing_items(self, doing_items):
+        check_type(doing_items)
+        self._doing_items = doing_items
+
+    @property
+    def done_items(self):
+        return self._done_items
+
+    @done_items.setter
+    def done_items(self, done_items):
+        check_type(done_items)
+        self._done_items = done_items
     def __eq__(self, other):
         """Overrides the default implementation."""
         if type(self) == type(other):
