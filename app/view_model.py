@@ -10,12 +10,7 @@ class ViewModel:
     
     @items.setter
     def items(self, items):
-        items_type_error_message = 'Error: the collection of items used to initialise this ViewModel instance must be a *list*, where each element in the list is of type Item.'
-        if type(items) != list:
-            raise TypeError(items_type_error_message)
-        for item in items:
-            if type(item) != Item:
-                raise TypeError(items_type_error_message)
+        check_type(items)
         self._items = items
 
     def __eq__(self, other):
@@ -52,3 +47,12 @@ class ViewModel:
         if done_items_count <= 4:
             return True
         return False
+
+# QQ Couldn't get this to work as a class method
+def check_type(items):
+    items_type_error_message = 'Error: the collection of items used to initialise this ViewModel instance must be a *list*, where each element in the list is of type Item.'
+    if type(items) != list:
+        raise TypeError(items_type_error_message)
+    for item in items:
+        if type(item) != Item:
+            raise TypeError(items_type_error_message)
