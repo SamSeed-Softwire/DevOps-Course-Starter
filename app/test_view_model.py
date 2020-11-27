@@ -100,3 +100,16 @@ def test_recent_done_items():
     assert recent_done_items == [
          Item(dummy_id, dummy_title, 'Done', today)
     ]
+
+def test_older_done_items():
+    today = datetime.today()
+    items = [
+         Item(dummy_id, dummy_title, 'Done', today + timedelta(days = -1))
+        ,Item(dummy_id, dummy_title, 'Status is not "Done"', today + timedelta(days = -1))
+        ,Item(dummy_id, dummy_title, 'Done', today)
+    ]
+    item_view_model = ViewModel(items)
+    older_done_items = item_view_model.older_done_items
+    assert older_done_items == [
+         Item(dummy_id, dummy_title, 'Done', today + timedelta(days = -1))
+    ]
