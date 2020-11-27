@@ -1,3 +1,4 @@
+from datetime import date
 from item import Item
 class ViewModel:
 
@@ -21,6 +22,10 @@ class ViewModel:
     @property
     def show_all_done_items(self):
         return len(self._items) <= 4
+
+    @property
+    def recent_done_items(self):
+        return [item for item in self._items if item.status == 'Done' if item.last_modified.date() == date.today()]
 
     # Overriding the default class equivalence implementation
     def __eq__(self, other):
