@@ -9,7 +9,7 @@ auth_params = {'key' : auth_params_key, 'token' : auth_params_token}
 class TrelloData:
 
     def __init__(self, board_id: str):
-    
+
         self.lists = get_lists(board_id)
         self.cards = get_cards(board_id)
 
@@ -17,7 +17,7 @@ class TrelloData:
 class TrelloIDs:
 
     def __init__(self, board_id: str):
-    
+
         self.board_id = board_id
         self.idList_todo = get_idList(board_id, "To Do")
         self.idList_doing = get_idList(board_id, "Doing")

@@ -8,7 +8,7 @@ dummy_status = 'status'
 dummy_last_modified = datetime(1, 1, 1)
 
 def test_todo_items():
-    
+
     items = [
          Item(dummy_id, dummy_title, 'To Do', dummy_last_modified)
         ,Item(dummy_id, dummy_title, 'Status is not "To Do"', dummy_last_modified)
@@ -27,7 +27,7 @@ def test_todo_items():
     assert empty_todo_items == []
 
 def test_doing_items():
-    
+
     items = [
          Item(dummy_id, dummy_title, 'Doing', dummy_last_modified)
         ,Item(dummy_id, dummy_title, 'Status is not "Doing"', dummy_last_modified)
@@ -44,10 +44,10 @@ def test_doing_items():
     empty_item_view_model = ViewModel(empty_items)
     empty_doing_items = empty_item_view_model.doing_items
     assert empty_doing_items == []
-    
+
 
 def test_done_items():
-    
+
     items = [
          Item(dummy_id, dummy_title, 'Done', dummy_last_modified)
         ,Item(dummy_id, dummy_title, 'Status is not "Done"', dummy_last_modified)
