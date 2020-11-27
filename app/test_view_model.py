@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from view_model import ViewModel
 from item import Item
 
@@ -86,3 +86,17 @@ def test_show_all_done_items_flag():
     ]
     item_view_model_x5 = ViewModel(items_x5)
     assert item_view_model_x5.show_all_done_items_flag() == False
+
+def test_get_recent_done_items():
+    today = datetime.today()
+    items = [
+         Item(dummy_id, dummy_title, 'Done', today + timedelta(days = -1))
+        ,Item(dummy_id, dummy_title, 'Done', today)
+        ,Item(dummy_id, dummy_title, 'Status is not "Done"', today)
+        ,Item(dummy_id, dummy_title, 'Done', today + timedelta(days = +1))
+    ]
+    item_view_model = ViewModel(items)
+    recent_done_items = item_view_model.get_recent_done_items()
+    assert recent_done_items == [
+         Item(dummy_id, dummy_title, 'Done', today)
+    ]
