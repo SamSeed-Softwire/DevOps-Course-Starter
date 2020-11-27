@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from item import Item
 class ViewModel:
 
@@ -26,6 +26,10 @@ class ViewModel:
     @property
     def recent_done_items(self):
         return [item for item in self._items if item.status == 'Done' if item.last_modified.date() == date.today()]
+
+    @property
+    def older_done_items(self):
+        return [item for item in self._items if item.status == 'Done' if item.last_modified.date() <= date.today() + timedelta(days = -1)]
 
     # Overriding the default class equivalence implementation
     def __eq__(self, other):
