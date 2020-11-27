@@ -18,8 +18,9 @@ idList_done = trello_ids.idList_done
 
 def get_items():
 
-    cards = TrelloData(board_id).cards
-    lists = TrelloData(board_id).lists
+    trello_data = TrelloData(board_id)
+    cards = trello_data.cards
+    lists = trello_data.lists
 
     # Retrieve relevant info on all to do items
     items = []
