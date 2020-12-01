@@ -21,7 +21,7 @@ class ViewModel:
 
     @property
     def show_all_done_items(self):
-        return len(self._items) <= 4
+        return len(self.done_items) <= 4
 
     @property
     def recent_done_items(self):
