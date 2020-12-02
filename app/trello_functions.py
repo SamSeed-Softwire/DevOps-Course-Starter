@@ -8,8 +8,8 @@ from datetime import datetime
 auth_params_key = os.environ.get('AUTH_PARAMS_KEY')
 auth_params_token = os.environ.get('AUTH_PARAMS_TOKEN')
 auth_params = {'key' : auth_params_key, 'token' : auth_params_token}
-board_id = os.environ.get('BOARD_ID')
 
+board_id = os.environ.get('BOARD_ID')
 trello_ids = TrelloIDs(board_id, auth_params)
 idList_todo = trello_ids.idList_todo
 idList_doing = trello_ids.idList_doing
