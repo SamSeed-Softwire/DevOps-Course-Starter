@@ -7,9 +7,10 @@ from datetime import datetime
 
 auth_params_key = os.environ.get('AUTH_PARAMS_KEY')
 auth_params_token = os.environ.get('AUTH_PARAMS_TOKEN')
+auth_params = {'key' : auth_params_key, 'token' : auth_params_token}
 board_id = os.environ.get('BOARD_ID')
 
-trello_ids = TrelloIDs(board_id)
+trello_ids = TrelloIDs(board_id, auth_params)
 idList_todo = trello_ids.idList_todo
 idList_doing = trello_ids.idList_doing
 idList_done = trello_ids.idList_done
@@ -18,7 +19,7 @@ idList_done = trello_ids.idList_done
 
 def get_items():
 
-    trello_data = TrelloData(board_id)
+    trello_data = TrelloData(board_id, auth_params)
     cards = trello_data.cards
     lists = trello_data.lists
 
@@ -56,7 +57,7 @@ def delete(idCard):
     requests.delete(f'https://api.trello.com/1/cards/{idCard}/', params = delete_item_params)
 
 def delete_all_items():
-    trello_data = TrelloData(board_id)
+    trello_data = TrelloData(board_id, auth_params)
     cards = trello_data.cards
     for card in cards:
         delete(card['id'])
