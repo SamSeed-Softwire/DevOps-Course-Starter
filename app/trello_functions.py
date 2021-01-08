@@ -1,7 +1,6 @@
 import requests
-from trello_config import AUTH_PARAMS_KEY, AUTH_PARAMS_TOKEN
-from item import Item
-from trello_info import TrelloData, TrelloIDs
+from app.item import Item
+from app.trello_info import TrelloData, TrelloIDs
 import os
 from datetime import datetime
 
