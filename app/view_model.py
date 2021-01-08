@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from item import Item
+from app.item import Item
 class ViewModel:
 
     def __init__(self, items):
