@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+
 from app.item import Item
 class ViewModel:
 
