@@ -28,7 +28,7 @@ def test_index_page(mock_get_requests, client):
 
     response = client.get('/')
 
-def mock_get_data(url, params):
+def mock_get_data(url, *args, **kwargs):
     board_id = os.environ.get('BOARD_ID')
     
     if url == f'https://api.trello.com/1/boards/{board_id}/lists':
