@@ -5,6 +5,7 @@ import pytest
 from unittest.mock import patch, Mock
 
 import app.app as app
+from tests.mock_response import MockResponse
 
 
 @pytest.fixture
@@ -20,34 +21,28 @@ def client():
     with test_app.test_client() as client:
         yield client
 
-@patch('requests.get')
-def test_index_page(mock_get_requests, client):
-    
-    # Replace call to requests.get(url) with our own function.
-    mock_get_requests.side_effect = mock_get_data
-
-    response = client.get('/')
+@pytest.fixture
+def mock_response(monkeypatch):
+    monkeypatch.setattr(requests, "get", mock_get_data)
 
 def mock_get_data(url, *args, **kwargs):
     board_id = os.environ.get('BOARD_ID')
-    
+
     if url == f'https://api.trello.com/1/boards/{board_id}/lists':
-        response = Mock()
         samples_trello_lists_response = [
             {'id': '5efc77d5ce13a25c8b6bf9c1', 'name': 'To Do', 'closed': False, 'pos': 65535, 'softLimit': None, 'idBoard': '5efc773fd08d053db4ef3c18', 'subscribed': False}, {'id': '5efc77d79bdbfe8a63d420c2', 'name': 'Doing', 'closed': False, 'pos': 131071, 'softLimit': None, 'idBoard': '5efc773fd08d053db4ef3c18', 'subscribed': False}, {'id': '5efc77d85e465d1006d941b5', 'name': 'Done', 'closed': False, 'pos': 196607, 'softLimit': None, 'idBoard': '5efc773fd08d053db4ef3c18', 'subscribed': False}
         ]
-        response.json.return_value = samples_trello_lists_response
-        return response
-    
+        return MockResponse(samples_trello_lists_response)
     if url == f'https://api.trello.com/1/boards/{board_id}/cards':
-        response = Mock()
         samples_trello_cards_response = [
             {'id': '5ff99f06a123e77d1211c9fd', 'checkItemStates': None, 'closed': False, 'dateLastActivity': '2021-01-09T12:18:28.900Z', 'desc': '', 'descData': None, 'dueReminder': None, 'idBoard': '5efc773fd08d053db4ef3c18', 'idList': '5efc77d79bdbfe8a63d420c2', 
             'idMembersVoted': [], 'idShort': 121, 'idAttachmentCover': None, 'idLabels': [], 'manualCoverAttachment': False, 'name': "Do an hour's work on apprenticeship", 'pos': 16384, 'shortLink': '8Px1eNgP', 'isTemplate': False, 'cardRole': None, 'badges': {'attachmentsByType': {'trello': {'board': 0, 'card': 0}}, 'location': False, 'votes': 0, 'viewingMemberVoted': False, 'subscribed': 
             False, 'fogbugz': '', 'checkItems': 0, 'checkItemsChecked': 0, 'checkItemsEarliestDue': None, 'comments': 0, 'attachments': 0, 
             'description': False, 'due': None, 'dueComplete': False, 'start': None}, 'dueComplete': False, 'due': None, 'idChecklists': [], 'idMembers': [], 'labels': [], 'shortUrl': 'https://trello.com/c/8Px1eNgP', 'start': None, 'subscribed': False, 'url': 'https://trello.com/c/8Px1eNgP/121-do-an-hours-work-on-apprenticeship', 'cover': {'idAttachment': None, 'color': None, 'idUploadedBackground': None, 'size': 'normal', 'brightness': 'light'}}
         ]
-        response.json.return_value = samples_trello_cards_response
-        return response
-    
+        return MockResponse(samples_trello_cards_response)
+
     return None
+
+def test_index_page(mock_response, client):
+    response = client.get('/')
