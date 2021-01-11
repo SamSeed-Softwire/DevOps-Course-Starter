@@ -23,9 +23,9 @@ def client():
 
 @pytest.fixture
 def mock_response(monkeypatch):
-    monkeypatch.setattr(requests, "get", mock_get_data)
+    monkeypatch.setattr(requests, "get", mock_get)
 
-def mock_get_data(url, *args, **kwargs):
+def mock_get(url, *args, **kwargs):
     board_id = os.environ.get('BOARD_ID')
 
     if url == f'https://api.trello.com/1/boards/{board_id}/lists':
