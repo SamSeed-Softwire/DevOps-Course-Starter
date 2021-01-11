@@ -11,7 +11,7 @@ from tests.mock_response import MockResponse
 @pytest.fixture
 def client():
     # Use our test integration config instead of the 'real' version.
-    file_path = find_dotenv('.env')
+    file_path = find_dotenv('.env.test')
     load_dotenv(file_path, override=True)
 
     # Create the new app.
