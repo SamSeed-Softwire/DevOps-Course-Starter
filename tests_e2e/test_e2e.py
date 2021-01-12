@@ -66,3 +66,7 @@ def test_task_journey(driver, test_app):
     def count_items(list):
         items = find_items(list)
         return len(items)
+
+
+    # Check no items in todo list at start.
+    assert count_items('todo') == 0
