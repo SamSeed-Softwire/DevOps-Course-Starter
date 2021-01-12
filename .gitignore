@@ -118,3 +118,6 @@ trello_config.py
 
 ### VS Code ###
 .vscode
+
+### geckodriver ###
+geckodriver.log
