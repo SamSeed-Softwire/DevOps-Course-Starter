@@ -70,3 +70,10 @@ def test_task_journey(driver, test_app):
 
     # Check no items in todo list at start.
     assert count_items('todo') == 0
+
+    # Create new item.
+    item_name = 'Test item'
+    new_item_form = driver.find_element(By.ID, 'item_name')
+    new_item_form.send_keys(item_name)
+    new_item_form.submit()
+    driver.implicitly_wait(10)
