@@ -80,3 +80,14 @@ def test_task_journey(driver, test_app):
 
     # Check there's now 1 item in the todo list.
     assert count_items('todo') == 1
+
+    # Check the new item has the correct name.
+    todo_items = find_items('todo')
+    full_item_name = todo_items[0].text
+
+    full_item_name_root_pattern = r'.+\s-\s'
+    full_item_name_pattern = full_item_name_root_pattern + item_name
+    name_matcher = re.compile(full_item_name_pattern)
+    match_result = name_matcher.fullmatch(full_item_name)
+
+    assert bool(match_result) == True
