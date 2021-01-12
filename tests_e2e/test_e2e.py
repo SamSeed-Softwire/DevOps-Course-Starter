@@ -58,3 +58,11 @@ def test_task_journey(driver, test_app):
     driver.get('http://localhost:5000/')
 
     assert driver.title == 'To-Do App'
+
+    def find_items(list):
+        items = driver.find_elements(By.XPATH, f'''//div[@name='{list}']//ul//li''')
+        return items
+
+    def count_items(list):
+        items = find_items(list)
+        return len(items)

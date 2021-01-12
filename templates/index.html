@@ -9,7 +9,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" name="todo">
       <h2>To Do</h2>
       <ul class="list-group mb-4">
         {% for item in view_model.todo_items %}
@@ -23,7 +23,7 @@
       </ul>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" name="doing">
       <h2>Doing</h2>
       <ul class="list-group mb-4">
         {% for item in view_model.doing_items %}
@@ -37,7 +37,7 @@
       </ul>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" name="done">
       <h2>Done</h2>
       <ul class="list-group mb-4">
         {% if view_model.show_all_done_items == true %}
