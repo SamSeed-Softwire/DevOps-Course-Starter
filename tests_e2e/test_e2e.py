@@ -77,3 +77,6 @@ def test_task_journey(driver, test_app):
     new_item_form.send_keys(item_name)
     new_item_form.submit()
     driver.implicitly_wait(10)
+
+    # Check there's now 1 item in the todo list.
+    assert count_items('todo') == 1
