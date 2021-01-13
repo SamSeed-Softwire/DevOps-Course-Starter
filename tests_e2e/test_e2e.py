@@ -68,8 +68,10 @@ def test_task_journey(driver, test_app):
         return len(items)
 
 
-    # Check no items in todo list at start.
+    # Check no items in lists at start.
     assert count_items('todo') == 0
+    assert count_items('doing') == 0
+    assert count_items('done') == 0
 
     # Create new item.
     item_name = 'Test item'
