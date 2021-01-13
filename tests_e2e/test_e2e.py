@@ -74,58 +74,48 @@ def test_task_journey(driver, test_app):
         match_result = name_matcher.fullmatch(actual_name)
         return bool(match_result)
 
+    def check_item_name_and_count(list):
+
+        # Check there's now 1 item in the specified list
+        assert count_items(list) == 1
+
+        # Check the new item has the correct name.
+        list_items = find_items(list)
+        list_item_name = list_items[0].text
+        assert check_item_name(list_item_name, initial_item_name) == True
+
     # Check no items in lists at start.
     assert count_items('todo') == 0
     assert count_items('doing') == 0
     assert count_items('done') == 0
 
     # Create new item.
-    item_name = 'Test item'
+    initial_item_name = 'Test item'
     new_item_form = driver.find_element(By.XPATH, '''//form[@action='/add-item']//input[@name='item_name']''')
-    new_item_form.send_keys(item_name)
+    new_item_form.send_keys(initial_item_name)
     new_item_form.submit()
     driver.implicitly_wait(10)
 
-    # Check there's now 1 item in the todo list.
-    assert count_items('todo') == 1
-
-    # Check the new item has the correct name.
-    todo_items = find_items('todo')
-    todo_item_name = todo_items[0].text
-    assert check_item_name(todo_item_name, item_name) == True
+    # Check item is now in the todo list as expected.
+    check_item_name_and_count('todo')
 
     # Start the item.
     start_item_button = driver.find_element(By.XPATH, '''//div[@name='todo']//ul//li//input[@value='Start']''')
     start_item_button.click()
 
-    # Check there's now 1 item in the doing list.
-    assert count_items('doing') == 1
-
-    # Check the new item has the correct name.
-    doing_items = find_items('doing')
-    doing_item_name = doing_items[0].text
-    assert check_item_name(doing_item_name, item_name) == True
+    # Check item is now in the doing list as expected.
+    check_item_name_and_count('doing')
 
     # Complete the item.
     complete_item_button = driver.find_element(By.XPATH, '''//div[@name='doing']//ul//li//input[@value='Complete']''')
     complete_item_button.click()
 
-    # Check there's now 1 item in the done list.
-    assert count_items('done') == 1
-
-    # Check the new item has the correct name.
-    done_items = find_items('done')
-    done_item_name = done_items[0].text
-    assert check_item_name(done_item_name, item_name) == True
+    # Check item is now in the done list as expected.
+    check_item_name_and_count('done')
 
     # Uncomplete the item.
     uncomplete_item_button = driver.find_element(By.XPATH, '''//div[@name='done']//ul//li//input[@value='Uncomplete']''')
     uncomplete_item_button.click()
 
-    # Check there's now 1 item in the doing list.
-    assert count_items('doing') == 1
-
-    # Check the new item has the correct name.
-    doing_items = find_items('doing')
-    doing_item_name = doing_items[0].text
-    assert check_item_name(doing_item_name, item_name) == True
+    # Check item is now back in the doing list as expected.
+    check_item_name_and_count('doing')
