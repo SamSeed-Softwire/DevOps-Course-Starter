@@ -117,3 +117,15 @@ def test_task_journey(driver, test_app):
     done_items = find_items('done')
     done_item_name = done_items[0].text
     assert check_item_name(done_item_name, item_name) == True
+
+    # Uncomplete the item.
+    uncomplete_item_button = driver.find_element(By.XPATH, '''//div[@name='done']//ul//li//input[@value='Uncomplete']''')
+    uncomplete_item_button.click()
+
+    # Check there's now 1 item in the doing list.
+    assert count_items('doing') == 1
+
+    # Check the new item has the correct name.
+    doing_items = find_items('doing')
+    doing_item_name = doing_items[0].text
+    assert check_item_name(doing_item_name, item_name) == True
