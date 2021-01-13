@@ -81,7 +81,7 @@ def test_task_journey(driver, test_app):
 
     # Create new item.
     item_name = 'Test item'
-    new_item_form = driver.find_element(By.ID, 'item_name')
+    new_item_form = driver.find_element(By.XPATH, '''//form[@action='/add-item']//input[@name='item_name']''')
     new_item_form.send_keys(item_name)
     new_item_form.submit()
     driver.implicitly_wait(10)
