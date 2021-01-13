@@ -94,4 +94,14 @@ def test_task_journey(driver, test_app):
     todo_item_name = todo_items[0].text
     assert check_item_name(todo_item_name, item_name) == True
 
+    # Start the item.
+    start_item_button = driver.find_element(By.XPATH, '''//div[@name='todo']//ul//li//input[@value='Start']''')
+    start_item_button.click()
 
+    # Check there's now 1 item in the doing list.
+    assert count_items('doing') == 1
+
+    # Check the new item has the correct name.
+    doing_items = find_items('doing')
+    doing_item_name = doing_items[0].text
+    assert check_item_name(doing_item_name, item_name) == True
