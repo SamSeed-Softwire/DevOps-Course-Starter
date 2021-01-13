@@ -44,16 +44,18 @@
         {% if view_model.show_all_done_items == true %}
           {% for item in view_model.done_items %}
             <li>
-              <form action="/complete-item/{{item.id}}" method="post">
+              <form action="/uncomplete-item/{{item.id}}" method="post">
                 <label for="id_card">{{item.id}} - {{item.title}}</label>
+                <input type="submit" value="Uncomplete">
               </form>
             </li>
           {% endfor %}
         {% else %}
           {% for item in view_model.recent_done_items %}
             <li>
-              <form action="/complete-item/{{item.id}}" method="post">
+              <form action="/uncomplete-item/{{item.id}}" method="post">
                 <label for="id_card">{{item.id}} - {{item.title}}</label>
+                <input type="submit" value="Uncomplete">
               </form>
             </li>
           {% endfor %}
@@ -62,8 +64,9 @@
             <p>
               {% for item in view_model.older_done_items %}
                 <li>
-                  <form action="/complete-item/{{item.id}}" method="post">
+                  <form action="/uncomplete-item/{{item.id}}" method="post">
                     <label for="id_card">{{item.id}} - {{item.title}}</label>
+                    <input type="submit" value="Uncomplete">
                   </form>
                 </li>
               {% endfor %}

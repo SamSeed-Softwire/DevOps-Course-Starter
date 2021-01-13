@@ -31,6 +31,11 @@ def create_app():
         trello_client.move_to_done(item_id)
         return redirect('/')
 
+    @app.route('/uncomplete-item/<item_id>', methods = ['POST'])
+    def uncomplete_item(item_id):
+        trello_client.move_to_doing(item_id)
+        return redirect('/')
+
     @app.route('/delete-all-items', methods = ['POST'])
     def delete_items():
         trello_client.delete_all_items()
