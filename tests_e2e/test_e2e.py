@@ -67,6 +67,12 @@ def test_task_journey(driver, test_app):
         items = find_items(list)
         return len(items)
 
+    def check_item_name(actual_name, expected_name_without_root):
+        root_pattern = r'.+\s-\s'
+        full_name_pattern = root_pattern + expected_name_without_root
+        name_matcher = re.compile(full_name_pattern)
+        match_result = name_matcher.fullmatch(actual_name)
+        return bool(match_result)
 
     # Check no items in lists at start.
     assert count_items('todo') == 0
@@ -85,11 +91,7 @@ def test_task_journey(driver, test_app):
 
     # Check the new item has the correct name.
     todo_items = find_items('todo')
-    full_item_name = todo_items[0].text
+    todo_item_name = todo_items[0].text
+    assert check_item_name(todo_item_name, item_name) == True
 
-    full_item_name_root_pattern = r'.+\s-\s'
-    full_item_name_pattern = full_item_name_root_pattern + item_name
-    name_matcher = re.compile(full_item_name_pattern)
-    match_result = name_matcher.fullmatch(full_item_name)
 
-    assert bool(match_result) == True
