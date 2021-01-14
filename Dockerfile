@@ -1,4 +1,6 @@
+####################
 #### Base image ####
+####################
 
 # A base image from which other images can be built.
 FROM python:3.8.6-buster as base
@@ -26,7 +28,9 @@ RUN poetry install
 COPY ./application/ ./application/
 
 
+#################################
 #### Local development image ####
+#################################
 
 # Create an image used for local development.
 FROM base AS dev
@@ -35,7 +39,9 @@ FROM base AS dev
 CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
 
 
+##########################
 #### Production image ####
+##########################
 
 # Create an image used for running the app in a production environment.
 FROM base as prod
