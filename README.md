@@ -2,7 +2,6 @@
 ## About the application
 
 This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a Trello board.
-
 ## Config
 
 When running locally, environment variables are read in from the `.env` file. You should populate this file with your own values, using the `.env.template` file as a template. (You should create the `.env` file if it doesn't already exist, and make sure it's never copied into source control.)
