@@ -24,6 +24,14 @@ COPY \
 # Install application dependencies.
 RUN poetry install
 
+
+######################################################
+### Base image with application code copied across ###
+######################################################
+
+# Create an image which is the same as the base image but with the application code copied across.
+FROM base as base-with-app-code
+
 # Copy source code files from host system into a dedicated application folder.
 COPY ./application/ ./application/
 
@@ -44,7 +52,7 @@ CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
 ##########################
 
 # Create an image used for running the app in a production environment.
-FROM base as prod
+FROM base-with-app-code as prod
 
 # Define commands to be run when container is started.
 CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./application", "app:create_app()" ]
