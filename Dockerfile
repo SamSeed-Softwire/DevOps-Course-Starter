@@ -68,7 +68,7 @@ FROM base-with-app-code as test
 
 # Install Chrome
 RUN \
-    curl -sSL https://dl.google.com/linux/direct/google-chromestable_current_amd64.deb -o chrome.deb &&\
+    curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb &&\
     apt-get install ./chrome.deb -y &&\
     rm ./chrome.deb
 
