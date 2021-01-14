@@ -12,7 +12,7 @@ services:
         volumes: 
           - type: bind
             source: ./application/
-            target: /app/application/
+            target: /todo-app/application/
     todo-app-prod:
         image: todo-app:prod
         build:

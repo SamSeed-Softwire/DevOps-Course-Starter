@@ -7,8 +7,8 @@ FROM python:3.8.6-buster as base
 RUN pip3 install poetry==1.1.2
 
 # Create dedicated application folder in image and move into it.
-RUN mkdir /app/
-WORKDIR /app/
+RUN mkdir /todo-app/
+WORKDIR /todo-app/
 
 # Copy dependency congiguration files from host system into a dedicated application folder.
 COPY \
