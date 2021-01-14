@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
 
-import app.app as app
+import application.app as app
 
 
 trello_test_organization_id = '5ffd97c7f80c3b13867165e0'

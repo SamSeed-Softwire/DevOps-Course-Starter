@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-from app.view_model import ViewModel
-from app.item import Item
+from application.view_model import ViewModel
+from application.item import Item
 
 dummy_id = 'id'
 dummy_title = 'title'

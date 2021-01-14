@@ -11,8 +11,8 @@ services:
         env_file: .env
         volumes: 
           - type: bind
-            source: ./app/
-            target: /app/app/
+            source: ./application/
+            target: /app/application/
     todo-app-prod:
         image: todo-app:prod
         build:

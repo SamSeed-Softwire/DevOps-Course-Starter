@@ -23,7 +23,7 @@ COPY \
 RUN poetry install
 
 # Copy source code files from host system into a dedicated application folder.
-COPY ./app/ ./app/
+COPY ./application/ ./application/
 
 
 #### Local development image ####
@@ -41,4 +41,4 @@ CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
 FROM base as prod
 
 # Define commands to be run when container is started.
-CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./app", "app:app" ]
+CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./application", "app:app" ]

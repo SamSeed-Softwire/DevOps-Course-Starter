@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from app.item import Item
+from application.item import Item
 class ViewModel:
 
     def __init__(self, items):

@@ -4,7 +4,7 @@ import os
 import pytest
 from unittest.mock import patch, Mock
 
-import app.app as app
+import application.app as app
 from tests.mock_response import MockResponse
 
 
