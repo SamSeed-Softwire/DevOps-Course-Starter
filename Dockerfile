@@ -41,4 +41,4 @@ CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
 FROM base as prod
 
 # Define commands to be run when container is started.
-CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./application", "app:app" ]
+CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./application", "app:create_app()" ]
