@@ -44,7 +44,8 @@ COPY ./application/ ./application/
 FROM base AS dev
 
 # Define commands to be run when container is started.
-CMD [ "poetry", "run", "flask", "run", "--host=0.0.0.0" ]
+ENTRYPOINT [ "poetry", "run", "flask", "run" ]
+CMD [ "--host=0.0.0.0" ]
 
 
 ##########################
