@@ -5,6 +5,9 @@
 # A base image from which other images can be built.
 FROM python:3.8.6-buster as base
 
+# Update packages.
+RUN apt-get update
+
 # Install Poetry.
 RUN pip3 install poetry==1.1.2
 
