@@ -56,8 +56,8 @@ Running using regular Docker:
 
 Running using Docker Compose:
 
-- Build and run the dev version of the app: `docker-compose up --detach --remove-orphans todo-app-dev`
-- Build and run the prod version of the app: `docker-compose up --detach --remove-orphans todo-app-prod`
+- Build and run the dev version of the app: `docker-compose up --build --detach --remove-orphans todo-app-dev`
+- Build and run the prod version of the app: `docker-compose up --build --detach --remove-orphans todo-app-prod`
 - Build and run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --rm todo-app-dev /bin/bash`
 
 Once a container is running your application successfully you can view in your web browser at:
