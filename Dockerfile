@@ -69,6 +69,10 @@ CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./applicat
 # Create an image used for running the app in a production environment.
 FROM base-with-app-code as test
 
+# Copy test files from host system into a dedicated test folders.
+COPY ./tests/ ./tests/
+COPY ./tests_e2e/ ./tests_e2e/
+
 # Install Chrome
 RUN \
     curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb &&\
