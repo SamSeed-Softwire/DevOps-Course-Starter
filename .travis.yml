@@ -1,2 +1,2 @@
 script:
-- echo "hello world"
+- docker-compose up --build --detach --remove-orphans todo-app-test
