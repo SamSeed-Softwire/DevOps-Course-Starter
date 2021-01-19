@@ -1,2 +1,2 @@
 script:
-  - docker-compose up --build --detach --remove-orphans todo-app-test
+  - docker build --target test --tag todo-app-test .
