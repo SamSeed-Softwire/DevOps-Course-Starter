@@ -70,8 +70,9 @@ CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:5000", "--chdir", "./applicat
 FROM base-with-app-code as test
 
 # Copy test files from host system into a dedicated test folders.
-COPY ./tests/ ./tests/
 COPY ./tests_e2e/ ./tests_e2e/
+COPY ./tests_integration/ ./tests_integration/
+COPY ./tests_unit/ ./tests_unit/
 
 # Install Chrome
 RUN \
