@@ -1,2 +1,3 @@
 script:
   - docker build --target test --tag todo-app-test .
+  - docker run --detach --env-file ./.env todo-app-test
