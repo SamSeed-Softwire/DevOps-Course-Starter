@@ -1,5 +1,5 @@
 script:
-  - docker build --target test --tag todo-app-test .
-  # Run tests
-  - docker run --detach todo-app-test tests_unit
-  - docker run --detach todo-app-test tests_integration
+- docker build --target test --tag todo-app-test .
+# Run tests.
+- docker run --detach todo-app-test tests_unit
+- docker run --detach todo-app-test tests_integration
