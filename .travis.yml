@@ -5,8 +5,8 @@ script:
 - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
 - docker build --target test --tag todo-app-test .
 # Run tests.
-- docker run todo-app-test tests_unit
-- docker run todo-app-test tests_integration
+- docker run todo-app-test tests_unit -rA
+- docker run todo-app-test tests_integration -rA
 - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
 
 env:
