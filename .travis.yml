@@ -2,7 +2,17 @@ services:
 - docker
 
 script:
+- echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
 - docker build --target test --tag todo-app-test .
 # Run tests.
 - docker run todo-app-test tests_unit
 - docker run todo-app-test tests_integration
+
+env:
+  global:
+
+  ### Docker ###
+  # DOCKER_USERNAME
+  - DOCKER_USERNAME=samseedsoftwire
+  # DOCKER_TOKEN
+  - secure: VVzh0KXvMO0fxNMfe8tyCyvVIg9U1KUnQZEjhMU9z8VYpcthCgyyBDGbg1Q5gZ7hyh4Zzjs7hfe/SGyfvcamzGNvAWIebqKj7OmYV9odDNBk0go+ksgbiTohXGCpomh0Rb7+oo9o4UznxIv7wLwt57utV/G4hSrhln62fg4OyO2f9wjLiolo6BqskpcCsimRkER4idhrGfN8d0irGIb87UFVqrWHbGarpySOyUhWhba/XRBvu4Xt1Tew4SWZF6sQ6ruRWxaeFqVyfE/OTPidctfqYlQT/68IU4oyGMwP/Ym5LjL+Y7DhDZHRhbaXSlgPDy8qsQRVqKfuM0ZoQsHle60xpqJI2wKzpeTmUspb/SLwH4HZaqxmPvp7NZ8QrNKcshXC1yD2SSEqYZdhf1oEmR2tWjzwUez51tmO/5V5Et7VVhMz+Gom5A6WhskLPCzYeg0RWrGtpOxfc5QlHh/cMmZDfhicrI7WSU1KppdiKxBW1Djpy+IiQnzVgShe5Np+vtYK5W+2bhPS73YUYUVbbYh64bQRWjwAx9ePbJnwPikCcIWgECRWJVmHNRQOEAjCaldaY85qt7BQxdveeF6fq8gCkI5DNx0bynLoXhGrinQsWRs/dRPt5u03K4emafzvCV1mIzLcH0jistfxCfmMvupnvcbAi8CpuFpWBPM9LUU=
