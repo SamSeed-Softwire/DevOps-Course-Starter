@@ -13,6 +13,7 @@ jobs:
     # - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
   - stage: 'publish'
     before_script:
+    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker build --target prod --tag samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT .
     - docker build --target prod --tag samseedsoftwire/todo-app-prod:latest .
     script:
