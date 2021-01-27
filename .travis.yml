@@ -5,12 +5,12 @@ jobs:
   - stage: 'test'
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    # - docker build --target test --tag todo-app-test .
+    - docker build --target test --tag todo-app-test .
     script:
     - echo 'dummy'
-    # - docker run todo-app-test tests_unit -rA
-    # - docker run todo-app-test tests_integration -rA
-    # - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
+    - docker run todo-app-test tests_unit -rA
+    - docker run todo-app-test tests_integration -rA
+    - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
   - stage: 'publish'
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
