@@ -29,9 +29,8 @@ jobs:
     - docker push registry.heroku.com/still-spire-18415/web:latest
     # - heroku container:login
     deploy:
-      provider: heroku
-      api_key:
-        secure: "K+BNtOcVFbHASNssrFpffnnNiznkj5vs3C+U+L3ReKg2kj1aqq9W0ujHWuQ1tz43qRpklPJTmHZPEa9ypaqFvFAdCpSH0EjcdNCW9fmNuqPNEo31MTKsggev9cUXbzjRzWzrPdTLJa6VcVg+D6B86Eo5qTUTzP1pteoitpRrWzVmRC8fxqo1oAx2KODebRdruQIYMSQV6yXitgAv5ZvnhXE8oyuU8MmTq3FZMOJbiLXvyxszAfhnnnfihGzcpctd6lvlYXrS5p7vtYGScWrPr/FPDnoHCd3Aq2dJqgrdyqVg2xB0nDPotjcq/JjXBYoRZyIyLzFvtbDGNtQs2VOe2oa5aw6PatlG4n+zF9NRaAuYGCpHsBraljlkMI61VCkdm/gf5IEVQkF2cNiPybZB6Vvi1s+zUz+JqR19uHjN4LNMag0MlVbNrLaE87uYcNtZaf6OJSpv1mdL/iENQCkIeKf+VyPNwQtyaxR1fH+TFYDQS/purDGMerwDcipFPyixia3Z2/xMJvgil4xk87NutRVuyLgtap9yAt1R7XH3JheZH/8/l7a3kDOxMVnwuK8ZGwbo9WC30gWSBeIhGv5tan5L4jijHEANZ/Fr8Rbp5V70ofuyU3SZlqYU2Tp6EhHk9E2KWtMCVkAaeyNXuA1wxmFI1xVUWluAqgCOXgxi1Ns="
+      provider: script
+      script: ./deploy_prod.sh
       app: still-spire-18415
       on:
         all_branches: true
