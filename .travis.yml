@@ -21,6 +21,9 @@ jobs:
   #   - docker push samseedsoftwire/todo-app-prod:latest
   - stage: 'deploy'
     script:
+    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
+    - docker pull samseedsoftwire/todo-app-prod:latest
+    - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/still-spire-18415/web:latest
     - heroku container:login
     # before_deploy:
     # - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
