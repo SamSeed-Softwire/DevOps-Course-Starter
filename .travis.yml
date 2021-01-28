@@ -35,7 +35,7 @@ jobs:
     - heroku container:login --verbose
     deploy:
       provider: script
-      script: ./deploy_prod.sh
+      script: bash ./deploy_prod.sh
       on:
         branch: module_8
       skip_cleanup: true
