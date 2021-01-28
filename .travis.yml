@@ -20,14 +20,21 @@ jobs:
   #   - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
   #   - docker push samseedsoftwire/todo-app-prod:latest
   - stage: 'deploy'
-    script:
+    before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-prod:latest
+    script:
     - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
+    after_success:
     - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/still-spire-18415/web
-    - docker push registry.heroku.com/still-spire-18415/web
+    before_deploy:
     - heroku container:login --verbose
-    - heroku container:release web --app still-spire-18415 --verbose
+    deploy:
+      provider: script
+      script: ./deploy_prod.sh
+      on:
+        branch: module_8
+    after_deploy:
     - curl 'https://still-spire-18415.herokuapp.com/'
     # before_deploy:
     # - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
