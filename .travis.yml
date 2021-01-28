@@ -26,6 +26,7 @@ jobs:
     - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/still-spire-18415/web:latest
     - heroku container:login
     - docker push registry.heroku.com/still-spire-18415/web:latest
+    - heroku container:release web --app still-spire-18415
     # before_deploy:
     # - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     # - docker pull samseedsoftwire/todo-app-prod:latest
