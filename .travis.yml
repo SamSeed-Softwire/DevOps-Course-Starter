@@ -25,6 +25,7 @@ jobs:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-prod:latest
     - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/still-spire-18415/web:latest
+    - docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
     - docker push registry.heroku.com/still-spire-18415/web:latest
     # - heroku container:login
     deploy:
