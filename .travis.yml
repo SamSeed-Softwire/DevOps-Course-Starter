@@ -27,6 +27,7 @@ jobs:
     - heroku container:login --verbose
     - docker push registry.heroku.com/still-spire-18415/web:latest
     - heroku container:release web --app still-spire-18415 --verbose
+    - curl 'https://still-spire-18415.herokuapp.com/'
     # before_deploy:
     # - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     # - docker pull samseedsoftwire/todo-app-prod:latest
