@@ -38,6 +38,7 @@ jobs:
       script: ./deploy_prod.sh
       on:
         branch: module_8
+      skip_cleanup: true
     after_deploy:
     - curl 'https://still-spire-18415.herokuapp.com/'
 
