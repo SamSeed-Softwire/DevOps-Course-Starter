@@ -7,7 +7,7 @@ jobs:
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-test:latest
-    - docker build --target test --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from samseedsoftwire/todo-app-test:latest .
+    - docker build --target test --cache-from samseedsoftwire/todo-app-test:latest .
     script:
     - docker run samseedsoftwire/todo-app-test:latest tests_unit -rA
     - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
@@ -21,7 +21,7 @@ jobs:
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-prod:latest
-    - docker build --target prod --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from samseedsoftwire/todo-app-prod:latest .
+    - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
     - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
     script:
     - docker push samseedsoftwire/todo-app-prod:latest
