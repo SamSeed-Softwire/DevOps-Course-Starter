@@ -22,9 +22,8 @@ jobs:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-prod:latest
     - docker build --target prod --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from samseedsoftwire/todo-app-prod:latest .
-    script:
     - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
-    after_success:
+    script:
     - docker push samseedsoftwire/todo-app-prod:latest
     - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
