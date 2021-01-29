@@ -13,7 +13,9 @@ jobs:
     - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
     - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
     after_success:
+    - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-test:latest
+    - docker push samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
 
   - stage: publish
     before_script:
