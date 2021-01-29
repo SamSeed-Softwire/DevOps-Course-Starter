@@ -10,9 +10,9 @@ jobs:
     script:
     - docker build --target test --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from samseedsoftwire/todo-app-test:latest .
     after_success:
-    - docker run todo-app-test tests_unit -rA
-    - docker run todo-app-test tests_integration -rA
-    - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
+    - docker run samseedsoftwire/todo-app-test:latest tests_unit -rA
+    - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
+    - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
     - if [ $(echo $?) == 0 ]; then export TESTS_PASSED=1; fi
     - echo $TESTS_PASSED
     after script:
