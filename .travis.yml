@@ -6,8 +6,9 @@ jobs:
   - stage: test
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
+    - docker pull samseedsoftwire/todo-app-test:latest
     script:
-    - docker build --target test --tag todo-app-test .
+    - docker build --target test --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from samseedsoftwire/todo-app-test:latest .
     after_success:
     - docker run todo-app-test tests_unit -rA
     - docker run todo-app-test tests_integration -rA
