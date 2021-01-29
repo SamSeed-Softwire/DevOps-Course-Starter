@@ -24,8 +24,8 @@ jobs:
     - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
     - docker build --target prod --build-arg BUILDKIT_INLINE_CACHE=1 --tag samseedsoftwire/todo-app-prod:latest .
     after_success:
-    - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-prod:latest
+    - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
   - stage: deploy
     before_script:
