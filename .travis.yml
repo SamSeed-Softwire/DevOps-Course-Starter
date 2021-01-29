@@ -13,6 +13,8 @@ jobs:
     - docker run todo-app-test tests_unit -rA
     - docker run todo-app-test tests_integration -rA
     - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV todo-app-test tests_e2e -rA
+    after script:
+    - docker push samseedsoftwire/todo-app-test:latest
 
   - stage: publish
     before_script:
