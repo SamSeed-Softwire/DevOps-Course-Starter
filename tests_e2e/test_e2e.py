@@ -35,10 +35,10 @@ def test_app():
     drop_database(temp_db)
 
 def drop_database(db):
-    MONGO_USER_NAME = os.environ.get('MONGO_USER_NAME')
+    MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
     MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
     MONGO_HOST = os.environ.get('MONGO_HOST')
-    client = pymongo.MongoClient(f"mongodb+srv://{MONGO_USER_NAME}:{MONGO_PASSWORD}@{MONGO_HOST}/?retryWrites=true&w=majority")
+    client = pymongo.MongoClient(f"mongodb+srv://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}/?retryWrites=true&w=majority")
     client.drop_database(db)
 
 @pytest.fixture(scope='module')
