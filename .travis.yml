@@ -20,8 +20,7 @@ jobs:
   - stage: publish
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker pull samseedsoftwire/todo-app-prod:latest
-    - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
+    - docker build --target prod --tag samseedsoftwire/todo-app-prod:latest .
     - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
     script:
     - docker push samseedsoftwire/todo-app-prod:latest
