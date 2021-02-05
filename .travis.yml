@@ -11,7 +11,7 @@ jobs:
     script:
     - docker run samseedsoftwire/todo-app-test:latest tests_unit -rA
     - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
-    - docker run -e AUTH_PARAMS_KEY=$AUTH_PARAMS_KEY -e AUTH_PARAMS_TOKEN=$AUTH_PARAMS_TOKEN -e BOARD_ID=$BOARD_ID -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
+    - docker run -e MONGO_USER_NAME=$MONGO_USER_NAME -e MONGO_HOST=$MONGO_HOST -e MONGO_TODO_APP_DATABASE=$MONGO_TODO_APP_DATABASE -e MONGO_PASSWORD=$MONGO_PASSWORD -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
     after_success:
     - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-test:latest
@@ -54,14 +54,6 @@ services:
 env:
   global:
 
-  ### Trello ####
-  # AUTH_PARAMS_KEY
-  - secure: "m7rLT6c8Go2Gd9m9uAZhvtUUQloLh1fHRp3846Upk6L32DAJ3G9yzKx/dMJ+w4X009QvGLaJp/yeAQw8AnKRPVNl+pZcdMCOF8E2NUtXnheHdBwLKUaqJdyMNU9sC1dytr3FIBS4e+gPBGArtjiMMqZzcbrDogqRbW/KRFoEpfekuW74u6JpeSTNN02lr+oiPcU2z8t0SNo6FB7YQMx0e/SQgK6wrKyavqsyhU3DzMZlpu790wpeuR1oQYtEX604NE68zt11UqLMJp87qmCXC62gr1Y2s7uqoWphtj6cLLBwAhHPi/VAgjIBuLfdqDU1nlfddRM/8fuSZo0Pspvao4C32U4OFZPCRt9DapXenkH16dj01NEAwrtDk8VHWkGmRLscZo95KMOFZNtzlwTzTaLYiHwUbf2+V9Q9h+iRRbonfjAwPGZIXlZIZLi324NrtwewPE7v41ml9jlSRli6i53WMVAJreCOc9rj6GpQt0a+y8IEOl0yqJcpFfgyITeHbTYiEq0pClVaJk8adi6DFeGFp/KGYWW3h5B+8ZyPTGgwS/fbbZyKU17cHefVI+krFXuzo5nmqWS7TzrGZBDp7yp4TQ3EvtL1NTF+X5TY2GCyHakqjkSTbOLxXDmf8sBwhHeQIAMP0LeGKu9R3+KhuOO0qLelO9WDmp0nBOb42uk="
-  # AUTH_PARAMS_TOKEN
-  - secure: "qnaHGpxllG0W0LAqiviDlKARgg1yxD3iN1h2tX8DjboQuHkyeXP9ugrnkdO4zkU4rKYaTlG8zK3YCJOrVWfowm8duyl7jU4IubT7CzflOhZXMdho5OFR6sMqtCyNLcDEBaLvCxmWDyl4f6SzRil2UWutPY/bX0MOZYOurTuOYcgy/fwPZgXlQHQLja6eNKEwZ3QP6a2BC9jyIImoi97I5mkp9QM6k1Swp4qBIdjVKMs2OJWdIIn41ISv2b8AtBXi9DCfO38TgCGPbgsJoOd9Tig609MVG3xEXS8arVc9qR3FfwewNkSZxdr+qRp1NqDQUpqagK5f6trBqpUZ0ovGDvC2nBVUuaufr8icyX15fIdJ8EWnhM9ekN/g0Sf87LlwaC2c/ijQF/Gwq4My4uINdjWqGiePE2ZKBSmUnEZJi1Cr/pTPxkEyIcilLVsSX0Jhh1iEy0+vyj2kClmIw7TnXfXEbdjML4SwKkHE6rjtsNSdiWruaEgsfVTQe7sCIB4QGrrJ/rjP2W+APyY/fXYHua5UJB2JGC7QZuZZdpjAY5MARSLUL98Sg7LC0bVXJTezq8qZM05xTKFNo/36sApiIevL2T3D4RuaiTa36Cw1g7iLUhrGng6OOqauwIqEi7UWuDIaPzQGBVbxWgr/yGfCQqiBx5a6HPljWgaJd9IYC1o="
-  # BOARD_ID
-  - secure: "qXjPKc/8rd+QPzz/dMd0xo7zuisiPrrqE6wRMVHWpe4V8DbVOvi7n0u6fI3HryHstFKLDnqQIBXuHMQa7KcruAQmIn1X/P27AmO5138SbZKlCdyTcVtJr/8MY4Azyn1cKsHQASVVgSRz9stPrpLl7pAQzDrWOa76x3LoS/9cMpW05ANTCqGhEw2bIdEFwSxjYgQHLpCY2lUYJKP3+nRG9oM5Ma7GaoX/8br60rH7myp9lB63alu48jLYC8/l/D4zFa7BBVU2XvHepe7yU89RWMoDWcse4MFjkcUN23Fu4Ap/qEkaivI8M7sxvqdqgKcKmspJ3/YebmLlpjC3slTVEEtFxsf/MPb8HDscIBdvoQ10wKW8MhtTvt4dc2BkIEY9Yw6YuM4+Xns0u9A5wNZIinOMm1iwBf0Uplw5Vz0e+XyXObCJC4rUWy5knk1WPArnspEEejAQ556EFSYqXCHM/D5iHX8MfZDs4ZTBcY4gWJOC8wrTc3Ny84DFfYpfz1Tx7LNGFHR0H+Ri4QyBBLjyPcXbCtjTIKgnKG2AvVfElFVzZ30TXKjLZqxQlBIxV8DFa02rWa0F/i0pipZwZqNnpIIEwW8LqVNgMr09Rv2TfWaKiN79FYtwuE3uWPUFn9nHNJwUgpBToS9r2OarxAjDY7YwVevdmwXLJbAtsTlsgaM="
-
   ### Docker ###
   # DOCKER_USERNAME
   - DOCKER_USERNAME=samseedsoftwire
@@ -77,6 +69,13 @@ env:
   - secure: "GTxM+8rCszqd6VQ/rb24cmRPfY9FjBn4Te+AFGWq8J9ZxsdmCvVBMJ0AXUsIPXgghLu6gQryjjkJwUcsi9KL7Kcm3YJuqHzgTNCqgXw+VcAqX2vZwMTKFUQZR2reBQ5lqEDCq3th35qdd4BQi21UWzvKpkqDSEukLbHF/gJRdP+2h5TbU80SM7U60RQST3pFMuLfr0CKxZWgZ+VuyXoUmlt90UNjLmiU/khGEn90/aAjSGbFna75g8E+6IzWu/iGnlRQNZoyHNlI/a4o2MNldvGneUmiB5yrOhKciKzWodwwLHewoevOA1sZi71oInb3N1Px5L2bsRsUZZ4hcWbSYGoInSI9GsawAQ88RkREZ8aKD0LZVys9EHXf8sFM1IFBb2CdgH98EpH5wnd5exUSuWuGbJNajoJrOak5Wk9tD/r5fZJ6bQUSOLSyHdpUuwFDO1vyY5zqzq4nyyMJZpsSb09LJfIjnbfWLzL7bQ46wBXVkVOxDJvtH96017U3Ysf7aGFXC3z1lvU2XWWiG+E0WFa2KlS+xhG2V3hgVzmD8HwW3+u2B1VxVE5cFVH0I5yZ1blmj45TwsAcXMaXlGf8ltP4eAxvDRso7Mzna/wWVhRmmUYBKytdYYKsa1Su7lzfezF5xJb12k9AFb4H+q/tw7QDQ2r4LUftV8nuyQ2ZtWA="
   # HEROKU_APP_NAME
   - HEROKU_APP_NAME=still-spire-18415
+
+  ### MongoDB ###
+  - MONGO_USER_NAME=new-user_0
+  - MONGO_HOST=cluster0.1ukux.mongodb.net
+  - MONGO_TODO_APP_DATABASE=db0
+  # MONGO_PASSWORD
+  - secure: "leFFT/gZ8l/quevrcUpFCYqjAJBeAY4Pc5eZCT/s62uoqtFl09pXUCMYl1X5KDStowX23JLirC4jifVHexHutBOxCpEi2bV0q3XYW2aCrFG/88UQTDgt3SW0kcQ/DmGynzhYOco+6Z3Bl+Bykg19Akul5LcZbC1gQ6F6IHK7kPR4LfcwgLKuohAoKkpDxVT6BNFLlJ6F35Ebho0FjDGhlauBcRdC+lp62DYiNgDfZYzRl087oUy3MhZHapwzq2vrQa3w3uTrj0jHy8fvaGrY9J4x60hkLH+KDq7ALiW+s1Vvy5Qbs6Q16TAavvAHxMNnBSsGFITwLHrq3yz3FaHix8GEzdU+KOilfNbf/SOnC9kMK4hjuTcgpFbr86gFfz/nsLdQa9dj1fes7JkQyKosKBCUH3VDz1gRbySb2NfE/oqMAK+qfJ3b8ic36O+CrX4JrqcREXLb7kApiKN57rvLCH3YbS/K6fVrHYoo/uOmDVUKE5blw1TB84W3wg9bZdboEpdVTOlNWOZEdxtPW6M0NOx+L7covn9PPMTUJJZCD6OuP905oh1EW+1rdAR2Zx1CuXYohsNLOfwQLMHQV6D2OtKEnaVWT9VBIjvxWrM1fFhJz7hjRalZUk7Lxf0nr9MnrMI6N5T9/gfIaw7WELnJAN9qcA8gbTSE8wo37DA6Nds="
 
 notifications:
   slack:
