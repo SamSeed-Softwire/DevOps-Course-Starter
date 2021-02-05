@@ -15,7 +15,7 @@ import application.app as app
 def test_app():
 
     # Load the environment variables.
-    file_path = find_dotenv('.env')
+    file_path = find_dotenv('.env', usecwd=True)
     load_dotenv(file_path, override=True)
 
     temp_db = "temp_db"
