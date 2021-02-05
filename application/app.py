@@ -18,8 +18,8 @@ def create_app():
 
     @app.route('/add-item', methods = ['POST'])
     def add_item():
-        item = request.form.get('item_name')
-        trello_client.add_item(item, 'todo-items')
+        item_name = request.form.get('item_name')
+        trello_client.add_item(item_name, 'todo-items')
         return redirect('/')
 
     @app.route('/start-item/<item_id>', methods = ['POST'])
