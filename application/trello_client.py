@@ -1,78 +1,51 @@
+from bson.objectid import ObjectId
 from datetime import datetime
-import requests
 import os
+import pymongo
 
 from application.item import Item
-from application.trello_data import TrelloData
-from application.trello_ids import TrelloIDs
 
 class TrelloClient:
 
     def __init__(self):
 
-        self.board_id = os.environ.get('BOARD_ID')        
-        self.auth_params_key = os.environ.get('AUTH_PARAMS_KEY')
-        self.auth_params_token = os.environ.get('AUTH_PARAMS_TOKEN')
-        self.auth_params = {'key': self.auth_params_key, 'token': self.auth_params_token}
-        
-        self.idList_todo = ''
-        self.idList_doing = ''
-        self.idList_done = ''
+        self.MONGO_USER_NAME = os.environ.get('MONGO_USER_NAME')
+        self.MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
+        self.MONGO_HOST = os.environ.get('MONGO_HOST')
+        self.MONGO_TODO_APP_DATABASE = os.environ.get('MONGO_TODO_APP_DATABASE')
+        self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USER_NAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
+        self.db = self.client[self.MONGO_TODO_APP_DATABASE]
 
-        self.cards = []
-        self.lists = []
-        self.items = []
-
+        self.refresh_lists()
         self.refresh_items()
-        self.refresh_ids()
 
+
+    def refresh_lists(self):
+        self.lists = self.db.list_collection_names()
 
     def refresh_items(self):
-        
-        trello_data = TrelloData(self.board_id, self.auth_params)
-        self.cards = trello_data.cards
-        self.lists = trello_data.lists
+        self.refresh_lists()
+        items = []
+        for list in self.lists:
+            raw_items = self.db[list].find()
+            for raw_item in raw_items:
+                item = Item(str(raw_item['_id']), raw_item['title'], list, raw_item['last_modified'])
+                items.append(item)
+        self.items = items
 
-        # Retrieve relevant info on all to do items
-        self.items = []
-        for card in self.cards:
-            for list in self.lists:
-                if card['idList'] == list['id']:
-                    # The 'status' of the card is the name of the list it's in.
-                    status = list['name']
-                    break
-            last_modified = datetime.strptime(card['dateLastActivity'][:-1] + '000', '%Y-%m-%dT%H:%M:%S.%f')
-            item = Item(card['id'], card['name'], status, last_modified)
-            self.items.append(item)
+    def add_item(self, title, list):
+        result = self.db[list].insert_one({'title': title, 'last_modified': datetime.now()})
+        return result.inserted_id
 
-    def refresh_ids(self):
-       
-        trello_ids = TrelloIDs(self.board_id, self.auth_params)
-        self.idList_todo = trello_ids.idList_todo
-        self.idList_doing = trello_ids.idList_doing
-        self.idList_done = trello_ids.idList_done
+    def delete_item(self, id, list):
+        self.db[list].delete_one({'_id': ObjectId(id)})
 
-
-    def add_item_to_list(self, name, idList):
-        add_item_params = {'key': self.auth_params_key, 'token': self.auth_params_token, 'name': name, 'idList': idList}
-        requests.post('https://api.trello.com/1/cards/', params = add_item_params)
-
-    def add_item_to_todo(self, name):
-        self.add_item_to_list(name, self.idList_todo)
-
-    def move_to_doing(self, idCard):
-        move_item_to_doing_params = {'key': self.auth_params_key, 'token': self.auth_params_token, 'idList': self.idList_doing}
-        requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_doing_params)
-
-    def move_to_done(self, idCard):
-        move_item_to_done_params = {'key': self.auth_params_key, 'token': self.auth_params_token, 'idList': self.idList_done}
-        requests.put(f'https://api.trello.com/1/cards/{idCard}/', params = move_item_to_done_params)
-
-    def delete(self, idCard):
-        requests.delete(f'https://api.trello.com/1/cards/{idCard}/', params = self.auth_params)
-
+    def move_item(self, id, from_list, to_list):
+        item = self.db[from_list].find_one({'_id': ObjectId(id)})
+        new_id = self.add_item(item['title'], to_list)
+        self.delete_item(id, from_list)
+        return new_id
 
     def delete_all_items(self):
-        self.refresh_items()
-        for card in self.cards:
-            self.delete(card['id'])
+        for list in self.lists:
+            self.db[list].delete_many({})
