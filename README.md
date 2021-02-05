@@ -1,4 +1,7 @@
-# DevOps Apprenticeship: Project Exercise
+# To-do app
+## About the application
+
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a Trello board.
 
 ## Getting started
 
@@ -12,20 +15,22 @@ $ source setup.sh
 ```bash
 $ source setup.sh --windows
 ```
+## Config
 
-Once the setup script has completed and all packages have been installed, start the Flask app by running:
-```bash
-$ flask run
-```
+When running locally, environment variables are read in from the `.env` file. You should populate this file with your own values, using the `.env.template` file as a template. (You should create the `.env` file if it doesn't already exist, and make sure it's never copied into source control.)
 
-You should see output similar to the following:
-```bash
- * Serving Flask app "app" (lazy loading)
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
- * Restarting with fsevents reloader
- * Debugger is active!
- * Debugger PIN: 226-556-590
-```
-Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+Environment variables include:
+- Flask server configuration variables (these already have default values in `.env.template`).
+    - FLASK_APP
+    - FLASK_ENV
+- Trello authorisation parameters (you can get these from https://trello.com/app-key).
+    - AUTH_PARAMS_KEY
+    - AUTH_PARAMS_TOKEN
+- The ID of the Trello board used to store data.
+    - BOARD_ID (you can easily find this by opening your Trello board of choice in a browser, adding `.json` to the end of the URL, and retrieving the first item in the resulting JSON data (e.g. `"id":"<your board ID will be visible here>"`)).
+
+## Running the application
+
+### Local debugging
+
+You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
