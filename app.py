@@ -1,32 +1,43 @@
-import session_items as session
-from flask import Flask, render_template, request, redirect, url_for
-from trello_functions import get_items, add_item_to_list, move_to_doing, move_to_done
-from viewModel import ViewModel
+from flask import Flask, render_template, request, redirect
 
-app = Flask(__name__)
-app.config.from_object('flask_config.Config')
+from app.trello_client import TrelloClient
+from app.view_model import ViewModel
 
-@app.route('/')
-def index():
-    items = get_items()
-    view_model = ViewModel(items)
-    return render_template('index.html', view_model = view_model)
+def create_app():
 
-@app.route('/add-item', methods = ['POST'])
-def add_item():
-    item = request.form.get('item_name')
-    add_item_to_list(item, '5efc77d5ce13a25c8b6bf9c1')
-    return redirect('/') 
+    app = Flask(__name__)
+    trello_client = TrelloClient()
 
-@app.route('/start-item/<item_id>', methods = ['POST'])
-def start_item(item_id):
-    move_to_doing(item_id)
-    return redirect('/')
+    @app.route('/')
+    def index():
+        trello_client.refresh_items()
+        items = trello_client.items
+        view_model = ViewModel(items)
+        return render_template('index.html', view_model = view_model)
 
-@app.route('/complete-item/<item_id>', methods = ['POST'])
-def complete_item(item_id):
-    move_to_done(item_id)
-    return redirect('/')
+    @app.route('/add-item', methods = ['POST'])
+    def add_item():
+        item = request.form.get('item_name')
+        trello_client.add_item_to_todo(item)
+        return redirect('/')
 
+    @app.route('/start-item/<item_id>', methods = ['POST'])
+    def start_item(item_id):
+        trello_client.move_to_doing(item_id)
+        return redirect('/')
+
+    @app.route('/complete-item/<item_id>', methods = ['POST'])
+    def complete_item(item_id):
+        trello_client.move_to_done(item_id)
+        return redirect('/')
+
+    @app.route('/delete-all-items', methods = ['POST'])
+    def delete_items():
+        trello_client.delete_all_items()
+        return redirect('/')
+
+    return app
+
+app = create_app()
 if __name__ == '__main__':
     app.run()
