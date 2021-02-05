@@ -79,9 +79,7 @@ RUN \
 
 # Copy test files from host system into a dedicated test folders.
 COPY .env.test ./
-COPY ./tests_e2e/ ./tests_e2e/
-COPY ./tests_integration/ ./tests_integration/
-COPY ./tests_unit/ ./tests_unit/
+COPY ./tests/ ./tests/
 
 # Define commands to be run when container is started.
 ENTRYPOINT ["poetry", "run", "pytest"]
