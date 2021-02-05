@@ -41,7 +41,7 @@ jobs:
       provider: script
       script: bash ./deploy_prod.sh
       on:
-        branch: module_8 # TODO: update this once I've sorted out master branch
+        branch: module_9 # TODO: update this once I've sorted out master branch
       skip_cleanup: true
     after_deploy:
     - curl "https://$HEROKU_APP_NAME.herokuapp.com/"
