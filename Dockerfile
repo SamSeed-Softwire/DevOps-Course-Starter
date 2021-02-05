@@ -55,8 +55,6 @@ CMD [ "--host=0.0.0.0" ]
 # Create an image used for running the app in a production environment.
 FROM base-with-app-code as prod
 
-RUN export FLASK_ENV=production
-
 # Set the PORT environment variable for running the prod container locally.
 # When running using Heroku, Heroku overrides this variable.
 ENV PORT=5000
