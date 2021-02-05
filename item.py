@@ -7,7 +7,7 @@ class Item:
         self.title = title
         self.status = status
         self.last_modified = last_modified
-    
+
     def __eq__(self, other):
         """Overrides the default implementation."""
         if type(self) == type(other):
