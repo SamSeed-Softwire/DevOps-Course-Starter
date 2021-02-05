@@ -12,7 +12,7 @@
     <div class="col-md-4">
       <h2>To Do</h2>
       <ul class="list-group mb-4">
-        {% for item in view_model.get_todo_items() %}
+        {% for item in view_model.todo_items %}
 
           <li>
 
@@ -28,7 +28,7 @@
     <div class="col-md-4">
       <h2>Doing</h2>
       <ul class="list-group mb-4">
-        {% for item in view_model.get_doing_items() %}
+        {% for item in view_model.doing_items %}
 
           <li>
 
