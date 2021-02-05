@@ -5,7 +5,7 @@ import pytest
 from unittest.mock import patch, Mock
 
 import application.app as app
-from tests_integration.mock_mongo_db import MockMongoDatabase
+from tests.tests_integration.mock_mongo_db import MockMongoDatabase
 
 
 @pytest.fixture

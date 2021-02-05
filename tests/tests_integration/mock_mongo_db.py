@@ -1,4 +1,4 @@
-from tests_integration.mock_mongo_collection import MockMongoCollection
+from tests.tests_integration.mock_mongo_collection import MockMongoCollection
 
 class MockMongoDatabase(dict):
 
