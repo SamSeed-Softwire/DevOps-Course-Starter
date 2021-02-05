@@ -5,7 +5,7 @@ import pymongo
 
 from application.item import Item
 
-class TrelloClient:
+class MongoClient:
 
     def __init__(self):
 
