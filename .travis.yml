@@ -11,7 +11,7 @@ jobs:
     script:
     - docker run samseedsoftwire/todo-app-test:latest tests_unit -rA
     - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
-    - docker run -e MONGO_USER_NAME=$MONGO_USER_NAME -e MONGO_HOST=$MONGO_HOST -e MONGO_TODO_APP_DATABASE=$MONGO_TODO_APP_DATABASE -e MONGO_PASSWORD=$MONGO_PASSWORD -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
+    - docker run -e MONGO_USERNAME=$MONGO_USERNAME -e MONGO_HOST=$MONGO_HOST -e MONGO_TODO_APP_DATABASE=$MONGO_TODO_APP_DATABASE -e MONGO_PASSWORD=$MONGO_PASSWORD -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest tests_e2e -rA
     after_success:
     - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-test:latest
@@ -70,7 +70,7 @@ env:
   - HEROKU_APP_NAME=still-spire-18415
 
   ### MongoDB ###
-  - MONGO_USER_NAME=new-user_0
+  - MONGO_USERNAME=new-user_0
   - MONGO_HOST=cluster0.1ukux.mongodb.net
   - MONGO_TODO_APP_DATABASE=db0
   # MONGO_PASSWORD

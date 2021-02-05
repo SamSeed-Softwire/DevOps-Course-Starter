@@ -9,11 +9,11 @@ class TrelloClient:
 
     def __init__(self):
 
-        self.MONGO_USER_NAME = os.environ.get('MONGO_USER_NAME')
+        self.MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
         self.MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
         self.MONGO_HOST = os.environ.get('MONGO_HOST')
         self.MONGO_TODO_APP_DATABASE = os.environ.get('MONGO_TODO_APP_DATABASE')
-        self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USER_NAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
+        self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
         self.db = self.client[self.MONGO_TODO_APP_DATABASE]
 
         self.refresh_lists()
