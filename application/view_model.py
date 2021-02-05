@@ -32,9 +32,8 @@ class ViewModel:
     def older_done_items(self):
         return [item for item in self._items if item.status == 'done-items' if item.last_modified.date() <= date.today() + timedelta(days = -1)]
 
-    # Overriding the default class equivalence implementation
+    # Override the default class equivalence implementation.
     def __eq__(self, other):
-        """Overrides the default implementation."""
         if type(self) == type(other):
             return self.items == other.items
         return False
