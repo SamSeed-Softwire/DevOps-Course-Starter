@@ -13,34 +13,30 @@
       <h2>To Do</h2>
       <ul class="list-group mb-4">
         {% for item in view_model.todo_items %}
-
           <li>
-
             <form action="/start-item/{{item.id}}" method="post">
               <label for="id_card">{{item.id}} - {{item.title}}</label>
               <input type="submit" value="Start">
-            </form> 
-
+            </form>
           </li>
         {% endfor %}
       </ul>
     </div>
+
     <div class="col-md-4">
       <h2>Doing</h2>
       <ul class="list-group mb-4">
         {% for item in view_model.doing_items %}
-
           <li>
-
             <form action="/complete-item/{{item.id}}" method="post">
               <label for="id_card">{{item.id}} - {{item.title}}</label>
               <input type="submit" value="Complete">
-            </form> 
-
+            </form>
           </li>
         {% endfor %}
       </ul>
     </div>
+
     <div class="col-md-4">
       <h2>Done</h2>
       <ul class="list-group mb-4">
@@ -59,15 +55,12 @@
   </div>
 
   <form action="/add-item" method="post">
-    
     <label for="item_name">Description of item:</label>
     <input type="text" id="item_name" name="item_name" required size="20">
-    
     <button
       type="submit">
         Add item
     </button>
-    
   </form>
 
 {% endblock %}
