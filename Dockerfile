@@ -55,6 +55,8 @@ CMD [ "--host=0.0.0.0" ]
 # Create an image used for running the app in a production environment.
 FROM base-with-app-code as prod
 
+RUN export FLASK_ENV=production
+
 # Define commands to be run when container is started.
 CMD poetry run gunicorn --bind=0.0.0.0:$PORT --chdir ./application 'app:create_app()'
 
