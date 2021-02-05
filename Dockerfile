@@ -56,7 +56,6 @@ CMD [ "--host=0.0.0.0" ]
 FROM base-with-app-code as prod
 
 # Define commands to be run when container is started.
-# CMD [ "poetry", "run", "gunicorn", "--bind=0.0.0.0:$PORT", "--chdir", "./application", "app:create_app()" ]
 CMD poetry run gunicorn --bind=0.0.0.0:$PORT --chdir ./application 'app:create_app()'
 
 
