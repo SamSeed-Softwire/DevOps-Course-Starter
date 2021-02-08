@@ -26,3 +26,19 @@ Environment variables include:
 ### Local debugging
 
 You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
+
+## Testing the application
+
+### Intro
+
+The application is tested using [pytest](https://docs.pytest.org/en/stable/). Dependencies on pytest are managed via Poetry (like all other Python package dependencies), so you don't need to install pytest.
+
+### Config
+
+The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use geckodriver, which is the the Firefox driver. Download the relevant version for you (listed [here](https://github.com/mozilla/geckodriver/releases)), unzip and place the executable either in the project repo root, or on your PATH. You'll also need to have Firefox installed.
+
+### Running the tests
+
+To run all tests, run `poetry run pytest`. You can also specify specific test folders, e.g.: `poetry run pytest tests_e2e`.
+
+Adding the `-r` flag to the `pytest` command outputs some short test summary information. This flag takes multiple [options](https://docs.pytest.org/en/stable/usage.html#detailed-summary-report). It defaults to `-rfE` (info provided for failures and errors), but if you want info on all tests regardless of the result then you can use `-rA`.
