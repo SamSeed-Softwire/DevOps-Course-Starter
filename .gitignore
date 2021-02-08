@@ -119,4 +119,4 @@ env/
 .vscode
 
 ### geckodriver ###
-geckodriver.log
+geckodriver*
