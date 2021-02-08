@@ -10,8 +10,6 @@ from threading import Thread
 import app.app as app
 
 
-trello_test_organization_id = '5ffd97c7f80c3b13867165e0'
-
 @pytest.fixture(scope='module')
 def test_app():
 
@@ -20,7 +18,9 @@ def test_app():
     load_dotenv(file_path, override=True)
 
     # Create the new board & update the board id environment variable.
-    board_id = create_trello_board('test_board')
+    response = create_trello_board('test_board')
+    board_id = response['id']
+    organization_id = response['idOrganization']
     os.environ['BOARD_ID'] = board_id
 
 
@@ -36,16 +36,22 @@ def test_app():
     # Tear down.
     thread.join(1)
     delete_trello_board(board_id)
+    delete_trello_organization(organization_id)
 
 
 def create_trello_board(name):
-    create_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN'), 'name': name, 'idOrganization': trello_test_organization_id}
+    create_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN'), 'name': name}
     response = requests.post(f'https://api.trello.com/1/boards', params = create_board_params).json()
-    return response['id']
+    return response
 
 def delete_trello_board(id):
     delete_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN')}
     response = requests.delete(f'https://api.trello.com/1/boards/{id}', params = delete_board_params).json()
+    return response
+
+def delete_trello_organization(organization_id):
+    delete_organization_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN')}
+    response = requests.delete(f'https://api.trello.com/1/organizations/{organization_id}', params = delete_organization_params).json()
     return response
 
 
