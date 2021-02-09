@@ -22,7 +22,6 @@ Vagrant.configure("2") do |config|
     sudo mkdir shims
     sudo chmod 0777 shims
     sudo mkdir versions
-    sudo chmod 0777 versions
     . ~/.profile
     
     # Install the desired version of python and set that version as the default version
