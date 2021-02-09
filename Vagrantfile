@@ -13,7 +13,6 @@ Vagrant.configure("2") do |config|
     xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
     
     # Install and configure pyenv
-    sudo rm -r .pyenv
     sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
