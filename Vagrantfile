@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(sudo pyenv init -)"\nfi' >> ~/.profile
     cd .pyenv
     sudo mkdir shims
-    sudo chmod 0777 shims
+    sudo chmod 777 shims
     sudo mkdir versions
     . ~/.profile
     
