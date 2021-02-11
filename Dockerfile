@@ -6,7 +6,7 @@
 FROM python:3.8.6-buster as base
 
 # Update packages.
-RUN apt-get update
+# RUN apt-get update
 
 # Install Poetry.
 RUN pip3 install poetry==1.1.2
@@ -78,6 +78,7 @@ COPY ./tests_unit/ ./tests_unit/
 # Install Chrome
 RUN \
     curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb &&\
+    apt-get update &&\
     apt-get install ./chrome.deb -y &&\
     rm ./chrome.deb
 
