@@ -89,5 +89,10 @@ RUN \
     apt-get install unzip -y &&\
     unzip ./chromedriver_linux64.zip
 
+RUN echo $PATH
+# RUN echo 'export PATH="./chromedriver:$PATH"' >> ~/.bashrc
+RUN export PATH="./chromedriver:$PATH"
+RUN echo $PATH
+
 # Define commands to be run when container is started.
 ENTRYPOINT ["poetry", "run", "pytest"]
