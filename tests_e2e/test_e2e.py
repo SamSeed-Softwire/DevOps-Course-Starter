@@ -10,8 +10,6 @@ from threading import Thread
 import application.app as app
 
 
-trello_test_organization_id = '5ffd97c7f80c3b13867165e0'
-
 @pytest.fixture(scope='module')
 def test_app():
 
@@ -39,7 +37,7 @@ def test_app():
 
 
 def create_trello_board(name):
-    create_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN'), 'name': name, 'idOrganization': trello_test_organization_id}
+    create_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN'), 'name': name}
     response = requests.post(f'https://api.trello.com/1/boards', params = create_board_params).json()
     return response['id']
 
