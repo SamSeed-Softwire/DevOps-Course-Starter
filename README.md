@@ -23,23 +23,15 @@ Environment variables include:
 - The ID of the Trello board used to store data.
     - BOARD_ID (you can easily find this by opening your Trello board of choice in a browser, adding `.json` to the end of the URL, and retrieving the first item in the resulting JSON data (e.g. `"id":"<your board ID will be visible here>"`)).
 
-## Running the application
+## Docker
 
-### Local debugging
+This application can be run and tested using Docker. There are 3 Docker build stages:
 
-You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
+- 'dev' is for building local development images. This runs the app using a Flask development server, which can be hot-reloaded (i.e. changes to the application code will feed through to the running application without needing to rebuild the Docker image).
+- 'prod' is for building production images. This runs the app using a Gunicorn production-ready server, which cannot be hot-reloaded.
+- 'test' is for building testing images.
 
-### Running using Docker
-
-This application is containerised using Docker. There are 2 Docker images:
-
-- One image is for local development ('dev'). This runs the app using a Flask development server, which can be hot-reloaded (i.e. changes to the application code will feed through to the running application without needing to rebuild the Docker image).
-- One image is for production ('prod'). This runs the app using a Gunicorn production-ready server, which cannot be hot-reloaded.
-
-Below are some useful commands you can run to:
-
-- Manage Docker containers (e.g. if you want to quickly remove all containers).
-- Use Docker Compose to build and run Docker images/containers (i.e. to run the application).
+Below are some useful commands you can run to manage Docker containers and images (e.g. if you want to quickly remove all containers)
 
 Cleaning up:
 
@@ -48,6 +40,16 @@ Cleaning up:
 - Remove all stopped containers: `docker rm $(docker container ls -aq)`
 - Clean up (remove all containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq)`
 - Super clean up (remove all images and containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker image rm $(docker images -aq); docker system prune`
+
+## Running the application
+
+### Local debugging
+
+You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
+
+### Running using Docker
+
+Below are some useful commands you can use to build and run Docker images.
 
 Running using regular Docker:
 
