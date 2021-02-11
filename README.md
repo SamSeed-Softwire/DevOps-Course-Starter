@@ -47,7 +47,7 @@ Cleaning up:
 - Stop all running containers: `docker stop $(docker container ls -aq)`
 - Remove all stopped containers: `docker rm $(docker container ls -aq)`
 - Clean up (remove all containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq)`
-- Super clean up (remove all images and containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker image rm $(docker images -aq)`
+- Super clean up (remove all images and containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker image rm $(docker images -aq); docker system prune`
 
 Running using regular Docker:
 
