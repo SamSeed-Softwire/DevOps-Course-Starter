@@ -11,7 +11,7 @@ The project uses [Poetry](https://python-poetry.org/) to manage package dependen
 
 When running locally, environment variables are read in from the `.env` file. You should populate this file with your own values, using the `.env.template` file as a template. (You should create the `.env` file if it doesn't already exist, and make sure it's never copied into source control.)
 
-When running using Docker, environment variables are read in from the `.env` file by Docker at runtime. This file is not copied to the container, nor is it committed to the git repo, so you will need to create it if it doesn't exist. You can use `.env.template` as a template.
+When running locally using Docker, environment variables are read in from the same `.env` file by Docker at runtime. This file is not copied to the container.
 
 Environment variables include:
 - Flask server configuration variables (these already have default values in `.env.template`).
