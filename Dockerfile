@@ -25,7 +25,7 @@ COPY \
     ./
 
 # Install application dependencies.
-RUN poetry install
+RUN poetry install --no-dev --no-root
 
 
 ######################################################
