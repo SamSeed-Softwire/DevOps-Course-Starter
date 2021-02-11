@@ -71,3 +71,33 @@ Once a container is running your application successfully you can view in your w
 
 - dev: [`http://localhost:5000/`](http://localhost:5000/)
 - prod: [`http://localhost:5050/`](http://localhost:5050/)
+
+## Testing the application
+
+### Intro
+
+The application uses the [pytest](https://docs.pytest.org/en/stable/) framework. Dependencies on pytest are managed via Poetry (like all other Python package dependencies), so you don't need to install pytest.
+
+### Dependencies
+
+The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use geckodriver, which is the the Firefox driver. Download the relevant version for you (listed [here](https://github.com/mozilla/geckodriver/releases)), unzip and place the executable either in the project repo root, or on your PATH. You'll also need to have Firefox installed.
+
+### Running the tests locally
+To run all tests locally, run `poetry run pytest`. You can also specify specific test folders, e.g.: `poetry run pytest tests_e2e`.
+
+Adding the `-r` flag to the `pytest` command outputs some short test summary information. This flag takes multiple [options](https://docs.pytest.org/en/stable/usage.html#detailed-summary-report). It defaults to `-rfE` (info provided for failures and errors), but if you want info on all tests regardless of the result then you can use `-rA`.
+
+### Running the tests with Docker
+
+Below are some useful commands you can use to build and run Docker test images.
+
+Running using regular Docker:
+
+- Build the test image: `docker build --target test --tag todo-app:test .`
+- Run all tests (using the built image): `docker run --env-file .env todo-app:test`
+- Run specific tests (using the built image): e.g. `docker run --env-file .env todo-app:test tests_e2e`
+
+Running using Docker Compose:
+
+- Build and run the test version of the app (all tests): `docker-compose up --build --remove-orphans todo-app-test`
+- Build and run the test version of the app (specific tests): e.g. `docker-compose up --build --remove-orphans todo-app-test tests_e2e`
