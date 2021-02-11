@@ -82,10 +82,5 @@ RUN \
     apt-get install ./chrome.deb -y &&\
     rm ./chrome.deb
 
-RUN echo $PATH
-# RUN echo 'export PATH="./chromedriver:$PATH"' >> ~/.bashrc
-RUN export PATH="./chromedriver:$PATH"
-RUN echo $PATH
-
 # Define commands to be run when container is started.
 ENTRYPOINT ["poetry", "run", "pytest"]
