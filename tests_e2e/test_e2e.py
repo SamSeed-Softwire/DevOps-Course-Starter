@@ -50,10 +50,11 @@ def delete_trello_board(id):
 
 @pytest.fixture(scope='module')
 def driver():
+    chrome_driver_path = ChromeDriverManager().install()
     opts = webdriver.ChromeOptions()
     opts.add_argument('--headless')
     opts.add_argument('--no-sandbox')
-    with webdriver.Chrome(ChromeDriverManager().install(), options=opts) as driver:
+    with webdriver.Chrome(chrome_driver_path, options=opts) as driver:
         yield driver
 
 def test_task_journey(driver, test_app):
