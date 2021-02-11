@@ -53,19 +53,19 @@ Below are some useful commands you can use to build and run Docker images.
 
 Running using regular Docker:
 
-- Build the local dev image: `docker build --target dev --tag=todo-app:dev .`
-- Build the production image: `docker build --target prod --tag=todo-app:prod .`
-- Run the local dev container from the built image: `docker run -d -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev`
-- Run the production container from the built image: `docker run -d -p 5050:5000 --env-file .env todo-app:prod`
-- Run local dev container in interactive mode: `docker run -it -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev /bin/bash`
-- Run production container in interactive mode: `docker run -it -p 5050:5000 --env-file .env todo-app:prod /bin/bash`
+- Build the local dev image: `docker build --target dev --tag todo-app:dev .`
+- Build the production image: `docker build --target prod --tag todo-app:prod .`
+- Run the local dev container from the built image: `docker run -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
+- Run the production container from the built image: `docker run -p 5050:5000 --env-file .env todo-app:prod`
+- Run local dev container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
+- Run production container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5050:5000 --env-file .env todo-app:prod`
 
 Running using Docker Compose:
 
-- Build and run the dev version of the app: `docker-compose up --build --detach --remove-orphans todo-app-dev`
-- Build and run the prod version of the app: `docker-compose up --build --detach --remove-orphans todo-app-prod`
-- Build and run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --rm todo-app-dev /bin/bash`
-- Build and run the test version of the app: `docker-compose up --build --detach --remove-orphans todo-app-test; docker-compose run todo-app-test`
+- Build and run the dev version of the app: `docker-compose up --build --remove-orphans todo-app-dev`
+- Build and run the prod version of the app: `docker-compose up --build --remove-orphans todo-app-prod`
+- Run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-dev`
+- Run the prod version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-prod`
 
 Once a container is running your application successfully you can view in your web browser at:
 
