@@ -27,6 +27,20 @@ Environment variables include:
 
 You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
 
+### Running using Vagrant
+
+You can also run the application using [Vagrant](https://www.vagrantup.com/) - a virtual machine environment provisioning tool. You can download and install Vagrant [here](https://www.vagrantup.com/).
+
+In order to run Vagrant you will need a hypervisor installed. [VirtualBox](https://www.virtualbox.org/) is a cross-platform option. Hyper-V is a Windows-only option (installation instructions can be found [here](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)).
+
+To run the application using Vagrant, simply run `vagrant up` from the repo root (beware - this will take several minutes to start up!) This will run the Flask application, which can be viewed by navigating to [`http://localhost:5000/`](http://localhost:5000/) on your host machine (this is achieved by exposing a port from the Vagrant virtual environment so that data can be sent and received between it and the host machine).
+
+You can SSH into the Vagrant virtual environment using the command `vagrant ssh`, entering the password `vagrant` when prompted.
+
+You can delete the Vagrant virtual environment using the command `vagrant destroy`.
+
+If you make changes to the Vagrant provisioning script ([Vagrantfile](./Vagrantfile)), you should add the `--provision` flag when running `vagrant up` to ensure the virtual environment is recreated.
+
 ## Testing the application
 
 ### Intro
