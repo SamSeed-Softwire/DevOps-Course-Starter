@@ -102,18 +102,24 @@ Running using Docker Compose:
 - Build and run the test version of the app (all tests): `docker-compose up --build --remove-orphans todo-app-test`
 - Build and run the test version of the app (specific tests): e.g. `docker-compose up --build --remove-orphans todo-app-test tests_e2e`
 
-## CI
+## CI / CD
 
 ### Intro
 
 The application uses [Travis CI](https://www.travis-ci.com/), integrated with GitHub. When a pull request is created or updated, Travis builds the app and tests it. See [.travis.yml](.travis.yml) for how this works. Build status notifications are sent to Slack and via email.
 
+In the final Travis build stage, the app is deployed to [Heroku](https://www.heroku.com/home). You will be able to view the app at https://insert-your-app-name-here.herokuapp.com/.
+
 ### Config
 
 First, you will need to set up an integration between Travis and your GitHub account, which can be done from your Travis settings.
 
-Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, Trello and Slack).
+Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, Trello, Heroku and Slack).
 
 Most of these credentials are sensitive. Where sensitive they need to be encrypted. The best way to do this is using Travis CLI's `encrypt` command - see documentation [here](https://docs.travis-ci.com/user/encryption-keys/).
 
 Details on configuring Slack notifications (including setting up a new Travis-Slack integration) can be found [here](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications).
+
+You will need to create a Heroku app, which can be done using Heroku's web interface or the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). The app will be given a name (which you'll seee). Set the HEROKU_APP_NAME environment variable in your [.travis.yml](.travis.yml) to be this name.
+
+You will also need to add the environment variables stored in your [.env](.env) file as 'config vars' to your Heroku app. That can be done from the browser in the app's settings, or by using the Heroku CLI. For example ``heroku config:set `cat .env | grep AUTH_PARAMS_KEY` `` stores the `AUTH_PARAMS_KEY` environment variable as a config var in Heroku.
