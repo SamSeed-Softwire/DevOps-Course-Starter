@@ -2,9 +2,9 @@ from datetime import datetime
 import requests
 import os
 
-from app.item import Item
-from app.trello_data import TrelloData
-from app.trello_ids import TrelloIDs
+from application.item import Item
+from application.trello_data import TrelloData
+from application.trello_ids import TrelloIDs
 
 class TrelloClient:
 

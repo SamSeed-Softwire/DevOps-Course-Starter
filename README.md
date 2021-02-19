@@ -11,6 +11,8 @@ The project uses [Poetry](https://python-poetry.org/) to manage package dependen
 
 When running locally, environment variables are read in from the `.env` file. You should populate this file with your own values, using the `.env.template` file as a template. (You should create the `.env` file if it doesn't already exist, and make sure it's never copied into source control.)
 
+When running using Docker, environment variables are read in from the `.env` file by Docker at runtime. This file is not copied to the container, nor is it committed to the git repo, so you will need to create it if it doesn't exist. You can use `.env.template` as a template.
+
 Environment variables include:
 - Flask server configuration variables (these already have default values in `.env.template`).
     - FLASK_APP
@@ -27,19 +29,45 @@ Environment variables include:
 
 You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
 
-### Running using Vagrant
+### Running using Docker
 
-You can also run the application using [Vagrant](https://www.vagrantup.com/) - a virtual machine environment provisioning tool. You can download and install Vagrant [here](https://www.vagrantup.com/).
+This application is containerised using Docker. There are 2 Docker images:
 
-In order to run Vagrant you will need a hypervisor installed. [VirtualBox](https://www.virtualbox.org/) is a cross-platform option. Hyper-V is a Windows-only option (installation instructions can be found [here](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)).
+- One image is for local development ('dev'). This runs the app using a Flask development server, which can be hot-reloaded (i.e. changes to the application code will feed through to the running application without needing to rebuild the Docker image).
+- One image is for production ('prod'). This runs the app using a Gunicorn production-ready server, which cannot be hot-reloaded.
 
-To run the application using Vagrant, simply run `vagrant up` from the repo root (beware - this will take several minutes to start up!) This will run the Flask application, which can be viewed by navigating to [`http://localhost:5000/`](http://localhost:5000/) on your host machine (this is achieved by exposing a port from the Vagrant virtual environment so that data can be sent and received between it and the host machine).
+Below are some useful commands you can run to:
 
-You can SSH into the Vagrant virtual environment using the command `vagrant ssh`, entering the password `vagrant` when prompted.
+- Manage Docker containers (e.g. if you want to quickly remove all containers).
+- Use Docker Compose to build and run Docker images/containers (i.e. to run the application).
 
-You can delete the Vagrant virtual environment using the command `vagrant destroy`.
+Cleaning up:
 
-If you make changes to the Vagrant provisioning script ([Vagrantfile](./Vagrantfile)), you should add the `--provision` flag when running `vagrant up` to ensure the virtual environment is recreated.
+- Remove all images: `docker image rm $(docker images -aq)`
+- Stop all running containers: `docker stop $(docker container ls -aq)`
+- Remove all stopped containers: `docker rm $(docker container ls -aq)`
+- Clean up (remove all containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq)`
+- Super clean up (remove all images and containers): `docker stop $(docker container ls -aq); docker rm $(docker container ls -aq); docker image rm $(docker images -aq)`
+
+Running using regular Docker:
+
+- Build the local dev image: `docker build --target dev --tag=todo-app:dev .`
+- Build the production image: `docker build --target prod --tag=todo-app:prod .`
+- Run the local dev container from the built image: `docker run -d -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev`
+- Run the production container from the built image: `docker run -d -p 5050:5000 --env-file .env todo-app:prod`
+- Run local dev container in interactive mode: `docker run -it -p 5000:5000 --mount type=bind,source="$(pwd)"/app,target=/app/app/ --env-file .env todo-app:dev /bin/bash`
+- Run production container in interactive mode: `docker run -it -p 5050:5000 --env-file .env todo-app:prod /bin/bash`
+
+Running using Docker Compose:
+
+- Build and run the dev version of the app: `docker-compose up --build --detach --remove-orphans todo-app-dev`
+- Build and run the prod version of the app: `docker-compose up --build --detach --remove-orphans todo-app-prod`
+- Build and run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --rm todo-app-dev /bin/bash`
+
+Once a container is running your application successfully you can view in your web browser at:
+
+- dev: [`http://localhost:5000/`](http://localhost:5000/)
+- prod: [`http://localhost:5050/`](http://localhost:5050/)
 
 ## Testing the application
 

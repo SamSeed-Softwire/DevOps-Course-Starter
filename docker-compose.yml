@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+    todo-app-dev:
+        image: todo-app:dev
+        build:
+            context: .
+            target: dev
+        ports: 
+          - published: 5000
+            target: 5000
+        env_file: .env
+        volumes: 
+          - type: bind
+            source: ./application/
+            target: /todo-app/application/
+    todo-app-prod:
+        image: todo-app:prod
+        build:
+            context: .
+            target: prod
+        ports: 
+          - published: 5050
+            target: 5000
+        env_file: .env

@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
 
-import app.app as app
+import application.app as app
 
 
 @pytest.fixture(scope='module')
