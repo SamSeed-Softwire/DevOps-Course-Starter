@@ -34,7 +34,7 @@ jobs:
     script:
     - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
     after_success:
-    - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/still-spire-18415/web
+    - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/$HEROKU_APP_NAME/web
     before_deploy:
     - heroku container:login --verbose
     deploy:
@@ -44,7 +44,7 @@ jobs:
         branch: module_8 # TODO: update this once I've sorted out master branch
       skip_cleanup: true
     after_deploy:
-    - curl 'https://still-spire-18415.herokuapp.com/'
+    - curl 'https://$HEROKU_APP_NAME.herokuapp.com/'
 
 services:
 - docker
@@ -73,6 +73,8 @@ env:
   ### Heroku ###
   # HEROKU_API_KEY (Heroku long-lasting authorisation token)
   - secure: "GTxM+8rCszqd6VQ/rb24cmRPfY9FjBn4Te+AFGWq8J9ZxsdmCvVBMJ0AXUsIPXgghLu6gQryjjkJwUcsi9KL7Kcm3YJuqHzgTNCqgXw+VcAqX2vZwMTKFUQZR2reBQ5lqEDCq3th35qdd4BQi21UWzvKpkqDSEukLbHF/gJRdP+2h5TbU80SM7U60RQST3pFMuLfr0CKxZWgZ+VuyXoUmlt90UNjLmiU/khGEn90/aAjSGbFna75g8E+6IzWu/iGnlRQNZoyHNlI/a4o2MNldvGneUmiB5yrOhKciKzWodwwLHewoevOA1sZi71oInb3N1Px5L2bsRsUZZ4hcWbSYGoInSI9GsawAQ88RkREZ8aKD0LZVys9EHXf8sFM1IFBb2CdgH98EpH5wnd5exUSuWuGbJNajoJrOak5Wk9tD/r5fZJ6bQUSOLSyHdpUuwFDO1vyY5zqzq4nyyMJZpsSb09LJfIjnbfWLzL7bQ46wBXVkVOxDJvtH96017U3Ysf7aGFXC3z1lvU2XWWiG+E0WFa2KlS+xhG2V3hgVzmD8HwW3+u2B1VxVE5cFVH0I5yZ1blmj45TwsAcXMaXlGf8ltP4eAxvDRso7Mzna/wWVhRmmUYBKytdYYKsa1Su7lzfezF5xJb12k9AFb4H+q/tw7QDQ2r4LUftV8nuyQ2ZtWA="
+  # HEROKU_APP_NAME
+  - HEROKU_APP_NAME=still-spire-18415
 
 notifications:
   slack:

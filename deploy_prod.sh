@@ -1,2 +1,2 @@
-docker push registry.heroku.com/still-spire-18415/web
-heroku container:release web --app still-spire-18415 --verbose
+docker push registry.heroku.com/$HEROKU_APP_NAME/web
+heroku container:release web --app $HEROKU_APP_NAME --verbose
