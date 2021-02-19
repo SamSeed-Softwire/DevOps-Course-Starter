@@ -7,7 +7,7 @@ jobs:
     before_script:
     - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
     - docker pull samseedsoftwire/todo-app-test:latest
-    - docker build --target test --cache-from samseedsoftwire/todo-app-test:latest .
+    - docker build --target test --tag samseedsoftwire/todo-app-test:latest .
     script:
     - docker run samseedsoftwire/todo-app-test:latest tests_unit -rA
     - docker run samseedsoftwire/todo-app-test:latest tests_integration -rA
