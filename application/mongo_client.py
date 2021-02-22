@@ -16,22 +16,16 @@ class MongoClient:
         self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
         self.db = self.client[self.MONGO_TODO_APP_DATABASE]
 
-        self.refresh_lists()
-        self.refresh_items()
-
-
-    def refresh_lists(self):
-        self.lists = self.db.list_collection_names()
-
-    def refresh_items(self):
-        self.refresh_lists()
+    @property
+    def items(self):
         items = []
-        for list in self.lists:
+        lists = self.db.list_collection_names()
+        for list in lists:
             raw_items = self.db[list].find()
             for raw_item in raw_items:
                 item = Item(str(raw_item['_id']), raw_item['title'], list, raw_item['last_modified'])
                 items.append(item)
-        self.items = items
+        return items
 
     def add_item(self, title, list):
         result = self.db[list].insert_one({'title': title, 'last_modified': datetime.now()})
