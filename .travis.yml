@@ -45,6 +45,8 @@ jobs:
       skip_cleanup: true
     after_deploy:
     - curl "https://$HEROKU_APP_NAME.herokuapp.com/"
+    - curl_response=$(curl "https://$HEROKU_APP_NAME.herokuapp.com/")
+    - if [[ "$curl_response" == *"To-Do App"* ]]; then echo "Successful curl!"; else >&2 echo "Curl failure :("; return 1; fi
 
 services:
 - docker
