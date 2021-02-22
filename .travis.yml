@@ -44,7 +44,7 @@ jobs:
         branch: module_8 # TODO: update this once I've sorted out master branch
       skip_cleanup: true
     after_deploy:
-    - curl 'https://$HEROKU_APP_NAME.herokuapp.com/'
+    - curl "https://$HEROKU_APP_NAME.herokuapp.com/"
 
 services:
 - docker
