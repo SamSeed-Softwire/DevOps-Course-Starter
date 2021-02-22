@@ -11,7 +11,6 @@ def create_app():
 
     @app.route('/')
     def index():
-        mongo_client.refresh_items()
         items = mongo_client.items
         view_model = ViewModel(items)
         return render_template('index.html', view_model = view_model)
