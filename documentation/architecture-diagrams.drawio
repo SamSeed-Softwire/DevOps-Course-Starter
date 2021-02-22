@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-11-04T16:02:10.098Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="1ME7AyH4FFLgyHpW6PLw" version="13.6.5" pages="3">
+<mxfile host="65bd71144e" modified="2021-02-22T11:25:30.829Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.53.2 Chrome/87.0.4280.141 Electron/11.2.1 Safari/537.36" etag="U0p1V1fZIeAWLu0xefKw" version="14.2.4" type="embed" pages="3">
     <diagram id="yqcj8nUwRWWZ-B5CO6ML" name="Context diagram">
-        <mxGraphModel dx="1536" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="966" dy="367" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -34,7 +34,7 @@
                 <mxCell id="WAaNKLBoRKIZguyA2E-J-5" value="Reads from&amp;nbsp;&lt;br&gt;the data store." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="2" target="RnzW34f319_GPVbBxBJv-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;&lt;br&gt;To-do items stored in separate service (Trello)." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="2" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;&lt;br&gt;To-do items stored in separate service (MongoDB)." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="360" y="660" width="160" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="HyisYgjplE7OVif6K_jV-4" value="" style="group" parent="1" vertex="1" connectable="0">
@@ -50,7 +50,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="IEaKKJ3snsvo8BNWifGJ" name="Container diagram">
-        <mxGraphModel dx="1536" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="966" dy="367" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="ai50oJ2eKlGh9fC3mw8e-0"/>
                 <mxCell id="ai50oJ2eKlGh9fC3mw8e-1" parent="ai50oJ2eKlGh9fC3mw8e-0"/>
@@ -72,7 +72,7 @@
                 <mxCell id="fvTSCqTtroezqLXE63Nu-0" value="Receives info&amp;nbsp;&lt;br&gt;via Trello API." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="ai50oJ2eKlGh9fC3mw8e-8" target="kqP9nbWQl9KBYzXSVNBW-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="ai50oJ2eKlGh9fC3mw8e-8" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;[Trello]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;Stores the to-do items in a Trello board as cards in a collection of lists.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
+                <mxCell id="ai50oJ2eKlGh9fC3mw8e-8" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;[MongoDB]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;Stores the to-do items in a MongoDB database.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="ai50oJ2eKlGh9fC3mw8e-1" vertex="1">
                     <mxGeometry x="630" y="690" width="200" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="ai50oJ2eKlGh9fC3mw8e-9" value="Web app sends&amp;nbsp;&lt;br&gt;data via WSGI &lt;br&gt;about how the&amp;nbsp;&lt;br&gt;browser should&amp;nbsp;&lt;br&gt;render the website." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;verticalAlign=middle;html=1;" parent="ai50oJ2eKlGh9fC3mw8e-1" source="kqP9nbWQl9KBYzXSVNBW-0" target="a-H1KUFwUBSFG_JeeFjM-3" edge="1">
@@ -122,176 +122,90 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Component diagram" id="4hymAHN9xPVzdoO_Fok_">
-        &#xa;
-        <mxGraphModel dx="2386" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-            &#xa;
+        <mxGraphModel dx="2903" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
-                &#xa;
                 <mxCell id="KUwH55LyA8Eynn2fVLHC-0"/>
-                &#xa;
                 <mxCell id="KUwH55LyA8Eynn2fVLHC-1" parent="KUwH55LyA8Eynn2fVLHC-0"/>
-                &#xa;
-                <mxCell id="KUwH55LyA8Eynn2fVLHC-2" value="&lt;span style=&quot;font-size: 18px&quot;&gt;Web app&lt;br&gt;&lt;/span&gt;&lt;font&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;[Container]&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="-310" y="400" width="1210" height="820" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="KUwH55LyA8Eynn2fVLHC-6" value="&lt;h1&gt;Component diagram for to-do app&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;glass=0;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="10" y="10" width="830" height="120" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="KUwH55LyA8Eynn2fVLHC-15" value="Data flows&amp;nbsp;&lt;br&gt;from one&amp;nbsp;&lt;br&gt;object to&amp;nbsp;&lt;br&gt;another." style="endArrow=classic;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" edge="1">
-                    &#xa;
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        &#xa;
-                        <mxPoint x="680" y="160" as="sourcePoint"/>
-                        &#xa;
-                        <mxPoint x="840" y="160" as="targetPoint"/>
-                        &#xa;
-                    </mxGeometry>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="KUwH55LyA8Eynn2fVLHC-16" value="&lt;b&gt;Object&lt;/b&gt;&lt;br&gt;[Component / Container / Person / Software system]&lt;br&gt;&lt;br&gt;Details." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="680" y="20" width="160" height="90" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-7" value="Passes Flask config&amp;nbsp;&lt;br&gt;data to app." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-0" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
-                    &#xa;
-                    <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-0" value="&lt;b&gt;Config&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Flask, Python]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;&quot;&gt;Environment variables needed for running Flask and accessing Trello data via API are passed in from a .env file.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="240" y="920" width="200" height="160" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-4" value="Invokes functions&amp;nbsp;&lt;br&gt;with specified&amp;nbsp;&lt;br&gt;arguments." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-1" target="gWGYl7FvViBcPDyTm5Ov-2" edge="1">
-                    &#xa;
-                    <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-1" value="&lt;b&gt;Flask webapp behaviour&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Flask, Python]&lt;br&gt;&lt;br&gt;&lt;div&gt;Python modules (using Flask) determine what different actions cause what behaviour (in the webapp).&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="240" y="640" width="199" height="160" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-6" value="Passes data&amp;nbsp;&lt;br&gt;received from Trello&amp;nbsp;&lt;br&gt;(after processing it)." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
-                    &#xa;
-                    <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
-                <mxCell id="gWGYl7FvViBcPDyTm5Ov-2" value="&lt;b&gt;Trello API requests&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Python]&lt;br&gt;&lt;br&gt;A Python module desribing the HTTP requests that can be made to the Trello API (in order to interact with the Trello board)." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
-                    <mxGeometry x="600" y="640" width="200" height="160" as="geometry"/>
-                    &#xa;
-                </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-14" value="Docker container" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;align=center;fillColor=none;glass=0;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
                     <mxGeometry x="-220" y="480" width="1030" height="660" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-2" value="&lt;span style=&quot;font-size: 18px&quot;&gt;Web app&lt;br&gt;&lt;/span&gt;&lt;font&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;[Container]&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="-350" y="460" width="1210" height="820" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-6" value="&lt;h1&gt;Component diagram for to-do app&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;glass=0;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="10" y="10" width="830" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-15" value="Data flows&amp;nbsp;&lt;br&gt;from one&amp;nbsp;&lt;br&gt;object to&amp;nbsp;&lt;br&gt;another." style="endArrow=classic;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="160" as="sourcePoint"/>
+                        <mxPoint x="840" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="KUwH55LyA8Eynn2fVLHC-16" value="&lt;b&gt;Object&lt;/b&gt;&lt;br&gt;[Component / Container / Person / Software system]&lt;br&gt;&lt;br&gt;Details." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="680" y="20" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-7" value="Passes Flask config&amp;nbsp;&lt;br&gt;data to app." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-0" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-0" value="&lt;b&gt;Config&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Flask, Python]&lt;br&gt;&lt;br&gt;&lt;div style=&quot;&quot;&gt;Environment variables needed for running Flask and accessing Trello data via API are passed in from a .env file.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="240" y="920" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-4" value="Invokes functions&amp;nbsp;&lt;br&gt;with specified&amp;nbsp;&lt;br&gt;arguments." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-1" target="gWGYl7FvViBcPDyTm5Ov-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-1" value="&lt;b&gt;Flask webapp behaviour&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Flask, Python]&lt;br&gt;&lt;br&gt;&lt;div&gt;Python modules (using Flask) determine what different actions cause what behaviour (in the webapp).&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="240" y="640" width="199" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-6" value="Passes data&amp;nbsp;&lt;br&gt;received from MongoDB&amp;nbsp;&lt;br&gt;(after processing it)." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gWGYl7FvViBcPDyTm5Ov-2" value="&lt;b&gt;MongoDB API requests&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Python]&lt;br&gt;&lt;br&gt;A Python module desribing the HTTP requests that can be made to the MongoDB API (in order to add. edit and remove items in the database)." style="rounded=0;whiteSpace=wrap;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
+                    <mxGeometry x="600" y="640" width="200" height="160" as="geometry"/>
+                </mxCell>
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-16" value="WSGI passes&amp;nbsp;&lt;br&gt;on data from the &lt;br&gt;user's browser &lt;br&gt;to the web&amp;nbsp;&amp;nbsp;&lt;br&gt;app." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-24" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
-                    &#xa;
                     <mxGeometry relative="1" as="geometry">
-                        &#xa;
                         <mxPoint x="310" y="700" as="targetPoint"/>
-                        &#xa;
                         <mxPoint x="320" y="610" as="sourcePoint"/>
-                        &#xa;
                     </mxGeometry>
-                    &#xa;
                 </mxCell>
-                &#xa;
-                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-17" value="Receives info&amp;nbsp;&lt;br&gt;via Trello API." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-18" target="gWGYl7FvViBcPDyTm5Ov-2" edge="1">
-                    &#xa;
+                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-17" value="Receives info&amp;nbsp;&lt;br&gt;via MongoDB&amp;nbsp;&lt;br&gt;API." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-18" target="gWGYl7FvViBcPDyTm5Ov-2" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        &#xa;
                         <mxPoint x="570" y="790" as="targetPoint"/>
-                        &#xa;
                     </mxGeometry>
-                    &#xa;
                 </mxCell>
-                &#xa;
-                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-18" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;[Trello]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;Stores the to-do items in a Trello board as cards in a collection of lists.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
+                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-18" value="&lt;b&gt;Data store&lt;/b&gt;&lt;br&gt;[Software system]&lt;br&gt;[MongoDB]&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;div&gt;&lt;span&gt;Stores the to-do items as documents in a MongoDB database. Each status/list (i.e. todo, doing and done) are represented by different collections in the database.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
                     <mxGeometry x="1000" y="640" width="200" height="160" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-19" value="Web app passes&amp;nbsp;&lt;br&gt;on data about web&amp;nbsp;&amp;nbsp;&lt;br&gt;app appearance&amp;nbsp;&lt;br&gt;and functionality&amp;nbsp;&lt;br&gt;to WSGI." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;verticalAlign=middle;html=1;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-1" target="ZTFLMkbdowTQ8kLSjwLU-24" edge="1">
-                    &#xa;
                     <mxGeometry relative="1" as="geometry">
-                        &#xa;
                         <mxPoint x="410" y="700" as="sourcePoint"/>
-                        &#xa;
                         <mxPoint x="400" y="610" as="targetPoint"/>
-                        &#xa;
                     </mxGeometry>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-24" value="&lt;b&gt;WSGI&lt;/b&gt;&lt;br&gt;[Container]&lt;br&gt;[Gunicorn]&lt;br&gt;&lt;br&gt;&lt;div&gt;A production-ready server on which the app runs.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
                     <mxGeometry x="240" y="160" width="200" height="120" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
-                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-25" value="Makes API&amp;nbsp;&lt;br&gt;requests to&amp;nbsp;&lt;br&gt;edit board&amp;nbsp;&lt;br&gt;and retrieve&amp;nbsp;&lt;br&gt;info." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="ZTFLMkbdowTQ8kLSjwLU-18" edge="1">
-                    &#xa;
+                <mxCell id="ZTFLMkbdowTQ8kLSjwLU-25" value="Makes API&amp;nbsp;&lt;br&gt;requests to&amp;nbsp;&lt;br&gt;&amp;nbsp;the database." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="KUwH55LyA8Eynn2fVLHC-1" source="gWGYl7FvViBcPDyTm5Ov-2" target="ZTFLMkbdowTQ8kLSjwLU-18" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        &#xa;
                         <mxPoint x="570" y="730" as="sourcePoint"/>
-                        &#xa;
                     </mxGeometry>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-30" value="Provides info&amp;nbsp;&lt;br&gt;on how to create &lt;br&gt;(an&amp;nbsp;instance of)&amp;nbsp;&lt;br&gt;a view model." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=11;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-28" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
-                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-28" target="ZTFLMkbdowTQ8kLSjwLU-31" edge="1">
-                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-28" value="&lt;b&gt;View model&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[Python]&lt;br&gt;&lt;br&gt;A model for the dynamic data which needs to be inserted into the HTML/Jinja2 templates which are use to render the website." style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
                     <mxGeometry x="-160" y="520" width="200" height="160" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-35" value="Provides info on&amp;nbsp;&lt;br&gt;how the website&amp;nbsp;&lt;br&gt;should be rendered." style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fontSize=11;" parent="KUwH55LyA8Eynn2fVLHC-1" source="ZTFLMkbdowTQ8kLSjwLU-31" target="gWGYl7FvViBcPDyTm5Ov-1" edge="1">
-                    &#xa;
                     <mxGeometry relative="1" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
                 <mxCell id="ZTFLMkbdowTQ8kLSjwLU-31" value="&lt;b&gt;Website view templates&lt;/b&gt;&lt;br&gt;[Component]&lt;br&gt;[HTML, Jinja2]&lt;br&gt;&lt;br&gt;Jinja2 templates which are used to render the webiste." style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="KUwH55LyA8Eynn2fVLHC-1" vertex="1">
-                    &#xa;
                     <mxGeometry x="-160" y="760" width="200" height="160" as="geometry"/>
-                    &#xa;
                 </mxCell>
-                &#xa;
             </root>
-            &#xa;
         </mxGraphModel>
-        &#xa;
     </diagram>
 </mxfile>
