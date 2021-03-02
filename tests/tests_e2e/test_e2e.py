@@ -1,8 +1,8 @@
 from dotenv import load_dotenv, find_dotenv
 import os
+import pymongo
 import pytest
 import re
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
@@ -18,12 +18,8 @@ def test_app():
     file_path = find_dotenv('.env')
     load_dotenv(file_path, override=True)
 
-    # Create the new board & update the board id environment variable.
-    response = create_trello_board('test_board')
-    board_id = response['id']
-    organization_id = response['idOrganization']
-    os.environ['BOARD_ID'] = board_id
-
+    temp_db = "temp_db"
+    os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
 
     # Create app instance using newly created board.
     application  = app.create_app()
@@ -36,25 +32,14 @@ def test_app():
 
     # Tear down.
     thread.join(1)
-    delete_trello_board(board_id)
-    delete_trello_organization(organization_id)
+    drop_database(temp_db)
 
-
-def create_trello_board(name):
-    create_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN'), 'name': name}
-    response = requests.post(f'https://api.trello.com/1/boards', params = create_board_params).json()
-    return response
-
-def delete_trello_board(id):
-    delete_board_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN')}
-    response = requests.delete(f'https://api.trello.com/1/boards/{id}', params = delete_board_params).json()
-    return response
-
-def delete_trello_organization(organization_id):
-    delete_organization_params = {'key': os.environ.get('AUTH_PARAMS_KEY'), 'token': os.environ.get('AUTH_PARAMS_TOKEN')}
-    response = requests.delete(f'https://api.trello.com/1/organizations/{organization_id}', params = delete_organization_params).json()
-    return response
-
+def drop_database(db):
+    MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
+    MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
+    MONGO_HOST = os.environ.get('MONGO_HOST')
+    client = pymongo.MongoClient(f"mongodb+srv://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}/?retryWrites=true&w=majority")
+    client.drop_database(db)
 
 @pytest.fixture(scope='module')
 def driver():

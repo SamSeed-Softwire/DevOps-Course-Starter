@@ -8,8 +8,9 @@ class Item:
         self.status = status
         self.last_modified = last_modified
 
+
+    # Override the default class equivalence implementation.
     def __eq__(self, other):
-        """Overrides the default implementation."""
         if type(self) == type(other):
             return self.__dict__ == other.__dict__
         return False

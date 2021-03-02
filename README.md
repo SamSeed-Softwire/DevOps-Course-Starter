@@ -1,7 +1,7 @@
 # To-do app
 ## About the application
 
-This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a Trello board.
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database.
 
 ## Getting started
 
@@ -17,11 +17,12 @@ Environment variables include:
 - Flask server configuration variables (these already have default values in `.env.template`).
     - FLASK_APP
     - FLASK_ENV
-- Trello authorisation parameters (you can get these from https://trello.com/app-key).
-    - AUTH_PARAMS_KEY
-    - AUTH_PARAMS_TOKEN
-- The ID of the Trello board used to store data.
-    - BOARD_ID (you can easily find this by opening your Trello board of choice in a browser, adding `.json` to the end of the URL, and retrieving the first item in the resulting JSON data (e.g. `"id":"<your board ID will be visible here>"`)).
+- MongoDB authorisation parameters.
+    - MONGO_USERNAME
+    - MONGO_PASSWORD
+- MongoDB database details:
+    - MONGO_HOST
+    - MONGO_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
 
 ## Docker
 
@@ -114,7 +115,7 @@ In the final Travis build stage, the app is deployed to [Heroku](https://www.her
 
 First, you will need to set up an integration between Travis and your GitHub account, which can be done from your Travis settings.
 
-Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, Trello, Heroku and Slack).
+Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, MongoDB, Heroku and Slack).
 
 Most of these credentials are sensitive. Where sensitive they need to be encrypted. The best way to do this is using Travis CLI's `encrypt` command - see documentation [here](https://docs.travis-ci.com/user/encryption-keys/).
 

@@ -55,8 +55,6 @@ CMD [ "--host=0.0.0.0" ]
 # Create an image used for running the app in a production environment.
 FROM base-with-app-code as prod
 
-RUN export FLASK_ENV=production
-
 # Set the PORT environment variable for running the prod container locally.
 # When running using Heroku, Heroku overrides this variable.
 ENV PORT=5000
@@ -81,9 +79,7 @@ RUN \
 
 # Copy test files from host system into a dedicated test folders.
 COPY .env.test ./
-COPY ./tests_e2e/ ./tests_e2e/
-COPY ./tests_integration/ ./tests_integration/
-COPY ./tests_unit/ ./tests_unit/
+COPY ./tests/ ./tests/
 
 # Define commands to be run when container is started.
 ENTRYPOINT ["poetry", "run", "pytest"]

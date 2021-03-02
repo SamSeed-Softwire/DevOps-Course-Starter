@@ -5,11 +5,11 @@ services:
         build:
             context: .
             target: dev
-        ports: 
+        ports:
           - published: 5000
             target: 5000
         env_file: .env
-        volumes: 
+        volumes:
           - type: bind
             source: ./application/
             target: /todo-app/application/
@@ -18,7 +18,7 @@ services:
         build:
             context: .
             target: prod
-        ports: 
+        ports:
           - published: 5050
             target: 5000
         env_file: .env
