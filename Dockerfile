@@ -57,6 +57,10 @@ FROM base-with-app-code as prod
 
 RUN export FLASK_ENV=production
 
+# Set the PORT environment variable for running the prod container locally.
+# When running using Heroku, Heroku overrides this variable.
+ENV PORT=5000
+
 # Define commands to be run when container is started.
 CMD poetry run gunicorn --bind=0.0.0.0:$PORT --chdir ./application 'app:create_app()'
 
