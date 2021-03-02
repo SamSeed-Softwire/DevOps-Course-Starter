@@ -6,6 +6,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
+from webdriver_manager.chrome import ChromeDriverManager
 
 import application.app as app
 
@@ -57,7 +58,11 @@ def delete_trello_organization(organization_id):
 
 @pytest.fixture(scope='module')
 def driver():
-    with webdriver.Firefox() as driver:
+    chrome_driver_path = ChromeDriverManager().install()
+    opts = webdriver.ChromeOptions()
+    opts.add_argument('--headless')
+    opts.add_argument('--no-sandbox')
+    with webdriver.Chrome(chrome_driver_path, options=opts) as driver:
         yield driver
 
 def test_task_journey(driver, test_app):

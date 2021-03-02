@@ -5,7 +5,7 @@ import pytest
 from unittest.mock import patch, Mock
 
 import application.app as app
-from tests.mock_response import MockResponse
+from tests_integration.mock_response import MockResponse
 
 
 @pytest.fixture
