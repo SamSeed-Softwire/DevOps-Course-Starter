@@ -12,6 +12,7 @@ from application.view_model import ViewModel
 
 def create_app():
 
+    # Initialise app.
     app = Flask(__name__)
     app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
@@ -21,6 +22,7 @@ def create_app():
         login_disabled = False
     app.config['LOGIN_DISABLED'] = login_disabled
 
+    # Initialise database client.
     mongo_client = MongoClient()
 
     # Handle authentication & authorisation.
@@ -139,6 +141,9 @@ def create_app():
     def forbidden():
         return render_template('forbidden.html')
 
+
+    # Main page.
+
     @app.route('/')
     @login_required
     def index():
@@ -152,6 +157,9 @@ def create_app():
             else:
                 role = current_user.role
         return render_template('index.html', view_model = view_model, role = role)
+
+
+    # Actions.
 
     @app.route('/add-item', methods = ['POST'])
     @login_required
