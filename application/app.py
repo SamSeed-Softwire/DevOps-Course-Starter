@@ -148,6 +148,7 @@ def create_app():
 
     @app.route('/add-item', methods = ['POST'])
     @login_required
+    @admins_and_writers_only
     def add_item():
         item_name = request.form.get('item_name')
         mongo_client.add_item(item_name, 'todo-items')
@@ -155,24 +156,28 @@ def create_app():
 
     @app.route('/start-item/<item_id>', methods = ['POST'])
     @login_required
+    @admins_and_writers_only
     def start_item(item_id):
         mongo_client.move_item(item_id, 'todo-items', 'doing-items')
         return redirect('/')
 
     @app.route('/complete-item/<item_id>', methods = ['POST'])
     @login_required
+    @admins_and_writers_only
     def complete_item(item_id):
         mongo_client.move_item(item_id, 'doing-items', 'done-items')
         return redirect('/')
 
     @app.route('/uncomplete-item/<item_id>', methods = ['POST'])
     @login_required
+    @admins_and_writers_only
     def uncomplete_item(item_id):
         mongo_client.move_item(item_id, 'done-items', 'doing-items')
         return redirect('/')
 
     @app.route('/delete-all-items', methods = ['POST'])
     @login_required
+    @admins_and_writers_only
     def delete_items():
         mongo_client.delete_all_items()
         return redirect('/')
