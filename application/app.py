@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+import os
 
 from application.mongo_client import MongoClient
 from application.view_model import ViewModel
@@ -7,6 +8,7 @@ from application.view_model import ViewModel
 def create_app():
 
     app = Flask(__name__)
+    app.secret_key = os.environ.get('FLASK_SECRET_KEY')
     mongo_client = MongoClient()
 
     @app.route('/')
