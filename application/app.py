@@ -144,7 +144,14 @@ def create_app():
     def index():
         items = mongo_client.items
         view_model = ViewModel(items)
-        return render_template('index.html', view_model = view_model)
+        if app.config['LOGIN_DISABLED'] == True:
+            role = "admin"
+        else:
+            if current_user.is_anonymous:
+                return redirect('/login')
+            else:
+                role = current_user.role
+        return render_template('index.html', view_model = view_model, role = role)
 
     @app.route('/add-item', methods = ['POST'])
     @login_required
