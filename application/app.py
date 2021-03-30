@@ -140,33 +140,39 @@ def create_app():
         return render_template('forbidden.html')
 
     @app.route('/')
+    @login_required
     def index():
         items = mongo_client.items
         view_model = ViewModel(items)
         return render_template('index.html', view_model = view_model)
 
     @app.route('/add-item', methods = ['POST'])
+    @login_required
     def add_item():
         item_name = request.form.get('item_name')
         mongo_client.add_item(item_name, 'todo-items')
         return redirect('/')
 
     @app.route('/start-item/<item_id>', methods = ['POST'])
+    @login_required
     def start_item(item_id):
         mongo_client.move_item(item_id, 'todo-items', 'doing-items')
         return redirect('/')
 
     @app.route('/complete-item/<item_id>', methods = ['POST'])
+    @login_required
     def complete_item(item_id):
         mongo_client.move_item(item_id, 'doing-items', 'done-items')
         return redirect('/')
 
     @app.route('/uncomplete-item/<item_id>', methods = ['POST'])
+    @login_required
     def uncomplete_item(item_id):
         mongo_client.move_item(item_id, 'done-items', 'doing-items')
         return redirect('/')
 
     @app.route('/delete-all-items', methods = ['POST'])
+    @login_required
     def delete_items():
         mongo_client.delete_all_items()
         return redirect('/')
