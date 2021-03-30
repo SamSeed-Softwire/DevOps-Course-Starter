@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request, redirect
+from flask_login import LoginManager, login_required, current_user, AnonymousUserMixin
+from flask_login.utils import login_user, logout_user
+from oauthlib.oauth2 import WebApplicationClient
 import os
+import requests
 
 from application.mongo_client import MongoClient
 from application.view_model import ViewModel
@@ -10,6 +14,79 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = os.environ.get('FLASK_SECRET_KEY')
     mongo_client = MongoClient()
+
+    # Handle authentication & authorisation.
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
+    client = WebApplicationClient(os.environ.get('GITHUB_CLIENT_ID'))
+
+
+    @login_manager.unauthorized_handler
+    def unauthenticated():
+        # state = os.urandom(16)
+        uri = client.prepare_request_uri("https://github.com/login/oauth/authorize")#, state = state)
+        return redirect(uri)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        if mongo_client.user_exists(user_id):
+            return mongo_client.get_user(user_id)
+        else:
+            # Is returning AnonymousUserMixin sensible here?
+            return AnonymousUserMixin()
+
+    @app.route('/login/callback/', methods = ['GET'])
+    def process_callback():
+
+        # Get information from authorisation request response.
+        authorization_response_url = request.url
+        authorization_response_code = request.args.get('code')
+        # authorization_response_state = request.args.get('state')
+
+        # Construct token request.
+        client_secret = os.environ.get('GITHUB_CLIENT_SECRET')
+        token_request_base_url = "https://github.com/login/oauth/access_token"
+        token_request_url, token_request_headers, token_request_body = client.prepare_token_request(
+            token_request_base_url,
+            authorization_response=authorization_response_url,
+            code=authorization_response_code,
+            client_secret = client_secret#,
+            # state = authorization_response_state
+        )
+
+        # Get an access token.
+        token_request_response = requests.post(
+            token_request_url,
+            headers = token_request_headers,
+            data = token_request_body
+        )
+        client.parse_request_body_response(token_request_response.text)
+
+        # Get user details.
+        user_request_base_uri = "https://api.github.com/user"
+        user_request_uri, user_request_headers, user_request_body = client.add_token(
+            user_request_base_uri
+        )
+        user_info = requests.get(
+            user_request_uri,
+            headers = user_request_headers,
+            data = user_request_body
+        ).json()
+
+        # Create user object and log user in.
+        user_id = user_info['id']
+        user = User(user_id, "reader")
+        users = mongo_client.users
+        # Assign the first user to be an admin.
+        if len(users) == 0:
+            user.role = "admin"
+        mongo_client.add_user(user_id, user.role)
+        login_user(user)
+
+        # Return to the main page.
+        return redirect('/')
 
     @app.route('/')
     def index():
