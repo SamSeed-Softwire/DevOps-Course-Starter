@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_required, current_user, AnonymousUserMixin
 from flask_login.utils import login_user, logout_user
+from functools import wraps
 from oauthlib.oauth2 import WebApplicationClient
 import os
 import requests
@@ -94,6 +95,34 @@ def create_app():
 
         # Return to the main page.
         return redirect('/')
+
+    def admins_only(view_function):
+        @wraps(view_function)
+        def wrapper(*args, **kwargs):
+            if app.config['LOGIN_DISABLED'] == True:
+                return view_function(*args, **kwargs)
+            else:
+                if current_user.is_anonymous:
+                    return redirect('/login')
+                elif current_user.role == 'admin':
+                    return view_function(*args, **kwargs)
+                else:
+                    return redirect('/forbidden')
+        return wrapper
+
+    def admins_and_writers_only(view_function):
+        @wraps(view_function)
+        def wrapper(*args, **kwargs):
+            if app.config['LOGIN_DISABLED'] == True:
+                return view_function(*args, **kwargs)
+            else:
+                if current_user.is_anonymous:
+                    return redirect('/login')
+                elif current_user.role in ('admin', 'writer'):
+                    return view_function(*args, **kwargs)
+                else:
+                    return redirect('/forbidden')
+        return wrapper
 
     # Login/logout/authorisation screens.
 
