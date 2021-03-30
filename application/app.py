@@ -88,6 +88,21 @@ def create_app():
         # Return to the main page.
         return redirect('/')
 
+    # Login/logout/authorisation screens.
+
+    @app.route('/login')
+    def login():
+        return render_template('login.html')
+
+    @app.route('/logout')
+    def logout():
+        logout_user()
+        return redirect('/login')
+
+    @app.route('/forbidden')
+    def forbidden():
+        return render_template('forbidden.html')
+
     @app.route('/')
     def index():
         items = mongo_client.items
