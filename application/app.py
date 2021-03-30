@@ -13,6 +13,13 @@ def create_app():
 
     app = Flask(__name__)
     app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+
+    if os.environ.get('LOGIN_DISABLED') == "True":
+        login_disabled = True
+    else:
+        login_disabled = False
+    app.config['LOGIN_DISABLED'] = login_disabled
+
     mongo_client = MongoClient()
 
     # Handle authentication & authorisation.
