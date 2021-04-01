@@ -16,6 +16,8 @@ class MongoClient:
         self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
         self.db = self.client[self.MONGO_TODO_APP_DATABASE]
 
+    # Item management.
+
     @property
     def items(self):
         items = []
