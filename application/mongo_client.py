@@ -76,7 +76,8 @@ class MongoClient:
     @property
     def items(self):
         items = []
-        lists = self.db.list_collection_names()
+        collections = self.db.list_collection_names()
+        lists = [collection for collection in collections if 'items' in collection]
         for list in lists:
             raw_items = self.db[list].find()
             for raw_item in raw_items:
