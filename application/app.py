@@ -8,6 +8,7 @@ import requests
 
 from application.mongo_client import MongoClient
 from application.item_view_model import ItemViewModel
+from application.user_view_model import UserViewModel
 
 
 def create_app():
@@ -196,5 +197,34 @@ def create_app():
     def delete_items():
         mongo_client.delete_all_items()
         return redirect('/')
+
+    @app.route('/manage-users', methods = ['GET'])
+    @login_required
+    @admins_only
+    def manage_users():
+        users = mongo_client.users
+        user_view_model = UserViewModel(users)
+        return render_template('manage-users.html', user_view_model = user_view_model)
+
+    @app.route('/edit-user-role', methods = ['POST'])
+    @login_required
+    @admins_only
+    def edit_user_role():
+        github_id = request.form.get('github_id')
+        new_role = request.form.get('new_role')
+        mongo_client.edit_user_role(github_id, new_role)
+        users = mongo_client.users
+        user_view_model = UserViewModel(users)
+        return render_template('manage-users.html', user_view_model = user_view_model)
+
+    @app.route('/delete-user', methods = ['POST'])
+    @login_required
+    @admins_only
+    def delete_user():
+        github_id = request.form.get('github_id')
+        mongo_client.delete_user(github_id)
+        users = mongo_client.users
+        user_view_model = UserViewModel(users)
+        return render_template('manage-users.html', user_view_model = user_view_model)
 
     return app
