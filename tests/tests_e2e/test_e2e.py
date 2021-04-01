@@ -2,7 +2,6 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import pymongo
 import pytest
-import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
@@ -74,13 +73,6 @@ def test_task_journey(driver, test_app, writer_user):
         items = find_items(list)
         return len(items)
 
-    def check_item_name(actual_name, expected_name_without_root):
-        root_pattern = r'.+\s-\s'
-        full_name_pattern = root_pattern + expected_name_without_root
-        name_matcher = re.compile(full_name_pattern)
-        match_result = name_matcher.fullmatch(actual_name)
-        return bool(match_result)
-
     def check_item_name_and_count(list):
 
         # Check there's now 1 item in the specified list
@@ -89,7 +81,8 @@ def test_task_journey(driver, test_app, writer_user):
         # Check the new item has the correct name.
         list_items = find_items(list)
         list_item_name = list_items[0].text
-        assert check_item_name(list_item_name, initial_item_name) == True
+        assert list_item_name == initial_item_name
+
 
     # Check no items in lists at start.
     assert count_items('todo') == 0
