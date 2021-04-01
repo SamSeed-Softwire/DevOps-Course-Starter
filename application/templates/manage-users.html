@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+{% block title %}To-Do App{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row justify-content-between">
+
+      <div>
+        <h2>Manage users</h2>
+      </div>
+
+      <div class="row justify-content-end">
+
+        <div>
+          <form action="/">
+            <button
+              type="submit">
+                Home
+            </button>
+          </form>
+        </div>
+
+        <div style="width:10px"></div>
+
+        <div>
+          <form action="/logout">
+            <button
+              type="submit">
+                Log out
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin:40px"></div>
+
+  <h4>Other users</h4>
+  <ul class="list-group mb-4">
+    {% for user in user_view_model.all_except_current_user %}
+      <li class="list-group-item">
+        <div class="row">
+
+          <div class="col-md-2">
+            <b>{{user.id}}</b>
+          </div>
+
+          <div class="col-md-2">
+            {{user.role}}
+          </div>
+
+          <div class="col-md-2"></div>
+
+          <div class="col-md-2">
+            {% if user.role == "reader" %}
+              <form action="/edit-user-role" method="post">
+                <input type="hidden" name="github_id" value="{{user.id}}">
+                <input type="hidden" name="new_role" value="writer">
+                <input type="submit" value="Make writer" style="width:100%">
+              </form>
+            {% elif user.role in ("writer", "admin") %}
+              <form action="/edit-user-role" method="post">
+                <input type="hidden" name="github_id" value="{{user.id}}">
+                <input type="hidden" name="new_role" value="reader">
+                <input type="submit" value="Make reader" style="width:100%">
+              </form>
+            {% endif %}
+          </div>
+
+          <div class="col-md-2">
+            {% if user.role == "admin" %}
+              <form action="/edit-user-role" method="post">
+                <input type="hidden" name="github_id" value="{{user.id}}">
+                <input type="hidden" name="new_role" value="writer">
+                <input type="submit" value="Make writer" style="width:100%">
+              </form>
+            {% elif user.role in ("reader", "writer") %}
+              <form action="/edit-user-role" method="post">
+                <input type="hidden" name="github_id" value="{{user.id}}">
+                <input type="hidden" name="new_role" value="admin">
+                <input type="submit" value="Make admin" style="width:100%">
+              </form>
+            {% endif %}
+          </div>
+
+          <div class="col-md-2">
+              <form action="/delete-user" method="post">
+                <input type="hidden" name="github_id" value="{{user.id}}">
+                <input type="submit" value="Delete user" style="width:100%">
+              </form>
+          </div>
+
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div style="margin:100px"></div>
+
+  <h4>You</h4>
+  {% set current_user = user_view_model.current_user %}
+  <ul class="list-group mb-4">
+      <li class="list-group-item">
+        <div class="row">
+
+          <div class="col-md-2">
+            <b>{{current_user.id}}</b>
+          </div>
+
+          <div class="col-md-2">
+            {{current_user.role}}
+          </div>
+
+        </div>
+      </li>
+  </ul>
+  You cannot delete yourself or change your role. Please ask another admin to do this.
+
+{% endblock %}
