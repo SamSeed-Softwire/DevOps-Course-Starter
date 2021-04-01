@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager, login_required, current_user, AnonymousUserMixin
+from flask_login import LoginManager, login_required, current_user
 from flask_login.utils import login_user, logout_user
 from functools import wraps
 from oauthlib.oauth2 import WebApplicationClient
@@ -46,8 +46,7 @@ def create_app():
         if mongo_client.user_exists(user_id):
             return mongo_client.get_user(user_id)
         else:
-            # Is returning AnonymousUserMixin sensible here?
-            return AnonymousUserMixin()
+            return None
 
     @app.route('/login/callback/', methods = ['GET'])
     def process_callback():
