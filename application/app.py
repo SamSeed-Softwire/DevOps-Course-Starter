@@ -8,6 +8,7 @@ import requests
 
 from application.mongo_client import MongoClient
 from application.item_view_model import ItemViewModel
+from application.user import User
 from application.user_view_model import UserViewModel
 
 
