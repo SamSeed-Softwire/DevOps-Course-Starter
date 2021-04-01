@@ -58,6 +58,8 @@ def writer_user(test_app):
         writer_user_id = "0"
         return User(writer_user_id, "writer")
 
+# TODO: Add more journeys.
+
 def test_task_journey(driver, test_app, writer_user):
 
     driver.get('http://localhost:5000/')
