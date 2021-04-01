@@ -99,5 +99,7 @@ class MongoClient:
         return new_id
 
     def delete_all_items(self):
-        for list in self.lists:
+        collections = self.db.list_collection_names()
+        lists = [collection for collection in collections if 'items' in collection]
+        for list in lists:
             self.db[list].delete_many({})
