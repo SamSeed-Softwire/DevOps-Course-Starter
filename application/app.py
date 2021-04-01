@@ -7,7 +7,7 @@ import os
 import requests
 
 from application.mongo_client import MongoClient
-from application.view_model import ViewModel
+from application.item_view_model import ItemViewModel
 
 
 def create_app():
@@ -148,7 +148,7 @@ def create_app():
     @login_required
     def index():
         items = mongo_client.items
-        view_model = ViewModel(items)
+        item_view_model = ItemViewModel(items)
         if app.config['LOGIN_DISABLED'] == True:
             role = "admin"
         else:
@@ -156,7 +156,7 @@ def create_app():
                 return redirect('/login')
             else:
                 role = current_user.role
-        return render_template('index.html', view_model = view_model, role = role)
+        return render_template('index.html', item_view_model = item_view_model, role = role)
 
 
     # Actions.
