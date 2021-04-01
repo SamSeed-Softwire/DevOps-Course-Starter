@@ -9,6 +9,7 @@ from threading import Thread
 from webdriver_manager.chrome import ChromeDriverManager
 
 import application.app as app
+from application.user import User
 
 
 @pytest.fixture(scope='module')
@@ -50,7 +51,15 @@ def driver():
     with webdriver.Chrome(chrome_driver_path, options=opts) as driver:
         yield driver
 
-def test_task_journey(driver, test_app):
+@pytest.fixture(scope='module')
+def writer_user(test_app):
+    @test_app.login_manager.request_loader
+    def load_user_from_request(request):
+        writer_user_id = "0"
+        return User(writer_user_id, "writer")
+
+def test_task_journey(driver, test_app, writer_user):
+
     driver.get('http://localhost:5000/')
 
     assert driver.title == 'To-Do App'
