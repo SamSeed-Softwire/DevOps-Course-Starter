@@ -66,12 +66,13 @@ env:
   # HEROKU_APP_NAME
   - HEROKU_APP_NAME=still-spire-18415
 
-  ### MongoDB ###
-  - MONGO_USERNAME=new-user_0
-  - MONGO_HOST=cluster0.1ukux.mongodb.net
-  - MONGO_TODO_APP_DATABASE=db0
-  # MONGO_PASSWORD
-  - secure: "O8kAL06h3uaBNTYfc5VgL2tG5yv2v3BMLm8Fd5qc/+EPRdMmGGMWtDe280e8lIjGnl1Fwqx9ROR35usH1Gs6OAP4uY1ZQa/HC4UEp5i+mTfF92kcEXohLTxGPPxlUl5X0VJrr2II/VVUvB+A+cnBPTjDFV3RUf/JRYrbP1wWfPuplfRTgu0Wn2zw58Pw5Kmz2VIQgWc/LLGm/UUee4YuFG1C0yM31woSVWvNEuRBldACRyo73mhU5UdTesBf7LK4mpdIa4X+D2vNAZxDV82Vt9319nYAnRcKhAbxFGgiXCJglLUHw17FQSFFv+x7s1LHU52DQd29Xn+97+cGEcf9Z1oj7qOPOuvg+8yPfYXoBFUICc6ytAQpH2437PEoAFuXd0fc9MMbT9vb+W5K2OPEda/ZPfakH5pnqwHNyJyYVxITf6Pyt/fUCZTiiw6JfYYemktDHQjez/fvFCVwU4tvdPDMkWZzMl0FZ68BdVfBBnPeBM9qdmZb7ohj9g9QA/5d9LdfoJpOT0Rq76Jw6WcgmVHgPaXr3+jbGHUClwLDEMCYRtK3lH4AVyirQyqW6s4hQD/faGjpamVE1KBiA3r8W+Cxbc28sgaY0IVe3Njo6Y/wb/DrqKaSSFAqGvIUnqJ2gp1dilNG3iFz+V4P1RU7lx7ItIVfK3FF/p1/0WHMXng="
+  ### CosmosDB ###
+  - COSMOS_USERNAME=softwirepilot-samseed-projectexercise-cosmos
+  - COSMOS_HOST=softwirepilot-samseed-projectexercise-cosmos.mongo.cosmos.azure.com
+  - COSMOS_PORT=10255
+  - COSMOS_TODO_APP_DATABASE=softwirepilot-samseed-projectexercise-mongodb
+  # COSMOS_PASSWORD
+  - secure: "cP/icx8p3jCBU5gmaPaMe8+kVfVNV/HzpeEJO1Xad1no1XJ2FF1ysiKzYA6Luazdc5Vgkkrx1/5uCLyU+hdQfpt3IzCZq+y6llEhzTJxj2XliCBDvmaYbl7fYfWutHk6WzTO8cRZl6ifXo0WrDOZ7zf9uIcwVU7fWzrPr6IvIZtx7oWL2ihEWfNGLUS8NC2o6T7NB8kmbNfliWGKnzvyiSO7h/iNubJFmdNoOMSzeG5dzbdMesf6HHjBP+Xt/rVggKO8/2sfZ77CXS0XNhnkXZEhKWiXlZxKmpVEu/ns9UdlX6TGUSwefBgD6GDRFhMmCiNNRVcYm9IakyTtyS/D7RDOi9+92k8A5u49oK/kO3qlEObGkR2cVCijhjupcwAE1SFi3EexaPCdpbKFP5GOgtdhBMFePxKRu0CfDBUeB8UCymL1aOjd5GfWoifrdT7PLCfv4S7DRc0VnVoBLeC18qYcAFFPIaiqPd7coVaOz4TRljrBlKuoBOku97GOE0MJWPAeFVCd74U4OAygRljWNlJNunq9a/6vHpPkNpbqZp24AJKAiJJ5N0p9l/NvLk6A74NwF7kiM1ePijZgsOgUxiUlPqUUrvfJMIqNzhx6RcwPeJ2MjzziA12Irg/NYT16RMtvVZ0Z3Ci52p6gZvTRg+8gmXDcgeCzU3SUshAp2Io="
 
 notifications:
   slack:
