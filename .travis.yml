@@ -11,7 +11,7 @@ jobs:
     script:
     - docker run samseedsoftwire/todo-app-test:latest "tests/tests_unit" -rA
     - docker run samseedsoftwire/todo-app-test:latest "tests/tests_integration" -rA
-    - docker run -e MONGO_USERNAME=$MONGO_USERNAME -e MONGO_HOST=$MONGO_HOST -e MONGO_TODO_APP_DATABASE=$MONGO_TODO_APP_DATABASE -e MONGO_PASSWORD=$MONGO_PASSWORD -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
+    - docker run -e COSMOS_USERNAME=$COSMOS_USERNAME -e COSMOS_PASSWORD=$COSMOS_PASSWORD -e COSMOS_HOST=$COSMOS_HOST -e COSMOS_PORT=$COSMOS_PORT -e COSMOS_TODO_APP_DATABASE=$COSMOS_TODO_APP_DATABASE -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
     after_success:
     - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-test:latest
