@@ -32,6 +32,8 @@ jobs:
     deploy:
       provider: script
       script: bash ./deploy_prod.sh
+      on:
+        branch: module_11
       skip_cleanup: true
     after_deploy:
     - curl_response=$(curl "http://$AZURE_APP_SERVICE_NAME.azurewebsites.net/")
