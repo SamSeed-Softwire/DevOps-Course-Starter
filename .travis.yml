@@ -27,15 +27,6 @@ jobs:
     - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
   - stage: deploy
-    before_script:
-    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker pull samseedsoftwire/todo-app-prod:latest
-    script:
-    - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
-    after_success:
-    - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/$HEROKU_APP_NAME/web
-    before_deploy:
-    - heroku container:login --verbose
     deploy:
       provider: script
       script: bash ./deploy_prod.sh

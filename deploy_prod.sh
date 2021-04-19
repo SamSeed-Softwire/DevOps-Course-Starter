@@ -1,2 +1,1 @@
-docker push registry.heroku.com/$HEROKU_APP_NAME/web
-heroku container:release web --app $HEROKU_APP_NAME --verbose
+curl -dH -X POST "https://\$softwirepilot-samseed-projectexercise:9t2iH4sCbRkiCa5znkYY7bnnbmAFaLPnrvias1pSLEkgG4EQCdLNvaef4QjK@softwirepilot-samseed-projectexercise.scm.azurewebsites.net/docker/hook"
