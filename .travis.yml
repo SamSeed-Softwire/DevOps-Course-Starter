@@ -41,6 +41,7 @@ jobs:
     after_deploy:
     - curl "http://softwirepilot-samseed-projectexercise.azurewebsites.net/"
     - curl_response=$(curl "http://softwirepilot-samseed-projectexercise.azurewebsites.net/")
+    # TODO: cause Travis build to fail if the curl is unsuccessful.
     - if [[ "$curl_response" == *"To-Do App"* ]] || [[ "$curl_response" == *"https://github.com/login/oauth/authorize"* ]]; then echo "Successful curl!"; else >&2 echo "Curl failure :("; return 1; fi
 
 services:
