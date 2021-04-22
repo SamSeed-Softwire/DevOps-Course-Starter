@@ -37,8 +37,7 @@ def create_app():
 
     @login_manager.unauthorized_handler
     def unauthenticated():
-        # state = os.urandom(16)
-        uri = client.prepare_request_uri("https://github.com/login/oauth/authorize")#, state = state)
+        uri = client.prepare_request_uri("https://github.com/login/oauth/authorize")
         return redirect(uri)
 
     @login_manager.user_loader
@@ -54,7 +53,6 @@ def create_app():
         # Get information from authorisation request response.
         authorization_response_url = request.url
         authorization_response_code = request.args.get('code')
-        # authorization_response_state = request.args.get('state')
 
         # Construct token request.
         client_secret = os.environ.get('GITHUB_CLIENT_SECRET')
@@ -63,8 +61,7 @@ def create_app():
             token_request_base_url,
             authorization_response=authorization_response_url,
             code=authorization_response_code,
-            client_secret = client_secret#,
-            # state = authorization_response_state
+            client_secret = client_secret
         )
 
         # Get an access token.
