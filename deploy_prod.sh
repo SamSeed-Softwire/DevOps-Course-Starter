@@ -1,1 +1,1 @@
-curl -dH -X POST "https://\$$AZURE_APP_SERVICE_NAME:9t2iH4sCbRkiCa5znkYY7bnnbmAFaLPnrvias1pSLEkgG4EQCdLNvaef4QjK@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"
+curl -dH -X POST "https://\$$AZURE_APP_SERVICE_NAME:$AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"
