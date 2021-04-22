@@ -38,10 +38,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        if mongo_client.user_exists(user_id):
-            return mongo_client.get_user(user_id)
-        else:
-            return None
+        return mongo_client.get_user(user_id)
 
     @app.route('/login/callback/', methods = ['GET'])
     def process_callback():
