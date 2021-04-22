@@ -45,7 +45,7 @@ env:
   global:
 
   ### Azure ###
-  - AZURE_APP_SERVICE_NAME=softwirepilot-samseed-projectexercise
+  - AZURE_APP_SERVICE_NAME=softwirepilot-samseed-projectexercise-app-service
 
   ### Docker ###
   - DOCKER_USERNAME=samseedsoftwire
