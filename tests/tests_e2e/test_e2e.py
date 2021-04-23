@@ -18,6 +18,7 @@ def test_app():
     file_path = find_dotenv('.env')
     load_dotenv(file_path, override=True)
 
+    # Override environment variables.
     temp_db = "temp_db"
     os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
     os.environ['LOGIN_DISABLED'] = "False"
@@ -51,6 +52,7 @@ def driver():
     with webdriver.Chrome(chrome_driver_path, options=opts) as driver:
         yield driver
 
+# Explictly set the user role when making requests to the Flask app. This may be useful if I introduce test journeys for other roles e.g. reader, admin.
 @pytest.fixture(scope='module')
 def writer_user(test_app):
     @test_app.login_manager.request_loader
