@@ -38,7 +38,7 @@ class MongoClient:
             raw_user = self.db['users'].find_one({'_id': github_id})
             return User(raw_user['_id'], raw_user['role'])
         else:
-            ## TODO: Work out a more sensible return type/functionality.
+            # TODO: Work out a more sensible return type/functionality.
             return None
 
     def add_user(self, github_id, role = "reader"):
