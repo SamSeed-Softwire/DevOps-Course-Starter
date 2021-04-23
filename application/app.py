@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, abort, render_template, request, redirect
 from flask_login import LoginManager, login_required, current_user
 from flask_login.utils import login_user, logout_user
 from functools import wraps
@@ -128,9 +128,9 @@ def create_app():
         logout_user()
         return redirect('/login')
 
-    @app.route('/forbidden')
-    def forbidden():
-        return render_template('forbidden.html')
+    @app.errorhandler(403)
+    def forbidden(e):
+        return render_template('forbidden.html'), 403
 
 
     # Main page.
