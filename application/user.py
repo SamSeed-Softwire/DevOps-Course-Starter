@@ -1,12 +1,12 @@
 from flask_login import UserMixin
 
+from application.valid_roles import ValidRoles
+
 class User(UserMixin):
 
     def __init__(self, id, role = "reader"):
         self.id = id
         self.role = role
-
-    valid_roles = ['admin', 'reader', 'writer']
 
 
     # Properties
@@ -17,7 +17,7 @@ class User(UserMixin):
 
     @role.setter
     def role(self, new_role):
-        if new_role not in self.valid_roles:
-            raise ValueError(f"""'{new_role}' is not a valid role! Acceptable choices are {[role for role in self.valid_roles]}.""")
+        if new_role not in ValidRoles.__members__:
+            raise ValueError(f"""'{new_role}' is not a valid role! Acceptable choices are {[role for role in ValidRoles.__members__]}.""")
         else:
             self._role = new_role
