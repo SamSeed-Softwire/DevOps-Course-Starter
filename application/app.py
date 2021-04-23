@@ -151,6 +151,7 @@ def create_app():
     # Actions.
 
     @app.route('/add-item', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_and_writers_only
     def add_item():
@@ -159,6 +160,7 @@ def create_app():
         return redirect('/')
 
     @app.route('/start-item/<item_id>', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_and_writers_only
     def start_item(item_id):
@@ -166,6 +168,7 @@ def create_app():
         return redirect('/')
 
     @app.route('/complete-item/<item_id>', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_and_writers_only
     def complete_item(item_id):
@@ -173,6 +176,7 @@ def create_app():
         return redirect('/')
 
     @app.route('/uncomplete-item/<item_id>', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_and_writers_only
     def uncomplete_item(item_id):
@@ -180,6 +184,7 @@ def create_app():
         return redirect('/')
 
     @app.route('/delete-all-items', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_and_writers_only
     def delete_items():
@@ -187,6 +192,7 @@ def create_app():
         return redirect('/')
 
     @app.route('/manage-users', methods = ['GET'])
+    @login_disabled_manager
     @login_required
     @admins_only
     def manage_users():
@@ -195,6 +201,7 @@ def create_app():
         return render_template('manage-users.html', user_view_model = user_view_model)
 
     @app.route('/edit-user-role', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_only
     def edit_user_role():
@@ -206,6 +213,7 @@ def create_app():
         return render_template('manage-users.html', user_view_model = user_view_model)
 
     @app.route('/delete-user', methods = ['POST'])
+    @login_disabled_manager
     @login_required
     @admins_only
     def delete_user():
