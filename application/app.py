@@ -107,6 +107,19 @@ def create_app():
                 abort(403)
         return wrapper
 
+    def login_disabled_manager(view_function):
+        @wraps(view_function)
+        def wrapper(*args, **kwargs):
+            if app.config['LOGIN_DISABLED'] == True:
+                logout_user()
+                user = User(0, os.environ.get('ROLE_FOR_DEV_PURPOSES'))
+                login_user(user)
+            else:
+                if not current_user.is_authenticated:
+                    return redirect('/login')
+            return view_function(*args, **kwargs)
+        return wrapper
+
     # Login/logout/authorisation screens.
 
     @app.route('/login')
