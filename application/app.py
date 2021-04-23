@@ -114,9 +114,6 @@ def create_app():
                 logout_user()
                 user = User(0, os.environ.get('ROLE_FOR_DEV_PURPOSES'))
                 login_user(user)
-            else:
-                if not current_user.is_authenticated:
-                    return redirect('/login')
             return view_function(*args, **kwargs)
         return wrapper
 
