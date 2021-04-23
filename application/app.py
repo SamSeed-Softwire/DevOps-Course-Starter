@@ -92,29 +92,19 @@ def create_app():
     def admins_only(view_function):
         @wraps(view_function)
         def wrapper(*args, **kwargs):
-            if app.config['LOGIN_DISABLED'] == True:
+            if current_user.role == 'admin':
                 return view_function(*args, **kwargs)
             else:
-                if current_user.is_anonymous:
-                    return redirect('/login')
-                elif current_user.role == 'admin':
-                    return view_function(*args, **kwargs)
-                else:
-                    return redirect('/forbidden')
+                abort(403)
         return wrapper
 
     def admins_and_writers_only(view_function):
         @wraps(view_function)
         def wrapper(*args, **kwargs):
-            if app.config['LOGIN_DISABLED'] == True:
+            if current_user.role in ('admin', 'writer'):
                 return view_function(*args, **kwargs)
             else:
-                if current_user.is_anonymous:
-                    return redirect('/login')
-                elif current_user.role in ('admin', 'writer'):
-                    return view_function(*args, **kwargs)
-                else:
-                    return redirect('/forbidden')
+                abort(403)
         return wrapper
 
     # Login/logout/authorisation screens.
