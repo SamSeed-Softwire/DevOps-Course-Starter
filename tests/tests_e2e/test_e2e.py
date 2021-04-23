@@ -20,6 +20,7 @@ def test_app():
 
     temp_db = "temp_db"
     os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
+    os.environ['LOGIN_DISABLED'] = "False"
 
     # Create app instance using newly created board.
     application  = app.create_app()
