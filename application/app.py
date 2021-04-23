@@ -126,17 +126,12 @@ def create_app():
     # Main page.
 
     @app.route('/')
+    @login_disabled_manager
     @login_required
     def index():
         items = mongo_client.items
         item_view_model = ItemViewModel(items)
-        if app.config['LOGIN_DISABLED'] == True:
-            role = "admin"
-        else:
-            if current_user.is_anonymous:
-                return redirect('/login')
-            else:
-                role = current_user.role
+        role = current_user.role
         return render_template('index.html', item_view_model = item_view_model, role = role)
 
 
