@@ -43,32 +43,20 @@ class MongoClient:
 
     def add_user(self, github_id, role = "reader"):
         github_id = int(github_id)
-        if self.user_exists(github_id):
-            message = f"""User '{github_id}' already exists in database. Use the edit_user_role method if you want to change their role."""
-        else:
-            user = User(github_id, role) # To check the validity of the role being assigned.
+        user = User(github_id, role) # To check the validity of the role being assigned.
+        if not self.user_exists(github_id):
             self.db['users'].insert_one({'_id': github_id, 'role': role})
-            message = f"""User '{github_id}' successfully added and assigned the role of {role}."""
-        return message
 
     def edit_user_role(self, github_id, new_role):
         github_id = int(github_id)
         user = User(github_id, new_role) # To check the validity of the role being assigned.
-        if not self.user_exists(github_id):
-            message = "User '{github_id}' doesn't exist in database. Use the add_user method if you want to add a user."
-        else:
+        if self.user_exists(github_id):
             self.db['users'].update_one({'_id': github_id}, {'$set': {'_id': github_id, 'role': new_role}})
-            message = f"""User '{github_id}' successfully assigned the role of {new_role}."""
-        return message
 
     def delete_user(self, github_id):
         github_id = int(github_id)
-        if not self.user_exists(github_id):
-            message = f"""User '{github_id}' doesn't exist in database. Are you sure this is the user you wanted to delete?"""
-        else:
+        if self.user_exists(github_id):
             self.db['users'].delete_one({'_id': github_id})
-            message = f"""User '{github_id}' successfully deleted."""
-        return message
 
 
     # Item management.
