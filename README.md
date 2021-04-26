@@ -106,7 +106,7 @@ The application uses the [pytest](https://docs.pytest.org/en/stable/) framework.
 
 ### Dependencies
 
-The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use geckodriver, which is the the Firefox driver. Download the relevant version for you (listed [here](https://github.com/mozilla/geckodriver/releases)), unzip and place the executable either in the project repo root, or on your PATH. You'll also need to have Firefox installed.
+The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use ChromeDriver, which is automatically installed/updated when the e2e tests are run. You'll need to ake sure Chrome is installed when running locally using `poetry run pytest`. When running the tests using Docker, Chrome is automatically installed in the test container.
 
 ### Running the tests locally
 To run all tests locally, run `poetry run pytest`. You can also specify specific test folders, e.g.: `poetry run pytest tests_e2e`.
