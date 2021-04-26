@@ -85,9 +85,9 @@ Running using regular Docker:
 - Build the local dev image: `docker build --target dev --tag todo-app:dev .`
 - Build the production image: `docker build --target prod --tag todo-app:prod .`
 - Run the local dev container from the built image: `docker run -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
-- Run the production container from the built image: `docker run -p 5050:5000 --env-file .env todo-app:prod`
+- Run the production container from the built image: `docker run -p 5000:5000 --env-file .env todo-app:prod`
 - Run local dev container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
-- Run production container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5050:5000 --env-file .env todo-app:prod`
+- Run production container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5000:5000 --env-file .env todo-app:prod`
 
 Running using Docker Compose:
 
@@ -96,10 +96,7 @@ Running using Docker Compose:
 - Run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-dev`
 - Run the prod version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-prod`
 
-Once a container is running your application successfully you can view in your web browser at:
-
-- dev: [`http://localhost:5000/`](http://localhost:5000/)
-- prod: [`http://localhost:5050/`](http://localhost:5050/)
+Once a container is running your application successfully you can view in your web browser at http://localhost:5000/.
 
 ## Testing the application
 
