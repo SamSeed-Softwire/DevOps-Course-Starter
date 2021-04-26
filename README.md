@@ -1,7 +1,7 @@
 # To-do app
 ## About the application
 
-This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database.
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
 
 ## Getting started
 
@@ -17,12 +17,39 @@ Environment variables include:
 - Flask server configuration variables (these already have default values in `.env.template`).
     - FLASK_APP
     - FLASK_ENV
+- Flask-Login configuration variables:
+    - LOGIN_DISABLED (if set to True, then Flask-Login won't force users to login)
+    - ROLE_FOR_DEV_PURPOSES (a custom env var.. if LOGIN_DISABLED is set to True, then this env var will determine what role the user should be artificially assigned)
+- GitHub OAuth app settings
+    - GITHUB_CLIENT_ID (the client ID of the GitHub OAuth app you'll need to set up)
+    - GITHUB_CLIENT_SECRET (the secret token of the GitHub OAuth app)
 - MongoDB authorisation parameters.
     - MONGO_USERNAME
     - MONGO_PASSWORD
 - MongoDB database details:
     - MONGO_HOST
     - MONGO_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
+- OAuthLib
+    - OAUTHLIB_INSECURE_TRANSPORT (if set to equal 1, then OAuth2 will be allowed over HTTP)
+
+## Security
+
+### Setting up
+
+You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Heroku app). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
+
+### What you'll see
+
+Once the application is running (see sections below), authentication/authorisation may be invoked depending on the config you have chosen.
+
+If the env var LOGIN_DISABLED is *not* set to true, the Python package Flask-Login will force you to log in. It invokes the [GitHub OAuth web application flow](https://docs.github.com/en/developers/apps/authorizing-oauth-apps) in order to do this.
+
+Once you are logged in with GitHub, the application will store your user details in the MongoDB database defined in your [.env](.env) file. The details it will store are:
+- Your GitHub ID
+- Your role (reader, writer or admin)
+Your role will be set automatically the first time you log in. If there are no other users stored in the database, you'll be assigned the role of admin. If there are other users stored in the database, you'll be assigned the role of reader. Within the app, only admins can change users' roles, and admins can't change their own roles.
+
+If the env var LOGIN_DISABLED is set to true, you will not be forced to log in. To manually decide what role you want to be, change the ROLE_FOR_DEV_PURPOSES env var, e.g. set it to equal "writer" if you want to automatically be granted writer permissions.
 
 ## Docker
 
