@@ -74,7 +74,7 @@ Cleaning up:
 
 ### Local debugging
 
-You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
+You can run the application from the command line using `poetry run flask run` and then navigating to http://localhost:5000/ to view the running app. You should run the application from the repo root.
 
 ### Running using Docker
 
