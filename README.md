@@ -14,9 +14,10 @@ When running locally, environment variables are read in from the `.env` file. Yo
 When running locally using Docker, environment variables are read in from the same `.env` file by Docker at runtime. This file is not copied to the container.
 
 Environment variables include:
-- Flask server configuration variables (these already have default values in `.env.template`).
-    - FLASK_APP
-    - FLASK_ENV
+- Flask server configuration variables (some of these already have default values in `.env.template`).
+    - FLASK_APP (defines the name of the Flask app)
+    - FLASK_ENV (determines the Flask environment - if left blank, this defaults to 'production'.)
+    - [FLASK_SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY)
 - Flask-Login configuration variables:
     - LOGIN_DISABLED (if set to True, then Flask-Login won't force users to login)
     - ROLE_FOR_DEV_PURPOSES (a custom env var.. if LOGIN_DISABLED is set to True, then this env var will determine what role the user should be artificially assigned)
