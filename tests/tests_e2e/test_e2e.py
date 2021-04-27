@@ -20,7 +20,7 @@ def test_app():
 
     # Override environment variables.
     temp_db = "temp_db"
-    os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
+    os.environ['COSMOS_TODO_APP_DATABASE'] = temp_db
     os.environ['LOGIN_DISABLED'] = "False"
 
     # Create app instance using newly created board.
