@@ -14,6 +14,13 @@ When running locally, environment variables are read in from the `.env` file. Yo
 When running locally using Docker, environment variables are read in from the same `.env` file by Docker at runtime. This file is not copied to the container.
 
 Environment variables include:
+- Cosmos DB authorisation parameters.
+    - COSMOS_USERNAME
+    - COSMOS_PASSWORD
+- Cosmos DB database details:
+    - COSMOS_HOST
+    - COSMOS_PORT
+    - COSMOS_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
 - Flask server configuration variables (some of these already have default values in `.env.template`).
     - FLASK_APP (defines the name of the Flask app)
     - FLASK_ENV (determines the Flask environment - if left blank, this defaults to 'production'.)
@@ -24,12 +31,6 @@ Environment variables include:
 - GitHub OAuth app settings
     - GITHUB_CLIENT_ID (the client ID of the GitHub OAuth app you'll need to set up)
     - GITHUB_CLIENT_SECRET (the secret token of the GitHub OAuth app)
-- MongoDB authorisation parameters.
-    - MONGO_USERNAME
-    - MONGO_PASSWORD
-- MongoDB database details:
-    - MONGO_HOST
-    - MONGO_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
 - OAuthLib
     - OAUTHLIB_INSECURE_TRANSPORT (if set to equal 1, then OAuth2 will be allowed over HTTP)
 
