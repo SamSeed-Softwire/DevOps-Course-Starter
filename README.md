@@ -147,6 +147,14 @@ Most of these credentials are sensitive. Where sensitive they need to be encrypt
 
 Details on configuring Slack notifications (including setting up a new Travis-Slack integration) can be found [here](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications).
 
-You will need to create a Heroku app, which can be done using Heroku's web interface or the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). The app will be given a name (which you'll seee). Set the HEROKU_APP_NAME environment variable in your [.travis.yml](.travis.yml) to be this name.
+You will need to create an Azure Resource Group, and within it create an Azure App Service and an Azure Cosmos DB. This can be done using via the Azure portal (a browser-based GUI), using the Azure CLI, or via Visual Studio's GUI. 
 
-You will also need to add the environment variables stored in your [.env](.env) file as 'config vars' to your Heroku app. That can be done from the browser in the app's settings, or by using the Heroku CLI. For example ``heroku config:set `cat .env | grep AUTH_PARAMS_KEY` `` stores the `AUTH_PARAMS_KEY` environment variable as a config var in Heroku.
+Notes for setting up the Cosmos DB:
+- Your Cosmos DB should be set up as a MongoDB (you will be given this option when setting it up).
+- You'll get a Cosmos DB connection string, which you can use to populate the Cosmos DB environment variables in [.env](.env).
+
+Notes for setting up the App Service:
+- Choose 'Docker Container' in the 'Publish' field when setting it up. Then on the next screen enter the details of your container so that your App Service knows what container to use.
+- You'll need to add all of your environment variables (except those relating to the App Service itself - see further down) to the App Service you create, which can be done via Settings > Configuration or by using the Azure CLI.
+- You'll also need to set up continuous deployment - you can turn this on via Settings > Deployment Center > Settings tab. At the bottom of this screen you can retrieve your app's Webhook URL, which when sent a POST request will cause your App Service to re-pull the container image and restart the app.
+- Your Webhook URL will be of the form `https://\$$AZURE_APP_SERVICE_NAME:$AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"`. Make sure to get your Azure App Service name (you will have defined this when setting up the App Service, but of course you can get it directly from the Webhook URL) and your Azure App Service deployment password (get this from the Webhook URL). Then add these to your [.travis.yml](.travis.yml) file (make sure to encrypt the deployment password first!) You won't need to add these to your [.env](.env) file, nor to your App Service environment variables.
