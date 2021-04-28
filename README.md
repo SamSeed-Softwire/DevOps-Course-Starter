@@ -1,7 +1,7 @@
 # To-do app
 ## About the application
 
-This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. The app runs on an Azure App Service, data is stored in an Azure Cosmos DB, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
 
 ## Getting started
 
@@ -38,7 +38,7 @@ Environment variables include:
 
 ### Setting up
 
-You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Heroku app). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
+You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Azure App Service). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
 
 ### What you'll see
 
@@ -135,13 +135,13 @@ Running using Docker Compose:
 
 The application uses [Travis CI](https://www.travis-ci.com/), integrated with GitHub. When a pull request is created or updated, Travis builds the app and tests it. See [.travis.yml](.travis.yml) for how this works. Build status notifications are sent to Slack and via email.
 
-In the final Travis build stage, the app is deployed to [Heroku](https://www.heroku.com/home). You will be able to view the app at https://insert-your-app-name-here.herokuapp.com/.
+In the final Travis build stage, the app is deployed to an [Azure App Service](https://azure.microsoft.com/en-gb/services/app-service/). You will be able to view the app at https://insert-your-app-name-here.azurewebsites.net/.
 
 ### Config
 
 First, you will need to set up an integration between Travis and your GitHub account, which can be done from your Travis settings.
 
-Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, MongoDB, Heroku and Slack).
+Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials once they exist (for your Azure App Service, your Azure Cosmos DB, Docker, and Slack).
 
 Most of these credentials are sensitive. Where sensitive they need to be encrypted. The best way to do this is using Travis CLI's `encrypt` command - see documentation [here](https://docs.travis-ci.com/user/encryption-keys/).
 
