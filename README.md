@@ -141,7 +141,7 @@ In the final Travis build stage, the app is deployed to an [Azure App Service](h
 
 First, you will need to set up an integration between Travis and your GitHub account, which can be done from your Travis settings.
 
-Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials once they exist (for your Azure App Service, your Azure Cosmos DB, Docker, and Slack).
+Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run. You will need to update these with your own credentials once they exist (for your Azure App Service, your Azure Cosmos DB, Docker, and Slack).
 
 Most of these credentials are sensitive. Where sensitive they need to be encrypted. The best way to do this is using Travis CLI's `encrypt` command - see documentation [here](https://docs.travis-ci.com/user/encryption-keys/).
 
