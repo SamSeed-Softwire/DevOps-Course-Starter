@@ -1,7 +1,7 @@
 # To-do app
 ## About the application
 
-This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database.
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
 
 ## Getting started
 
@@ -14,15 +14,43 @@ When running locally, environment variables are read in from the `.env` file. Yo
 When running locally using Docker, environment variables are read in from the same `.env` file by Docker at runtime. This file is not copied to the container.
 
 Environment variables include:
-- Flask server configuration variables (these already have default values in `.env.template`).
-    - FLASK_APP
-    - FLASK_ENV
+- Flask server configuration variables (some of these already have default values in `.env.template`).
+    - FLASK_APP (defines the name of the Flask app)
+    - FLASK_ENV (determines the Flask environment - if left blank, this defaults to 'production'.)
+    - [FLASK_SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY)
+- Flask-Login configuration variables:
+    - LOGIN_DISABLED (if set to True, then Flask-Login won't force users to login)
+    - ROLE_FOR_DEV_PURPOSES (a custom env var.. if LOGIN_DISABLED is set to True, then this env var will determine what role the user should be artificially assigned)
+- GitHub OAuth app settings
+    - GITHUB_CLIENT_ID (the client ID of the GitHub OAuth app you'll need to set up)
+    - GITHUB_CLIENT_SECRET (the secret token of the GitHub OAuth app)
 - MongoDB authorisation parameters.
     - MONGO_USERNAME
     - MONGO_PASSWORD
 - MongoDB database details:
     - MONGO_HOST
     - MONGO_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
+- OAuthLib
+    - OAUTHLIB_INSECURE_TRANSPORT (if set to equal 1, then OAuth2 will be allowed over HTTP)
+
+## Security
+
+### Setting up
+
+You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Heroku app). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
+
+### What you'll see
+
+Once the application is running (see sections below), authentication/authorisation may be invoked depending on the config you have chosen.
+
+If the env var LOGIN_DISABLED is *not* set to true, the Python package Flask-Login will force you to log in. It invokes the [GitHub OAuth web application flow](https://docs.github.com/en/developers/apps/authorizing-oauth-apps) in order to do this.
+
+Once you are logged in with GitHub, the application will store your user details in the MongoDB database defined in your [.env](.env) file. The details it will store are:
+- Your GitHub ID
+- Your role (reader, writer or admin)
+Your role will be set automatically the first time you log in. If there are no other users stored in the database, you'll be assigned the role of admin. If there are other users stored in the database, you'll be assigned the role of reader. Within the app, only admins can change users' roles, and admins can't change their own roles.
+
+If the env var LOGIN_DISABLED is set to true, you will not be forced to log in. To manually decide what role you want to be, change the ROLE_FOR_DEV_PURPOSES env var, e.g. set it to equal "writer" if you want to automatically be granted writer permissions.
 
 ## Docker
 
@@ -46,7 +74,7 @@ Cleaning up:
 
 ### Local debugging
 
-You can run the application from the command line using `poetry run flask run` and then navigating to [`http://localhost:5000/`](http://localhost:5000/) to view the running app. You should run the application from the repo root.
+You can run the application from the command line using `poetry run flask run` and then navigating to http://localhost:5000/ to view the running app. You should run the application from the repo root.
 
 ### Running using Docker
 
@@ -57,9 +85,9 @@ Running using regular Docker:
 - Build the local dev image: `docker build --target dev --tag todo-app:dev .`
 - Build the production image: `docker build --target prod --tag todo-app:prod .`
 - Run the local dev container from the built image: `docker run -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
-- Run the production container from the built image: `docker run -p 5050:5000 --env-file .env todo-app:prod`
+- Run the production container from the built image: `docker run -p 5000:5000 --env-file .env todo-app:prod`
 - Run local dev container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5000:5000 --mount type=bind,source="$(pwd)"/application/,target=/todo-app/application/ --env-file .env todo-app:dev`
-- Run production container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5050:5000 --env-file .env todo-app:prod`
+- Run production container in interactive mode: `docker run -it --entrypoint /bin/bash -p 5000:5000 --env-file .env todo-app:prod`
 
 Running using Docker Compose:
 
@@ -68,10 +96,7 @@ Running using Docker Compose:
 - Run the dev version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-dev`
 - Run the prod version of the app in interactive mode (i.e. with an interactive shell): `docker-compose run --entrypoint /bin/bash --rm todo-app-prod`
 
-Once a container is running your application successfully you can view in your web browser at:
-
-- dev: [`http://localhost:5000/`](http://localhost:5000/)
-- prod: [`http://localhost:5050/`](http://localhost:5050/)
+Once a container is running your application successfully you can view in your web browser at http://localhost:5000/.
 
 ## Testing the application
 
@@ -81,7 +106,7 @@ The application uses the [pytest](https://docs.pytest.org/en/stable/) framework.
 
 ### Dependencies
 
-The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use geckodriver, which is the the Firefox driver. Download the relevant version for you (listed [here](https://github.com/mozilla/geckodriver/releases)), unzip and place the executable either in the project repo root, or on your PATH. You'll also need to have Firefox installed.
+The end-to-end (E2E) tests use [Selenium](https://selenium-python.readthedocs.io/) to run. Selenium requires a browser-specific driver in order to run. These are listed [here](https://selenium-python.readthedocs.io/installation.html#drivers). This project is currently setup to use ChromeDriver, which is automatically installed/updated when the e2e tests are run. You'll need to ake sure Chrome is installed when running locally using `poetry run pytest`. When running the tests using Docker, Chrome is automatically installed in the test container.
 
 ### Running the tests locally
 To run all tests locally, run `poetry run pytest`. You can also specify specific test folders, e.g.: `poetry run pytest tests_e2e`.

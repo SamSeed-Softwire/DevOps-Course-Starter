@@ -19,7 +19,7 @@ services:
             context: .
             target: prod
         ports:
-          - published: 5050
+          - published: 5000
             target: 5000
         env_file: .env
     todo-app-test:

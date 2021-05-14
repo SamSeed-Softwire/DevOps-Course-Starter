@@ -2,13 +2,13 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import pymongo
 import pytest
-import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from threading import Thread
 from webdriver_manager.chrome import ChromeDriverManager
 
 import application.app as app
+from application.user import User
 
 
 @pytest.fixture(scope='module')
@@ -18,8 +18,10 @@ def test_app():
     file_path = find_dotenv('.env')
     load_dotenv(file_path, override=True)
 
+    # Override environment variables.
     temp_db = "temp_db"
     os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
+    os.environ['LOGIN_DISABLED'] = "False"
 
     # Create app instance using newly created board.
     application  = app.create_app()
@@ -50,7 +52,18 @@ def driver():
     with webdriver.Chrome(chrome_driver_path, options=opts) as driver:
         yield driver
 
-def test_task_journey(driver, test_app):
+# Explictly set the user role when making requests to the Flask app. This may be useful if I introduce test journeys for other roles e.g. reader, admin.
+@pytest.fixture(scope='module')
+def writer_user(test_app):
+    @test_app.login_manager.request_loader
+    def load_user_from_request(request):
+        writer_user_id = "0"
+        return User(writer_user_id, "writer")
+
+# TODO: Add more journeys.
+
+def test_task_journey(driver, test_app, writer_user):
+
     driver.get('http://localhost:5000/')
 
     assert driver.title == 'To-Do App'
@@ -63,13 +76,6 @@ def test_task_journey(driver, test_app):
         items = find_items(list)
         return len(items)
 
-    def check_item_name(actual_name, expected_name_without_root):
-        root_pattern = r'.+\s-\s'
-        full_name_pattern = root_pattern + expected_name_without_root
-        name_matcher = re.compile(full_name_pattern)
-        match_result = name_matcher.fullmatch(actual_name)
-        return bool(match_result)
-
     def check_item_name_and_count(list):
 
         # Check there's now 1 item in the specified list
@@ -78,7 +84,8 @@ def test_task_journey(driver, test_app):
         # Check the new item has the correct name.
         list_items = find_items(list)
         list_item_name = list_items[0].text
-        assert check_item_name(list_item_name, initial_item_name) == True
+        assert list_item_name == initial_item_name
+
 
     # Check no items in lists at start.
     assert count_items('todo') == 0
