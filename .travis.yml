@@ -31,9 +31,10 @@ jobs:
       provider: script
       script: bash ./deploy_prod.sh
       skip_cleanup: true
-    after_deploy:
+
+  - stage: check_deployment
+    script:
     - curl_response=$(curl "http://$AZURE_APP_SERVICE_NAME.azurewebsites.net/")
-    # TODO: cause Travis build to fail if the curl is unsuccessful.
     - if [[ "$curl_response" == *"To-Do App"* ]] || [[ "$curl_response" == *"https://github.com/login/oauth/authorize"* ]]; then echo "Successful curl!"; else >&2 echo "Curl failure :("; return 1; fi
 
 services:
