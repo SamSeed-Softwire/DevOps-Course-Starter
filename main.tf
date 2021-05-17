@@ -9,8 +9,42 @@ terraform {
 provider "azurerm" {
     features {}
 }
+
+variable "failover_location" {
+  default = "ukwest"
+}
+
 data "azurerm_resource_group" "main" {
     name = "SoftwirePilot_SamSeed_ProjectExercise"
+}
+
+resource "azurerm_cosmosdb_account" "main" {
+    name = "softwirepilot-samseed-projectexercise-cosmos"
+    resource_group_name = data.azurerm_resource_group.main.name
+    location = data.azurerm_resource_group.main.location
+    offer_type = "Standard"
+    kind = "MongoDB"
+    consistency_policy {
+        consistency_level = "Eventual"
+    }
+    # geo_location {
+    #     location = data.azurerm_resource_group.main.location
+    #     failover_priority = 0
+    # }
+    geo_location {
+        location = var.failover_location
+        failover_priority = 0
+
+    }
+    capabilities {
+        name = "EnableServerless"
+    }
+    capabilities {
+        name = "EnableMongo"
+    }
+    lifecycle {
+        prevent_destroy = true
+    }
 }
 
 resource "azurerm_app_service_plan" "main" {
