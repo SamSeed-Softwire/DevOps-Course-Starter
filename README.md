@@ -1,7 +1,7 @@
 # To-do app
 ## About the application
 
-This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. Data is stored in a MongoDB database, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
+This application is a web-browser-based to-do app, written in Python utilising the Flask web development framework. The app runs on an Azure App Service, data is stored in an Azure Cosmos DB, and authentication/authorisation is managed using GitHub's OAuth web application flow and the Flask-Login package.
 
 ## Getting started
 
@@ -14,6 +14,13 @@ When running locally, environment variables are read in from the `.env` file. Yo
 When running locally using Docker, environment variables are read in from the same `.env` file by Docker at runtime. This file is not copied to the container.
 
 Environment variables include:
+- Cosmos DB authorisation parameters.
+    - COSMOS_USERNAME
+    - COSMOS_PASSWORD
+- Cosmos DB database details:
+    - COSMOS_HOST
+    - COSMOS_PORT
+    - COSMOS_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
 - Flask server configuration variables (some of these already have default values in `.env.template`).
     - FLASK_APP (defines the name of the Flask app)
     - FLASK_ENV (determines the Flask environment - if left blank, this defaults to 'production'.)
@@ -24,12 +31,6 @@ Environment variables include:
 - GitHub OAuth app settings
     - GITHUB_CLIENT_ID (the client ID of the GitHub OAuth app you'll need to set up)
     - GITHUB_CLIENT_SECRET (the secret token of the GitHub OAuth app)
-- MongoDB authorisation parameters.
-    - MONGO_USERNAME
-    - MONGO_PASSWORD
-- MongoDB database details:
-    - MONGO_HOST
-    - MONGO_TODO_APP_DATABASE (the name of the database you want to store your data in - this database will be created if it doesn't already exist)
 - OAuthLib
     - OAUTHLIB_INSECURE_TRANSPORT (if set to equal 1, then OAuth2 will be allowed over HTTP)
 
@@ -37,7 +38,7 @@ Environment variables include:
 
 ### Setting up
 
-You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Heroku app). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
+You will need to [create an OAuth app on GitHub](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and set the 'Homepage URL' to be where you want to view your app running (this could be e.g. http://localhost:5000/ if you are running locally, or it could be the URL of your deployed Azure App Service). For the 'Authorization callback URL' choose the same URL, but append `login/callback` to the end, e.g. http://localhost:5000/login/callback. When setting up you should get a client ID and a secret token - these can be entered into your [.env](.env) file as the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` env vars.
 
 ### What you'll see
 
@@ -134,18 +135,26 @@ Running using Docker Compose:
 
 The application uses [Travis CI](https://www.travis-ci.com/), integrated with GitHub. When a pull request is created or updated, Travis builds the app and tests it. See [.travis.yml](.travis.yml) for how this works. Build status notifications are sent to Slack and via email.
 
-In the final Travis build stage, the app is deployed to [Heroku](https://www.heroku.com/home). You will be able to view the app at https://insert-your-app-name-here.herokuapp.com/.
+In the final Travis build stage, the app is deployed to an [Azure App Service](https://azure.microsoft.com/en-gb/services/app-service/). You will be able to view the app at https://insert-your-app-name-here.azurewebsites.net/.
 
 ### Config
 
 First, you will need to set up an integration between Travis and your GitHub account, which can be done from your Travis settings.
 
-Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run (making the [.env](.env) file visible to Travis would mean committing it to Git history, which would be insecure). You will need to update these with your own credentials (for Docker, MongoDB, Heroku and Slack).
+Second, included in the [.travis.yml](.travis.yml) file are the environment variables the application needs in order to run. You will need to update these with your own credentials once they exist (for your Azure App Service, your Azure Cosmos DB, Docker, and Slack).
 
 Most of these credentials are sensitive. Where sensitive they need to be encrypted. The best way to do this is using Travis CLI's `encrypt` command - see documentation [here](https://docs.travis-ci.com/user/encryption-keys/).
 
 Details on configuring Slack notifications (including setting up a new Travis-Slack integration) can be found [here](https://docs.travis-ci.com/user/notifications/#configuring-slack-notifications).
 
-You will need to create a Heroku app, which can be done using Heroku's web interface or the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). The app will be given a name (which you'll seee). Set the HEROKU_APP_NAME environment variable in your [.travis.yml](.travis.yml) to be this name.
+You will need to create an Azure Resource Group, and within it create an Azure App Service and an Azure Cosmos DB. This can be done using via the Azure portal (a browser-based GUI), using the Azure CLI, or via Visual Studio's GUI. 
 
-You will also need to add the environment variables stored in your [.env](.env) file as 'config vars' to your Heroku app. That can be done from the browser in the app's settings, or by using the Heroku CLI. For example ``heroku config:set `cat .env | grep AUTH_PARAMS_KEY` `` stores the `AUTH_PARAMS_KEY` environment variable as a config var in Heroku.
+Notes for setting up the Cosmos DB:
+- Your Cosmos DB should be set up as a MongoDB (you will be given this option when setting it up).
+- You'll get a Cosmos DB connection string, which you can use to populate the Cosmos DB environment variables in [.env](.env).
+
+Notes for setting up the App Service:
+- Choose 'Docker Container' in the 'Publish' field when setting it up. Then on the next screen enter the details of your container so that your App Service knows what container to use.
+- You'll need to add all of your environment variables (except those relating to the App Service itself - see further down) to the App Service you create, which can be done via Settings > Configuration or by using the Azure CLI. If setting OAUTHLIB_INSECURE_TRANSPORT=1, make sure that the URLs (homepage and callback) you specify in your GitHub OAuth app use HTTP, not HTTPS.
+- You'll also need to set up continuous deployment - you can turn this on via Settings > Deployment Center > Settings tab. At the bottom of this screen you can retrieve your app's Webhook URL, which when sent a POST request will cause your App Service to re-pull the container image and restart the app.
+- Your Webhook URL will be of the form `https://\$$AZURE_APP_SERVICE_NAME:$AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"`. Make sure to get your Azure App Service name (you will have defined this when setting up the App Service, but of course you can get it directly from the Webhook URL) and your Azure App Service deployment password (get this from the Webhook URL). Then add these to your [.travis.yml](.travis.yml) file (make sure to encrypt the deployment password first!) You won't need to add these to your [.env](.env) file, nor to your App Service environment variables.

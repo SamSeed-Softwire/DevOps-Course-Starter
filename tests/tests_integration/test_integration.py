@@ -26,8 +26,8 @@ def mock_response(monkeypatch):
     monkeypatch.setattr(pymongo, "MongoClient", mock_mongo_client)
 
 def mock_mongo_client(*args, **kwargs):
-    MONGO_TODO_APP_DATABASE = os.environ.get('MONGO_TODO_APP_DATABASE')
-    return {MONGO_TODO_APP_DATABASE: MockMongoDatabase()}
+    COSMOS_TODO_APP_DATABASE = os.environ.get('COSMOS_TODO_APP_DATABASE')
+    return {COSMOS_TODO_APP_DATABASE: MockMongoDatabase()}
 
 def test_index_page(mock_response, client):
     response = client.get('/')

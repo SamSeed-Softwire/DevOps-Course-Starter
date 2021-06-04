@@ -20,7 +20,7 @@ def test_app():
 
     # Override environment variables.
     temp_db = "temp_db"
-    os.environ['MONGO_TODO_APP_DATABASE'] = temp_db
+    os.environ['COSMOS_TODO_APP_DATABASE'] = temp_db
     os.environ['LOGIN_DISABLED'] = "False"
 
     # Create app instance using newly created board.
@@ -37,10 +37,11 @@ def test_app():
     drop_database(temp_db)
 
 def drop_database(db):
-    MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
-    MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
-    MONGO_HOST = os.environ.get('MONGO_HOST')
-    client = pymongo.MongoClient(f"mongodb+srv://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}/?retryWrites=true&w=majority")
+    COSMOS_USERNAME = os.environ.get('COSMOS_USERNAME')
+    COSMOS_PASSWORD = os.environ.get('COSMOS_PASSWORD')
+    COSMOS_HOST = os.environ.get('COSMOS_HOST')
+    COSMOS_PORT = os.environ.get('COSMOS_PORT')
+    client = pymongo.MongoClient(f"""mongodb://{COSMOS_USERNAME}:{COSMOS_PASSWORD}@{COSMOS_HOST}:{COSMOS_PORT}/DefaultDatabase?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@{COSMOS_USERNAME}@""")
     client.drop_database(db)
 
 @pytest.fixture(scope='module')

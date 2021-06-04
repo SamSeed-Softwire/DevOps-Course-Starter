@@ -1,5 +1,3 @@
-if: type = pull_request
-
 jobs:
   include:
 
@@ -11,7 +9,7 @@ jobs:
     script:
     - docker run samseedsoftwire/todo-app-test:latest "tests/tests_unit" -rA
     - docker run samseedsoftwire/todo-app-test:latest "tests/tests_integration" -rA
-    - docker run -e MONGO_USERNAME=$MONGO_USERNAME -e MONGO_HOST=$MONGO_HOST -e MONGO_TODO_APP_DATABASE=$MONGO_TODO_APP_DATABASE -e MONGO_PASSWORD=$MONGO_PASSWORD -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
+    - docker run -e COSMOS_USERNAME=$COSMOS_USERNAME -e COSMOS_PASSWORD=$COSMOS_PASSWORD -e COSMOS_HOST=$COSMOS_HOST -e COSMOS_PORT=$COSMOS_PORT -e COSMOS_TODO_APP_DATABASE=$COSMOS_TODO_APP_DATABASE -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
     after_success:
     - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
     - docker push samseedsoftwire/todo-app-test:latest
@@ -27,29 +25,28 @@ jobs:
     - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
   - stage: deploy
-    before_script:
-    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker pull samseedsoftwire/todo-app-prod:latest
     script:
-    - docker build --target prod --cache-from samseedsoftwire/todo-app-prod:latest .
-    after_success:
-    - docker tag samseedsoftwire/todo-app-prod:latest registry.heroku.com/$HEROKU_APP_NAME/web
-    before_deploy:
-    - heroku container:login --verbose
+    - skip
     deploy:
       provider: script
       script: bash ./deploy_prod.sh
       skip_cleanup: true
-    after_deploy:
-    - curl "https://$HEROKU_APP_NAME.herokuapp.com/"
-    - curl_response=$(curl "https://$HEROKU_APP_NAME.herokuapp.com/")
-    - if [[ "$curl_response" == *"To-Do App"* ]]; then echo "Successful curl!"; else >&2 echo "Curl failure :("; return 1; fi
+
+  - stage: check_deployment
+    script:
+    - curl_response=$(curl "http://$AZURE_APP_SERVICE_NAME.azurewebsites.net/")
+    - if [[ "$curl_response" == *"To-Do App"* ]] || [[ "$curl_response" == *"https://github.com/login/oauth/authorize"* ]]; then echo "Successful curl!"; else >&2 echo "Curl failure :("; return 1; fi
 
 services:
 - docker
 
 env:
   global:
+
+  ### Azure ###
+  - AZURE_APP_SERVICE_NAME=softwirepilot-samseed-projectexercise-app-service
+  # AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD
+  - secure: "VPZkK50CJietKKKzCEc9w2zfF91zAHfUjTsRGdYBPrpzUiAJeHlfORVftgDQLOhbYPlp9rTAyIhA9gz6QWZVvo2pmzuyUeLn2BB8T9TZHuWJR18IDh8LgVS7b1ngVjBjnA/sflGafOyJFvc8Nh0LNbRmKbq5plZsDKkbGqWY0sqgKMQte0Mn/RMuo91KQxQR5F+u1Jz09k3Fy3Zcu5c0e86FWThvi5u/n0BfMcP/x0RC8CiwHp8ZvLyIIWkL7tmc8fDTmBlSR9SDQXxGZOHJUcJycUXiu0mWzI/qQtHFgYsx6Nk9oA/+D+npFFjKKKh7XsRlhBQooaZv+mc/2QMVWy4IL0MGL7DUbAtf2N2CrbcNAHiHRCF7dEjQVywziSbmQwfkebNX+L+bLjjfddpS1QUxoTJlA5GpuTRGLmtLP543mSaFRtg/CcztNw6cxlhalb4HAn5RbF7hzCM8a1HN8K/SFaoNSWLAaOTk4nNQn+2a/KK+ycYGMcPdPsfC6u+Whz1xsCO1V5D0DhsZOx0Awq5C0gu2JxGrrKaWPtVxn3oQ0d1D2Wy4vxBEl8TTf7pVyiKjcVUDAb74AXv3ypPLlC7ssCwZgn4dKluvmXI3MmDzxF6zXTTFs8ruY/QzAx+M0DJTjOr1/kRCk7SjV2/j2qTiGuP217Tp/qY+ez9wUHA="
 
   ### Docker ###
   - DOCKER_USERNAME=samseedsoftwire
@@ -60,18 +57,13 @@ env:
   - FLASK_APP=./application/app
   - FLASK_ENV=development
 
-  ### Heroku ###
-  # HEROKU_API_KEY (Heroku long-lasting authorisation token)
-  - secure: "GTxM+8rCszqd6VQ/rb24cmRPfY9FjBn4Te+AFGWq8J9ZxsdmCvVBMJ0AXUsIPXgghLu6gQryjjkJwUcsi9KL7Kcm3YJuqHzgTNCqgXw+VcAqX2vZwMTKFUQZR2reBQ5lqEDCq3th35qdd4BQi21UWzvKpkqDSEukLbHF/gJRdP+2h5TbU80SM7U60RQST3pFMuLfr0CKxZWgZ+VuyXoUmlt90UNjLmiU/khGEn90/aAjSGbFna75g8E+6IzWu/iGnlRQNZoyHNlI/a4o2MNldvGneUmiB5yrOhKciKzWodwwLHewoevOA1sZi71oInb3N1Px5L2bsRsUZZ4hcWbSYGoInSI9GsawAQ88RkREZ8aKD0LZVys9EHXf8sFM1IFBb2CdgH98EpH5wnd5exUSuWuGbJNajoJrOak5Wk9tD/r5fZJ6bQUSOLSyHdpUuwFDO1vyY5zqzq4nyyMJZpsSb09LJfIjnbfWLzL7bQ46wBXVkVOxDJvtH96017U3Ysf7aGFXC3z1lvU2XWWiG+E0WFa2KlS+xhG2V3hgVzmD8HwW3+u2B1VxVE5cFVH0I5yZ1blmj45TwsAcXMaXlGf8ltP4eAxvDRso7Mzna/wWVhRmmUYBKytdYYKsa1Su7lzfezF5xJb12k9AFb4H+q/tw7QDQ2r4LUftV8nuyQ2ZtWA="
-  # HEROKU_APP_NAME
-  - HEROKU_APP_NAME=still-spire-18415
-
-  ### MongoDB ###
-  - MONGO_USERNAME=new-user_0
-  - MONGO_HOST=cluster0.1ukux.mongodb.net
-  - MONGO_TODO_APP_DATABASE=db0
-  # MONGO_PASSWORD
-  - secure: "O8kAL06h3uaBNTYfc5VgL2tG5yv2v3BMLm8Fd5qc/+EPRdMmGGMWtDe280e8lIjGnl1Fwqx9ROR35usH1Gs6OAP4uY1ZQa/HC4UEp5i+mTfF92kcEXohLTxGPPxlUl5X0VJrr2II/VVUvB+A+cnBPTjDFV3RUf/JRYrbP1wWfPuplfRTgu0Wn2zw58Pw5Kmz2VIQgWc/LLGm/UUee4YuFG1C0yM31woSVWvNEuRBldACRyo73mhU5UdTesBf7LK4mpdIa4X+D2vNAZxDV82Vt9319nYAnRcKhAbxFGgiXCJglLUHw17FQSFFv+x7s1LHU52DQd29Xn+97+cGEcf9Z1oj7qOPOuvg+8yPfYXoBFUICc6ytAQpH2437PEoAFuXd0fc9MMbT9vb+W5K2OPEda/ZPfakH5pnqwHNyJyYVxITf6Pyt/fUCZTiiw6JfYYemktDHQjez/fvFCVwU4tvdPDMkWZzMl0FZ68BdVfBBnPeBM9qdmZb7ohj9g9QA/5d9LdfoJpOT0Rq76Jw6WcgmVHgPaXr3+jbGHUClwLDEMCYRtK3lH4AVyirQyqW6s4hQD/faGjpamVE1KBiA3r8W+Cxbc28sgaY0IVe3Njo6Y/wb/DrqKaSSFAqGvIUnqJ2gp1dilNG3iFz+V4P1RU7lx7ItIVfK3FF/p1/0WHMXng="
+  ### CosmosDB ###
+  - COSMOS_USERNAME=softwirepilot-samseed-projectexercise-cosmos
+  - COSMOS_HOST=softwirepilot-samseed-projectexercise-cosmos.mongo.cosmos.azure.com
+  - COSMOS_PORT=10255
+  - COSMOS_TODO_APP_DATABASE=softwirepilot-samseed-projectexercise-mongodb
+  # COSMOS_PASSWORD
+  - secure: "cP/icx8p3jCBU5gmaPaMe8+kVfVNV/HzpeEJO1Xad1no1XJ2FF1ysiKzYA6Luazdc5Vgkkrx1/5uCLyU+hdQfpt3IzCZq+y6llEhzTJxj2XliCBDvmaYbl7fYfWutHk6WzTO8cRZl6ifXo0WrDOZ7zf9uIcwVU7fWzrPr6IvIZtx7oWL2ihEWfNGLUS8NC2o6T7NB8kmbNfliWGKnzvyiSO7h/iNubJFmdNoOMSzeG5dzbdMesf6HHjBP+Xt/rVggKO8/2sfZ77CXS0XNhnkXZEhKWiXlZxKmpVEu/ns9UdlX6TGUSwefBgD6GDRFhMmCiNNRVcYm9IakyTtyS/D7RDOi9+92k8A5u49oK/kO3qlEObGkR2cVCijhjupcwAE1SFi3EexaPCdpbKFP5GOgtdhBMFePxKRu0CfDBUeB8UCymL1aOjd5GfWoifrdT7PLCfv4S7DRc0VnVoBLeC18qYcAFFPIaiqPd7coVaOz4TRljrBlKuoBOku97GOE0MJWPAeFVCd74U4OAygRljWNlJNunq9a/6vHpPkNpbqZp24AJKAiJJ5N0p9l/NvLk6A74NwF7kiM1ePijZgsOgUxiUlPqUUrvfJMIqNzhx6RcwPeJ2MjzziA12Irg/NYT16RMtvVZ0Z3Ci52p6gZvTRg+8gmXDcgeCzU3SUshAp2Io="
 
 notifications:
   slack:

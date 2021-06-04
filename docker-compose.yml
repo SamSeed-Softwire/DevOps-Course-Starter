@@ -28,6 +28,6 @@ services:
             context: .
             target: test
         ports:
-          - published: 5555
+          - published: 5000
             target: 5000
         env_file: .env

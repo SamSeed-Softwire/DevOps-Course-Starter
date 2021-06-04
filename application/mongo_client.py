@@ -10,12 +10,13 @@ class MongoClient:
 
     def __init__(self):
 
-        self.MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
-        self.MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
-        self.MONGO_HOST = os.environ.get('MONGO_HOST')
-        self.MONGO_TODO_APP_DATABASE = os.environ.get('MONGO_TODO_APP_DATABASE')
-        self.client = pymongo.MongoClient(f"mongodb+srv://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_HOST}/?retryWrites=true&w=majority")
-        self.db = self.client[self.MONGO_TODO_APP_DATABASE]
+        self.COSMOS_USERNAME = os.environ.get('COSMOS_USERNAME')
+        self.COSMOS_PASSWORD = os.environ.get('COSMOS_PASSWORD')
+        self.COSMOS_HOST = os.environ.get('COSMOS_HOST')
+        self.COSMOS_PORT = os.environ.get('COSMOS_PORT')
+        self.COSMOS_TODO_APP_DATABASE = os.environ.get('COSMOS_TODO_APP_DATABASE')
+        self.client = pymongo.MongoClient(f"""mongodb://{self.COSMOS_USERNAME}:{self.COSMOS_PASSWORD}@{self.COSMOS_HOST}:{self.COSMOS_PORT}/DefaultDatabase?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@{self.COSMOS_USERNAME}@""")
+        self.db = self.client[self.COSMOS_TODO_APP_DATABASE]
 
     # User management.
 

@@ -1,2 +1,1 @@
-docker push registry.heroku.com/$HEROKU_APP_NAME/web
-heroku container:release web --app $HEROKU_APP_NAME --verbose
+curl -dH -X POST "https://\$$AZURE_APP_SERVICE_NAME:$AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"
