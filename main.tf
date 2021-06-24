@@ -8,6 +8,8 @@ terraform {
 }
 provider "azurerm" {
     features {}
+    # Skip provider registration to avoid errors.
+    skip_provider_registration = true
 }
 
 variable "failover_location" {
