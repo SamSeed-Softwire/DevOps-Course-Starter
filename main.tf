@@ -83,6 +83,11 @@ resource "azurerm_app_service" "main" {
     }
     app_settings = {
         "DOCKER_REGISTRY_SERVER_URL" = "https://index.docker.io"
+        "COSMOS_USERNAME" = azurerm_cosmosdb_account.main.name
+        "COSMOS_PASSWORD" = azurerm_cosmosdb_account.main.primary_key
+        "COSMOS_HOST" = "${azurerm_cosmosdb_account.main.name}.mongo.cosmos.azure.com"
+        "COSMOS_PORT" = 10255
+        "COSMOS_TODO_APP_DATABASE" = azurerm_cosmosdb_mongo_database.main.name
     }
     lifecycle {
         prevent_destroy = true
