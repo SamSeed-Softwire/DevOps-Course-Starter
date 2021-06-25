@@ -25,6 +25,14 @@ jobs:
     - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
   - stage: deploy
+    install:
+    # Install Terraform
+    - wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/
+    - terraform_"$TF_VERSION"_linux_amd64.zip
+    - unzip terraform_"$TF_VERSION"_linux_amd64.zip
+    - sudo mv terraform /usr/local/bin/
+    - rm terraform_"$TF_VERSION"_linux_amd64.zip
+    - terraform init
     script:
     - skip
     deploy:
