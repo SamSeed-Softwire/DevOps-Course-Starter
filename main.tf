@@ -1,4 +1,10 @@
 terraform {
+    backend "azurerm" {
+        resource_group_name = "SoftwirePilot_SamSeed_ProjectExercise"
+        storage_account_name = "swpilotsamseedstorage"
+        container_name = "tfstate"
+        key = "terraform.tfstate"
+    }
     required_providers {
         azurerm = {
             source = "hashicorp/azurerm"
