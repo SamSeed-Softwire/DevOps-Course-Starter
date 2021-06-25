@@ -40,18 +40,18 @@ resource "azurerm_cosmosdb_account" "main" {
     capabilities {
         name = "EnableMongo"
     }
-    lifecycle {
-        prevent_destroy = true
-    }
+    # lifecycle {
+    #     prevent_destroy = true
+    # }
 }
 
 resource "azurerm_cosmosdb_mongo_database" "main" {
     name                = "${var.prefix}-softwirepilot-samseed-mongodb"
     resource_group_name = azurerm_cosmosdb_account.main.resource_group_name
     account_name        = azurerm_cosmosdb_account.main.name
-    lifecycle {
-        prevent_destroy = true
-    }
+    # lifecycle {
+    #     prevent_destroy = true
+    # }
 }
 
 resource "azurerm_app_service_plan" "main" {
@@ -64,9 +64,9 @@ resource "azurerm_app_service_plan" "main" {
         tier = "Basic"
         size = "B1"
     }
-    lifecycle {
-        prevent_destroy = true
-    }
+    # lifecycle {
+    #     prevent_destroy = true
+    # }
 }
 resource "azurerm_app_service" "main" {
     name = "${var.prefix}-softwirepilot-samseed-app-service"
@@ -85,7 +85,7 @@ resource "azurerm_app_service" "main" {
         "COSMOS_PORT" = 10255
         "COSMOS_TODO_APP_DATABASE" = azurerm_cosmosdb_mongo_database.main.name
     }
-    lifecycle {
-        prevent_destroy = true
-    }
+    # lifecycle {
+    #     prevent_destroy = true
+    # }
 }
