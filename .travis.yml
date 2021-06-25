@@ -40,6 +40,8 @@ jobs:
       provider: script
       script: bash ./deploy_prod.sh
       skip_cleanup: true
+      on:
+        branch: module_12
 
   - stage: check_deployment
     script:
