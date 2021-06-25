@@ -55,6 +55,7 @@ env:
 
   ### Azure ###
   - AZURE_APP_SERVICE_NAME=softwirepilot-samseed-projectexercise-app-service
+  - ARM_ACCESS_KEY=iUF0GrZL2sguLjZGaKelt6ONtO1+bkFZ8SKkpFvubyTVOGQ27xuVjqBRLOEEe2tVyQzfkAjvVLV+GDIe3aMDnQ==
   - ARM_CLIENT_ID=00c795a0-a492-4182-aaf6-6e8d4d515bc2
   - ARM_TENANT_ID=7d6f97d6-d755-4c10-b763-409cc4b6638f
   - ARM_SUBSCRIPTION_ID=d33b95c7-af3c-4247-9661-aa96d47fccc0
