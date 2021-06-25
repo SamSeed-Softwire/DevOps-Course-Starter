@@ -1,28 +1,28 @@
 jobs:
   include:
 
-  - stage: test
-    before_script:
-    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker pull samseedsoftwire/todo-app-test:latest
-    - docker build --target test --tag samseedsoftwire/todo-app-test:latest .
-    script:
-    - docker run samseedsoftwire/todo-app-test:latest "tests/tests_unit" -rA
-    - docker run samseedsoftwire/todo-app-test:latest "tests/tests_integration" -rA
-    - docker run -e COSMOS_USERNAME=$COSMOS_USERNAME -e COSMOS_PASSWORD=$COSMOS_PASSWORD -e COSMOS_HOST=$COSMOS_HOST -e COSMOS_PORT=$COSMOS_PORT -e COSMOS_TODO_APP_DATABASE=$COSMOS_TODO_APP_DATABASE -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
-    after_success:
-    - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
-    - docker push samseedsoftwire/todo-app-test:latest
-    - docker push samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
+  # - stage: test
+  #   before_script:
+  #   - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
+  #   - docker pull samseedsoftwire/todo-app-test:latest
+  #   - docker build --target test --tag samseedsoftwire/todo-app-test:latest .
+  #   script:
+  #   - docker run samseedsoftwire/todo-app-test:latest "tests/tests_unit" -rA
+  #   - docker run samseedsoftwire/todo-app-test:latest "tests/tests_integration" -rA
+  #   - docker run -e COSMOS_USERNAME=$COSMOS_USERNAME -e COSMOS_PASSWORD=$COSMOS_PASSWORD -e COSMOS_HOST=$COSMOS_HOST -e COSMOS_PORT=$COSMOS_PORT -e COSMOS_TODO_APP_DATABASE=$COSMOS_TODO_APP_DATABASE -e FLASK_APP=$FLASK_APP -e FLASK_ENV=$FLASK_ENV samseedsoftwire/todo-app-test:latest "tests/tests_e2e" -rA
+  #   after_success:
+  #   - docker tag samseedsoftwire/todo-app-test:latest samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
+  #   - docker push samseedsoftwire/todo-app-test:latest
+  #   - docker push samseedsoftwire/todo-app-test:$TRAVIS_COMMIT
 
-  - stage: publish
-    before_script:
-    - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker build --target prod --tag samseedsoftwire/todo-app-prod:latest .
-    - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
-    script:
-    - docker push samseedsoftwire/todo-app-prod:latest
-    - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
+  # - stage: publish
+  #   before_script:
+  #   - echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
+  #   - docker build --target prod --tag samseedsoftwire/todo-app-prod:latest .
+  #   - docker tag samseedsoftwire/todo-app-prod:latest samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
+  #   script:
+  #   - docker push samseedsoftwire/todo-app-prod:latest
+  #   - docker push samseedsoftwire/todo-app-prod:$TRAVIS_COMMIT
 
   - stage: deploy
     install:
