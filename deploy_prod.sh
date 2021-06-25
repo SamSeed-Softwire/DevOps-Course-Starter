@@ -1,1 +1,1 @@
-curl -dH -X POST "https://\$$AZURE_APP_SERVICE_NAME:$AZURE_APP_SERVICE_DEPLOYMENT_PASSWORD@$AZURE_APP_SERVICE_NAME.scm.azurewebsites.net/docker/hook"
+curl -dH -X POST "$(terraform output -raw deployment_webhook_url)"
