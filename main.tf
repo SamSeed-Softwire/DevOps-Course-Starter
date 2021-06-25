@@ -12,10 +12,6 @@ provider "azurerm" {
     skip_provider_registration = true
 }
 
-variable "failover_location" {
-  default = "ukwest"
-}
-
 data "azurerm_resource_group" "main" {
     name = "SoftwirePilot_SamSeed_ProjectExercise"
 }
