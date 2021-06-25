@@ -35,6 +35,8 @@ jobs:
     - terraform init
     script:
     - skip
+    before_deploy:
+    - terraform apply -auto-approve -var 'prefix=dev'
     deploy:
       provider: script
       script: bash ./deploy_prod.sh
